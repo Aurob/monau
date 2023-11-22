@@ -3,7 +3,7 @@ import json
 from lib.private import private
 from lib.verify import verify_token
 
-openai.api_key = "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"
+openai.api_key = "API-KEY"
 prompt = ''
 models = ['gpt-3.5-turbo', 'gpt-4']
 default_model = 1
