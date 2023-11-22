@@ -1,0 +1,304 @@
+<html>
+
+<head>
+    <title>Three.js Plane and Box</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        /* canvas { width: 100%; height: 100% } */
+    </style>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script>
+    <script>
+
+        ////////////////////////////////
+        let sections = 10;
+        let minbookw = .25;
+        let maxbookw = .4;
+        let minbookd = .75;
+        let maxbookd = 1;
+        let sw = 1;
+        let sw_remaining = sw * sections;
+        let sh = 1;
+        let sh_remaining = sh * sections;
+        let startx = 0;
+        let starty = 0;
+        let i = 0;
+        let hovered_book = null;
+        let last_hb = null;
+
+        // keyboard camera controls
+        var keyboard = {};
+
+        // Create a renderer
+        var renderer = new THREE.WebGLRenderer();
+
+        ////////////////////////////////
+        // Create a scene
+        var scene = new THREE.Scene();
+
+        // Create a camera
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // camera.position.x = 5;
+        // camera.position.y = -5;
+        // camera.position.z = -4; //6.8;
+        camera.position.x = 5;
+        camera.position.y = -5.399999999999999;
+        camera.position.z = -8.999999999999982;
+        camera.rotation.x = Math.PI;
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create a plane
+        var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
+        var planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.DoubleSide, wireframe: true });
+        var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.position.x = 5
+        plane.position.y = -5;
+        scene.add(plane);
+
+        // Create a plne for each shelf
+        for (let i = 0; i < sections; i++) {
+            let _plane = new THREE.Mesh(new THREE.PlaneGeometry(10, 1, 10, 10), planeMaterial);
+            _plane.position.x = 5
+            _plane.position.y = -10 + (i * 1);
+            _plane.position.z = -.5;
+            _plane.rotateX(Math.PI / 2);
+            scene.add(_plane);
+        }
+
+
+        var loader = new THREE.FontLoader();
+        // Retrieve the JSON font file
+        fetch('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json')
+            .then(response => response.json())
+            .then(fontJson => {
+                var font = new THREE.Font(fontJson);
+                start(font);
+            });
+
+        function randomColor() {
+            return Math.floor(Math.random() * 16777215);
+        }
+
+        function start(font) {
+
+            // Add text to the front of the box
+            var textGeometry = new THREE.TextGeometry('Ubik | Philip K. Dick', {
+                font: font,
+                size: 1,
+                height: .01,
+            });
+
+            textGeometry.rotateZ(-Math.PI / 2);
+            textGeometry.rotateX(Math.PI);
+            var textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+            while (true) {
+                let w = (Math.random() * (maxbookw - minbookw) + minbookw) - .1;
+                if (i % 2 == 0)
+                    w = .05 + Math.random() * .2;
+
+                let h = 1;
+                let d = (Math.random() * (maxbookd - minbookd) + minbookd) - .1;
+                if (w > sw_remaining) {
+                    w = sw_remaining;
+                }
+                // create the books each section
+                let color = randomColor();
+                let x = (startx + w / 2);
+                let y = (-starty + h / 2);
+                let z = d / 2;
+
+                let box;
+                if (i % 2 == 0) {
+                    // if (i == 2) {
+                    // Create a texture
+                    box = addBox(x, y, z, w, h, d, color, null, textGeometry, textMaterial);
+                    // }
+                    // else {
+                    //     box = addBox(x, y, z, w, h, d, color);
+                    // }
+                }
+                sw_remaining -= w;
+                startx += w;
+
+                // console.log(w, sw_remaining, color)
+                if (sw_remaining <= 0) {
+                    sw_remaining = sw * sections;
+                    startx = 0;
+                    starty += h;
+                    i++;
+                }
+
+                if (starty > sh * sections) {
+                    break;
+                }
+
+                i++;
+
+            }
+
+            animate();
+        }
+
+
+        function addBox(x, y, z, w, h, d, color = 0xff0000, boxMaterial = null, textGeometry, textMaterial) {
+            // Create a box
+            var boxGeometry = new THREE.BoxGeometry(w, h, d);
+            if (boxMaterial == null) {
+                var boxMaterial = new THREE.MeshBasicMaterial({ color: color });
+            }
+            var box = new THREE.Mesh(boxGeometry, boxMaterial);
+            box.position.x = x - w;
+            box.position.y = y - h;
+            box.position.z = z - d;
+            box.objType = 'book';
+            scene.add(box);
+
+            // if(!font) return box;
+
+            var text = new THREE.Mesh(textGeometry, textMaterial);
+
+            // Scale the text down based on the computed width
+            textGeometry.computeBoundingBox();
+            // var textWidth = textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x;
+            // text.scale.set(textScale, textScale, textScale);
+
+
+            // text.scale.set(d, h, w);
+            text.scale.x = w * .5;
+            text.scale.y = h / 14;
+            text.scale.z = d;
+
+
+            text.position.x = x - (w * 1.2);
+            text.position.y = y - (h * 1.4);
+            text.position.z = (-z - d / 2) - .001;
+            scene.add(text);
+
+
+            return box;
+        }
+
+        // Resizing the canvas when the window is resized
+        window.addEventListener('resize', function () {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+        window.addEventListener('keydown', function (event) {
+            keyboard[event.keyCode] = true;
+        });
+        window.addEventListener('keyup', function (event) {
+            keyboard[event.keyCode] = false;
+        });
+
+        // mousemove ray
+        var raycaster = new THREE.Raycaster();
+        var mouse = new THREE.Vector2();
+        var mouse_event = null;
+        window.addEventListener('mousemove', onMouseMove, false);
+
+        function onMouseMove(event) {
+            mouse_event = event;
+        }
+
+        var reset_colors = [];
+        function moveMouse() {
+            if (!mouse_event) return;
+            // calculate mouse position in normalized device coordinates
+            // (-1 to +1) for both components
+            mouse.x = (mouse_event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(mouse_event.clientY / window.innerHeight) * 2 + 1;
+
+            // update the picking ray with the camera and mouse position
+            raycaster.setFromCamera(mouse, camera);
+
+            // calculate objects intersecting the picking ray
+            var intersects = raycaster.intersectObjects(scene.children);
+
+            let intersected_books = 0;
+            for (var i = 0; i < intersects.length; i++) {
+                if (intersects[i].object.objType == 'book') {
+                    intersected_books++;
+                    if (hovered_book && intersects[i].object != hovered_book) {
+                        hovered_book.material.color.setHex(
+                            (hovered_book.material.default_color.r * 255 << 16) +
+                            (hovered_book.material.default_color.g * 255 << 8) +
+                            (hovered_book.material.default_color.b * 255)
+                        );
+                        hovered_book = intersects[i].object
+                        hovered_book.material.default_color = {
+                            r: intersects[i].object.material.color.r,
+                            g: intersects[i].object.material.color.g,
+                            b: intersects[i].object.material.color.b
+                        }
+                        intersects[i].object.material.color.setHex(0x00ff00);
+                    }
+                    else if(!hovered_book){
+                        hovered_book = intersects[i].object;
+                        hovered_book.material.default_color = {
+                            r: intersects[i].object.material.color.r,
+                            g: intersects[i].object.material.color.g,
+                            b: intersects[i].object.material.color.b
+                        }
+                        hovered_book.material.color.setHex(0x00ff00);
+                    }
+                }
+            }
+
+            if(intersected_books == 0 && hovered_book){
+                hovered_book.material.color.setHex(
+                    (hovered_book.material.default_color.r * 255 << 16) +
+                    (hovered_book.material.default_color.g * 255 << 8) +
+                    (hovered_book.material.default_color.b * 255)
+                );
+                hovered_book = null;
+            }
+        }
+
+        function moveCamera() {
+            if (keyboard[87]) { // W key
+                camera.position.z += 0.1;
+            }
+            if (keyboard[83]) { // S key
+                camera.position.z -= 0.1;
+            }
+            if (keyboard[65]) { // A key
+                camera.position.x -= 0.1;
+            }
+            if (keyboard[68]) { // D key
+                camera.position.x += 0.1;
+            }
+            if (keyboard[81]) { // Q key
+                camera.rotation.y += 0.05;
+            }
+            if (keyboard[69]) { // E key
+                camera.rotation.y -= 0.05;
+            }
+            if (keyboard[32]) { // SPACE key
+                camera.position.y += 0.1;
+            }
+            if (keyboard[16]) { // SHIFT key
+                camera.position.y -= 0.1;
+            }
+        }
+
+        // Animation function
+        function animate() {
+            requestAnimationFrame(animate);
+            moveCamera();
+            moveMouse();
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+
+</html>

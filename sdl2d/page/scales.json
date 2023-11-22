@@ -1,0 +1,158 @@
+{
+    "Entities": [
+        {
+            "Player": true,
+            "Position": {
+                "globalX": -250,
+                "globalY": -250
+            },
+            "Shape": {
+                "sizeX":10.0,
+                "sizeY": 0,
+                "sizeZ":10.0
+            },
+            "Movement": {
+                "speed": 25,
+                "max_speed": 110,
+                "friction": 0.05,
+                "mass": 5
+            },
+            "Moveable": {}
+        },
+        {
+            "Repeat": 5,
+            "Position": {
+                "globalX": -5,
+                "globalY": 0
+            },
+            "Shape": {
+                "sizeX":0.3,
+                "sizeY":0.3,
+                "sizeZ":0.3
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 1,
+                "max_speed": 5,
+                "friction": 3,
+                "mass": 5
+            },
+            "Hoverable": {}
+        },
+        {
+            "Repeat": 5,
+            "Position": {
+                "globalX": 0,
+                "globalY": 0
+            },
+            "Shape": {
+                "sizeX":3.0,
+                "sizeY":3.0,
+                "sizeZ":3.0
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 1,
+                "max_speed": 5,
+                "friction": 3,
+                "mass": 5
+            },
+            "Hoverable": {}
+        },
+        {
+            "Repeat": 5,
+            "Position": {
+                "globalX": 50,
+                "globalY": 0
+            },
+            "Shape": {
+                "sizeX":30.0,
+                "sizeY":30.0,
+                "sizeZ":30.0
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 1,
+                "max_speed": 5,
+                "friction": 3,
+                "mass": 5
+            },
+            "Hoverable": {}
+        },
+        {
+            "Repeat": 5,
+            "Position": {
+                "globalX": 200,
+                "globalY": 0
+            },
+            "Shape": {
+                "sizeX":300.0,
+                "sizeY":300.0,
+                "sizeZ":300.0
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 1,
+                "max_speed": 5,
+                "friction": 3,
+                "mass": 5
+            },
+            "Hoverable": {}
+        },
+        {
+            "Repeat": 5,
+            "Position": {
+                "globalX": 600,
+                "globalY": 0
+            },
+            "Shape": {
+                "sizeX":3000.0,
+                "sizeY":3000.0,
+                "sizeZ":3000.0
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 1,
+                "max_speed": 5,
+                "friction": 3,
+                "mass": 5
+            },
+            "Hoverable": {}
+        }
+    ]
+}

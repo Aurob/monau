@@ -1,0 +1,61 @@
+<style>
+    pre {
+        font-family: monospace;
+        font-size: 2.5em;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    pre #nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding-right: 1em;
+    }
+
+    .popup {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 8px;
+        border-radius: 4px;
+        z-index: 1;
+    }
+</style>
+<pre>
+<b>R</b>obert <b>Au</b>coin
+<div class="popup" id="popup">Hello, this is a popup!</div>
+<p title="What's This?">Creative Technologist</p>
+- Software Development
+  - Web Development
+  - Data Analysis & Visualization
+  - Game Development
+  - Generative Art
+
+<div id="nav">
+    <a href="https://rau.lol">Portfolio</a>
+    <a href="https://linkedin.com/in/raucoin">LinkedIn</a>
+    <a href="https://github.com/aurob">GitHub</a>
+    <a href="cv.pdf">CV</a>
+    <a href="mailto:dev.mail.au@gmail.com">Contact</a>
+</div>
+</pre>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const popup = document.getElementById('popup');
+        const title = document.querySelector('p[title]');
+        title.addEventListener('mouseover', () => {
+            popup.style.display = 'block';
+        });
+        title.addEventListener('mouseout', () => {
+            popup.style.display = 'none';
+        });
+    });
+</script>

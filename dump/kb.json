@@ -1,0 +1,424 @@
+{
+    "html": "Omninomicon",
+    "children": [
+      {
+        "html": "Life Behavior",
+        "children": [
+          {
+            "html": "Cognition",
+            "children": [
+              {
+                "html": "Memory"
+              },
+              {
+                "html": "Problem Solving"
+              },
+              {
+                "html": "Language and Communication"
+              },
+              {
+                "html": "Perception and Attention"
+              }
+            ]
+          },
+          {
+            "html": "Emotions",
+            "children": [
+              {
+                "html": "Happiness"
+              },
+              {
+                "html": "Sadness"
+              },
+              {
+                "html": "Anger"
+              },
+              {
+                "html": "Fear"
+              },
+              {
+                "html": "Surprise"
+              },
+              {
+                "html": "Disgust"
+              }
+            ]
+          },
+          {
+            "html": "Behaviors",
+            "children": [
+              {
+                "html": "Individual Behavior"
+              },
+              {
+                "html": "Group Behavior"
+              },
+              {
+                "html": "Behavioral Disorders"
+              },
+              {
+                "html": "Evolutionary Psychology"
+              },
+              {
+                "html": "Behavioral Economics"
+              }
+            ]
+          },
+          {
+            "html": "Social Interactions",
+            "children": [
+              {
+                "html": "Group Dynamics"
+              },
+              {
+                "html": "Interpersonal Relationships"
+              },
+              {
+                "html": "Social Networks"
+              },
+              {
+                "html": "Social Influence"
+              },
+              {
+                "html": "Conflict and Cooperation"
+              }
+            ]
+          },
+          {
+            "html": "Spiritual Beliefs",
+            "children": [
+              {
+                "html": "Religions of the World"
+              },
+              {
+                "html": "Mysticism"
+              },
+              {
+                "html": "Atheism"
+              },
+              {
+                "html": "Agnosticism"
+              },
+              {
+                "html": "Spiritualism"
+              }
+            ]
+          },
+          {
+            "html": "Artificial Intelligence",
+            "children": [
+              {
+                "html": "Machine Learning"
+              },
+              {
+                "html": "Robotics"
+              },
+              {
+                "html": "Natural Language Processing"
+              },
+              {
+                "html": "Computer Vision"
+              },
+              {
+                "html": "Ethics of AI"
+              }
+            ]
+          },
+          {
+            "html": "Extraterrestrial Consciousness"
+          },
+          {
+            "html": "Supernatural Entities"
+          }
+        ]
+      },
+      {
+        "html": "Life Systems",
+        "children": [
+          {
+            "html": "Biology",
+            "children": [
+              {
+                "html": "Genetics"
+              },
+              {
+                "html": "Evolution"
+              },
+              {
+                "html": "Physiology"
+              },
+              {
+                "html": "Biochemistry"
+              },
+              {
+                "html": "Biophysics"
+              }
+            ]
+          },
+          {
+           "html": "Ecology",
+           "children": [
+             {
+               "html": "Population Ecology"
+             },
+             {
+               "html": "Community Ecology"
+             },
+             {
+               "html": "Ecosystem Ecology"
+             },
+             {
+               "html": "Biosphere"
+             },
+             {
+               "html": "Human Ecology"
+             }
+           ]
+         },
+          {
+            "html": "Zoology",
+            "children": [
+              {
+                "html": "Mammalogy"
+              },
+              {
+                "html": "Ornithology"
+              },
+              {
+                "html": "Herpetology"
+              },
+              {
+                "html": "Ichthyology"
+              },
+              {
+                "html": "Entomology"
+              }
+            ]
+          },
+          {
+            "html": "Botany",
+            "children": [
+              {
+                "html": "Plant Anatomy"
+              },
+              {
+                "html": "Plant Physiology"
+              },
+              {
+                "html": "Plant Ecology"
+              },
+              {
+                "html": "Plant Systematics"
+              },
+              {
+                "html": "Phytopathology"
+              }
+            ]
+          },
+          {
+            "html": "Microbial Life",
+            "children": [
+              {
+                "html": "Bacteria"
+              },
+              {
+                "html": "Archaea"
+              },
+              {
+                "html": "Fungi"
+              },
+              {
+                "html": "Protozoa"
+              },
+              {
+                "html": "Viruses"
+              }
+            ]
+          },
+          {
+            "html": "Extraterrestrial Life"
+          },
+          {
+            "html": "Undefined or Unknowable Life Entities"
+          }
+        ]
+      },
+      {
+        "html": "Physical Universe",
+        "children": [
+          {
+            "html": "Physics",
+            "children": [
+              {
+                "html": "Classical Physics"
+              },
+              {
+                "html": "Quantum Physics"
+              },
+              {
+                "html": "Thermodynamics"
+              },
+              {
+                "html": "Relativity"
+              },
+              {
+                "html": "Astrophysics"
+              }
+            ]
+          },
+          {
+            "html": "Chemistry",
+            "children": [
+              {
+                "html": "Organic Chemistry"
+              },
+              {
+                "html": "Inorganic Chemistry"
+              },
+              {
+                "html": "Physical Chemistry"
+              },
+              {
+                "html": "Analytical Chemistry"
+              },
+              {
+                "html": "Biochemistry"
+              }
+            ]
+          },
+          {
+            "html": "Earth Sciences",
+            "children": [
+              {
+                "html": "Geology"
+              },
+              {
+                "html": "Meteorology"
+              },
+              {
+                "html": "Oceanography"
+              },
+              {
+                "html": "Climatology"
+              },
+              {
+                "html": "Paleontology"
+              }
+            ]
+          },
+          {
+            "html": "Space Sciences",
+            "children": [
+              {
+                "html": "Astrobiology"
+              },
+              {
+                "html": "Astronomy"
+              },
+              {
+                "html": "Cosmology"
+              },
+              {
+                "html": "Planetary Science"
+              },
+              {
+                "html": "Space Exploration"
+              }
+            ]
+          },
+          {
+            "html": "Applied Sciences"
+          },
+          {
+            "html": "Atomic Particles",
+            "children": [
+              {
+                "html": "Quarks"
+              },
+              {
+                "html": "Leptons"
+              },
+              {
+                "html": "Mesons"
+              },
+              {
+                "html": "Baryons"
+              },
+              {
+                "html": "Neutrinos"
+              },
+              {
+                "html": "Bosons"
+              }
+            ]
+          },
+          {
+            "html": "Galaxies",
+            "children": [
+              {
+                "html": "Milky Way"
+              },
+              {
+                "html": "Andromeda"
+              },
+              {
+                "html": "Spiral Galaxies"
+              },
+              {
+                "html": "Elliptical Galaxies"
+              },
+              {
+                "html": "Irregular Galaxies"
+              }
+            ]
+          },
+          {
+            "html": "Natural Resources",
+            "children": [
+              {
+                "html": "Water"
+              },
+              {
+                "html": "Air"
+              },
+              {
+                "html": "Soil"
+              },
+              {
+                "html": "Minerals"
+              },
+              {
+                "html": "Fossils"
+              },
+              {
+                "html": "Energy Resources"
+              }
+            ]
+          },
+          {
+            "html": "Synthetic Materials",
+            "children": [
+              {
+                "html": "Plastics"
+              },
+              {
+                "html": "Composites"
+              },
+              {
+                "html": "Metals"
+              },
+              {
+                "html": "Ceramics"
+              },
+              {
+                "html": "Polymers"
+              }
+            ]
+          },
+          {
+            "html": "Unexplained Phenomena"
+          }
+        ]
+      }
+    ]
+  }

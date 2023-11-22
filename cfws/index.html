@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>WS Client</title>
+  <style>
+    #_0 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #_0 button {
+      height: 100%;
+      margin: 1em;
+    }
+
+    #form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #data {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    #server {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="_0">
+    <h1>WS Client</h1>
+    <button id="server"></button>
+  </div>
+  <form id="form">
+    <select></select>
+    <input type="text" id="message" />
+    <button>Send</button>
+  </form>
+  <div id="data">
+    <div id="sent"></div>
+    <div id="received"></div>
+  </div>
+
+  <script type="text/javascript">
+    let ws;
+
+    window.onload = function () {
+      // Connect to the WebSocket server
+      ws = new WebSocket('wss://ws.rau.dev');
+
+      ws.onopen = function (event) {
+        console.log("Connected to the WebSocket server", event);
+        // unhide the disconnect button
+
+        let srv_btn = document.getElementById('server');
+        srv_btn.innerText = 'Disconnect';
+        srv_btn.style.display = 'block';
+
+        // send cookies to the server
+        let cookies = document.cookie.split(';');
+        let msg = {};
+        cookies.forEach((cookie) => {
+          let [key, value] = cookie.split('=');
+          msg[key] = value;
+        });
+        ws.send(JSON.stringify({ cookies: msg }));
+
+      }
+
+      ws.onmessage = function (event) {
+        let msg = JSON.parse(event.data);
+        console.log(msg);
+        // Add the message to the messages list
+        let received = document.getElementById('received');
+        let li = document.createElement('li');
+        // format the message key: value\n
+        let _msg = '';
+        for (let key in msg) {
+          _msg += `${key}: ${msg[key]}\n`;
+        }
+        li.innerText = _msg;
+        received.appendChild(li);
+
+      };
+
+      ws.onclose = function (event) {
+        console.log("Disconnected from the WebSocket server");
+      };
+
+      ws.onerror = function (event) {
+        console.log("Error with the WebSocket connection: " + event);
+      };
+    };
+
+    window.onbeforeunload = function () {
+      // Close the WebSocket connection when the window is closing
+      ws.close();
+    };
+  </script>
+  <script>
+    const OPTIONS = [
+      'test', 'rword', 'llm'
+    ];
+    let select = document.querySelector('select');
+      message = document.getElementById('message'),
+      disconnectBtn = document.getElementById('server'),
+      form = document.getElementById('form');
+
+    console.log(select);
+    OPTIONS.forEach((option) => {
+      let opt = document.createElement('option');
+      opt.value = option;
+      opt.innerHTML = option;
+      select.appendChild(opt);
+    });
+
+    // sendBtn.onclick = function () {
+
+    // };
+
+    disconnectBtn.onclick = function () {
+      // Close the WebSocket connection
+      console.log('disconnecting');
+      ws.close();
+    };
+
+    // form events
+    form.onsubmit = function (e) {
+      e.preventDefault();
+      
+      let msg = { [select.value]: message.value };
+      // Send a message through the WebSocket connection
+      ws.send(JSON.stringify(msg));
+
+      // Add the message to the messages list
+      let sent = document.getElementById('sent');
+      let li = document.createElement('li');
+      let _msg = '';
+        for (let key in msg) {
+          _msg += `${key}: ${msg[key]}\n`;
+        }
+      li.innerText = _msg;
+      sent.appendChild(li);
+      return false;
+    };
+  </script>
+</body>
+
+</html>

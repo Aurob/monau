@@ -1,0 +1,157 @@
+{
+    "Entities": [
+        {
+            "Position": {
+                "globalX": 200,
+                "globalY": 420
+            },
+            "Hoverable": {},
+            "Shape": {
+                "sizeX": 100,
+                "sizeY": 0,
+                "sizeZ": 100
+            },
+            "Color": {
+                "r": 100,
+                "g": 10,
+                "b": 217,
+                "a": 255
+            },
+            "Item": {
+                "size": 10
+            },
+            "GeneralInfo": {
+                "name": "Default Item",
+                "description": "Default Item"
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 10,
+                "max_speed": 10000,
+                "friction": 5,
+                "mass": 50
+            }
+        },
+        {
+            "Position": {
+                "globalX": 1300,
+                "globalY": 320
+            },
+            "Shape": {
+                "sizeX": 200,
+                "sizeY": 0,
+                "sizeZ": 200
+            },
+            "Color": {
+                "r": 200,
+                "g": 20,
+                "b": 217,
+                "a": 255
+            },
+            "Item": {
+                "size": 20
+            },
+            "GeneralInfo": {
+                "name": "Second Item",
+                "description": "Second Item"
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 20,
+                "max_speed": 20000,
+                "friction": 10,
+                "mass": 100
+            }
+        },
+        {
+            "Position": {
+                "globalX": 100.53, 
+                "globalY": -523.21
+            },
+            "Shape": {
+                "sizeX": 100,
+                "sizeY": 100,
+                "sizeZ": 100
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Item": {
+                "size": 10
+            },
+            "GeneralInfo": {
+                "name": "Default Item",
+                "description": "Default Item"
+            },
+            "Collidable": {},
+            "Interior": {
+                "enter_on_collision": 1
+            }
+        },
+        {
+            "Position": {
+                "globalX": 105,
+                "globalY": 100
+            },
+            "Shape": {
+                "sizeX": 102,
+                "sizeY": 102,
+                "sizeZ": 102
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {}
+        },
+        {
+            "Repeat": 50,
+            "Position": {
+                "globalX": -50,
+                "globalY": -50
+            },
+            "Shape": {
+                "sizeX": 1,
+                "sizeY": 1,
+                "sizeZ": 1
+            },
+            "Color": {
+                "r": 100,
+                "g": 100,
+                "b": 100,
+                "a": 255
+            },
+            "Collidable": {},
+            "Moveable": {},
+            "Movement": {
+                "speed": 1,
+                "max_speed": 5,
+                "friction": 3,
+                "mass": 5
+            },
+            "Hoverable": {}
+        },
+
+        {
+            "Player": true,
+            "Position": {
+                "globalX": 0,
+                "globalY": 0
+            },
+            "Movement": {
+                "speed": 100,
+                "max_speed": 110,
+                "friction": 0.25,
+                "mass": 500
+            },
+            "Moveable": {}
+        }
+    ]
+}

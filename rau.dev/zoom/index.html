@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>&reg;&#129689;&#8729;&#128104;&#8205;&#128187;</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="overlay">
+        &darr; Click the circle below &darr;
+    </div>
+    <audio id="myAudio" src="slomo.wav"></audio>
+    <script type="module">
+
+        var circle_html = `
+            Click the Earth.
+        `;
+        // var width = window.innerWidth;
+        // var height = window.innerHeight;
+        let body = document.querySelector('body');
+        let width = body.clientWidth - body.clientWidth/10;
+        let height = body.clientHeight - body.clientHeight/10;
+        var r = 100;
+        // var audio = new Audio('slomo.wav');
+        var zoom = d3.zoom().on("zoom", zoomed);
+        var clicked = false;
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g");
+
+        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.1));
+
+        let earthdiv = svg.append("foreignObject")
+            .attr("width", r * 2)
+            .attr("height", r * 2)
+            .attr("x", svg.attr("width") / 2 - r)
+            .attr("y", svg.attr("height") / 2 - r)
+            .attr("class", "fo")
+            .style("opacity", 1);
+
+        // Add a div to the foreignObject
+        let earth = earthdiv.append("xhtml:div")
+            .attr("class", "div")
+            .append("p")
+            .attr("class", "project")
+            .html('<iframe src="../earth?t=10k" width="100%" height="100%"></iframe>')
+            .style('opacity', 0)
+
+        // var circle = svg.append("circle")
+        //     .attr("cx", width / 2 - r)
+        //     .attr("cy", height / 2 - r)
+        //     .attr("r", r)
+        //     .style("fill", "#154671")
+        //     .text("Click Me!")
+        //     .on("click", onClick);
+
+        var circle = svg.append("foreignObject")
+            .attr("width", r * 2)
+            .attr("height", r * 2)
+            .attr("x", svg.attr("width") / 2 - r)
+            .attr("y", svg.attr("height") / 2 - r)
+            .attr("class", "fo")
+            .style("opacity", 1)
+
+        // Add a div to the foreignObject
+        let div2 = circle.append("xhtml:div")
+            .attr("class", "div");
+
+        // Add the project name to the div
+        div2.append("p")
+            .attr("class", "project")
+            .style("color", "white")
+            .html(circle_html)
+            .style("background-color", "#154671")
+            .style("border-radius", "50%")
+            .style("text-align", "center")
+            .style("display", "flex")
+            .style("justify-content", "center")
+            .style("align-items", "center")
+            .style("opacity", 1)
+            .on("click", onClick);
+
+        function zoomed() {
+            svg.attr("transform", d3.event.transform);
+        }
+
+        function onClick() {
+            console.log("clicked");
+            if (clicked) {
+                window.location.href = "https://rau.dev/earth?t=10k";
+            }
+
+            let overlay = document.querySelector('#overlay');
+            if(overlay) overlay.remove();
+
+            playAudio();
+            var scaleX = width / 2 + (r)
+            var scaleY = height / 2 + (r)
+            var scale = 2;
+
+            svg.transition()
+                .delay(50)
+                .duration(9450)
+                .ease(d3.easePolyOut)
+                .call(zoom.transform, d3.zoomIdentity.translate(scaleX, scaleY).scale(scale))
+                .on("end", () => {
+                    circle.transition()
+                        .duration(500)
+                        .ease(d3.easePolyOut)
+                        .on("end", () => {
+                            earth.transition().duration(500).ease(d3.easePolyOut).style("opacity", 1);
+                            circle.transition().duration(500).ease(d3.easePolyOut).style("opacity", 0);
+                            // circle.remove();
+                            clicked = true;
+                        });
+                    
+                });
+        }
+
+
+        function playAudio() {
+            var audio = document.getElementById("myAudio");
+            audio.volume = 1.0;
+            audio.play();
+
+            // start volume fade out 5 seconds before the end.
+            setTimeout(function () {
+                var fadeAudio = setInterval(function () {
+                    if ((audio.volume) <= 0.1) { // fades volume by 0.1 every 100 ms
+                        clearInterval(fadeAudio);
+                    }
+                    if(audio.volume > 0.2)
+                        audio.volume -= 0.1;
+                }, 100);
+            }, (audio.duration - 1) * 1000);
+        }
+
+        // let init = false;
+        // document.addEventListener('click', ()=>{
+        //     if(!init){
+        //         init = true;
+        //         onClick();
+        //     }
+        // });
+
+    </script>
+</body>
+
+</html>

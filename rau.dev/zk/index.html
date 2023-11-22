@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta property="og:title" content="">
+    <meta property="og:image" content="https://api.rau.lol/clock">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="building a progressive web app" />
+    <meta name="author" content="RAU" />
+    <title>CLOCK</title>
+    <link rel="manifest" href="manifest.json" />
+
+    <style>
+        html {
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        window.addEventListener('load', function () {
+            console.log('page is fully loaded');
+        });
+
+        fetch('/api/zk?test')
+            .then(response => response.json())
+            .then(data => {
+                document.body.innerHTML = data.result;
+            });
+    </script>
+    <script>
+        
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("sw.js")
+                    .then((reg) => console.log("service Worker: registered"))
+                    .catch((err) => console.log(`service worker; Error:${err}`));
+            });
+        }
+
+    </script>
+</body>
+
+</html>

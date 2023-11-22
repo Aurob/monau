@@ -1,0 +1,37 @@
+<style>
+@keyframes flip {
+  0% {
+    transform: perspective(600px) rotateX(0);
+    transition-timing-function: ease-out;
+  }
+  50% {
+    transform: perspective(600px) rotateX(-90deg);
+    transition-timing-function: ease-out;
+  }
+  100% {
+    transform: perspective(600px) rotateX(-180deg);
+    transition-timing-function: ease-in;
+  }
+}
+
+.element {
+  transform-style: preserve-3d;
+  animation: flip 1s infinite;
+  backface-visibility: hidden;
+}
+</style>
+
+<div class="test">
+    Test
+</div>
+</div>
+<script>
+    window.addEventListener('mousemove', function(e) {
+        let test = document.querySelector('.test');
+        test.classList.add('element');
+
+        setTimeout(function() {
+            test.classList.remove('element');
+        }, 1000);
+    });
+</script>

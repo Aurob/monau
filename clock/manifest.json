@@ -1,0 +1,19 @@
+{
+  "name": "clock",
+  "short_name": "clock",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "display": "standalone",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/clock/",
+  "id": "/clqock/",
+  "icons": [
+    {
+      "src": "images/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+
+    }
+  ]
+}
