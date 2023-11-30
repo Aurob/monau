@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAU</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+    <script>
+        function getRandomConeSurfacePoint(radius, height) {
+            const theta = Math.random() * Math.PI * 2;   // Random angle
+            const h = Math.random() * height;            // Random height
+            const r = radius * (h / height);             // Radius at height h
+
+            // Convert polar to Cartesian coordinates
+            const x = r * Math.cos(theta);
+            const y = r * Math.sin(theta);
+            const z = h - height / 2;                    // Adjust z based on cone's center
+
+            return new THREE.Vector3(x, y, z);
+        }
+
+        function isPositionOutsideCone(point, coneGeometry, conePosition, coneQuaternion) {
+            // Create a THREE.Vector3 representing the point's position relative to the cone's apex
+            const relativePosition = new THREE.Vector3().subVectors(point, conePosition);
+            // Apply the inverse of the cone's quaternion to align with the cone's local space
+            relativePosition.applyQuaternion(coneQuaternion.clone().invert());
+
+            // Calculate the distance of the point from the cone's axis (assuming the axis runs along the y-coordinate)
+            const distanceFromAxis = new THREE.Vector2(relativePosition.x, relativePosition.z).length();
+
+            // Since the cone is assumed to be aligned along the y axis in its local space, calculate its height from the tip
+            const pointHeight = coneGeometry.parameters.height - relativePosition.y;
+
+            // If the pointHeight is negative, the point is below the cone's height and thus outside
+            if (pointHeight < 0 || pointHeight > coneGeometry.parameters.height) {
+                return true;
+            }
+
+            // The maximum radius of the cone at pointHeight
+            const maxRadiusAtHeight = (pointHeight / coneGeometry.parameters.height) * coneGeometry.parameters.radius;
+
+            // Check if the point's distance is greater than the maximum radius at that height
+            return distanceFromAxis > maxRadiusAtHeight;
+        }
+
+        function getRandomPositionInCone(coneGeometry, conePosition, coneQuaternion) {
+            const radius = coneGeometry.parameters.radius;
+            const height = coneGeometry.parameters.height;
+            // Get a uniformly distributed random height within the cone
+            const h = Math.cbrt(Math.random()) * height;
+            // Calculate the corresponding radius at that height
+            const maxRadius = (h / height) * radius;
+
+            // Uniformly distributed angle around the cone
+            const theta = Math.random() * Math.PI * 2;
+
+            // Random radius from 0 to maxRadius
+            const r = maxRadius * Math.sqrt(Math.random());
+
+            // Convert polar coordinates (r, theta) to Cartesian coordinates (x, z) in the cone's base plane
+            const x = r * Math.cos(theta);
+            const z = r * Math.sin(theta);
+
+            // Create vector for local position within the cone
+            // Assuming the cone's vertex is at the origin and it extends in the -y direction when unrotated
+            const localPosition = new THREE.Vector3(x, -h, z); // -h because we flip the cone like a pyramid
+
+            localPosition.y += height;
+            return localPosition;
+        }
+
+        function getRadiusAtHeight(height, coneGeometry) {
+            return (height / coneGeometry.parameters.height) * coneGeometry.parameters.radius;
+        }
+
+        function localToWorld(conePosition, coneQuaternion, localPosition) {
+            // Convert local position to world position
+            const worldPosition = localPosition.clone();
+            worldPosition.applyQuaternion(coneQuaternion);
+            worldPosition.add(conePosition);
+            return worldPosition;
+        }
+
+
+        function makeTree(x = 0, y = 0, _radius = null, _height = null, conf_count=100) {
+
+            var confettiVelocities = [];
+            var confettiAngles = [];
+            let radius = _radius || Math.random() * 5 + 5;
+            let height = _height || Math.random() * radius * 2 + 5;
+
+            const geometry = new THREE.ConeGeometry(radius, height, 32);
+            const material = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff, // Color can be set to white for a clear glass effect
+                metalness: 0,   // Glass is non-metallic
+                roughness: 0,   // Smooth glass surface has no roughness
+                transmission: 1, // Transmission controls the transparency - 1 for full glass effect
+                transparent: true,
+                reflectivity: 1, // This can also affect the glass-like appearance
+                ior: 1.5 // Index of refraction for glass-like materials, around 1.5 for glass
+            });
+
+            // basic material
+            // const material = new THREE.MeshPhysicalMaterial({
+            //     color: 0xffffff, // Base color; individual colors will be set per instance.
+            //     vertexColors: true, // Allow per-instance coloring.
+            // });
+
+            const cone = new THREE.Mesh(geometry, material);
+            cone.receiveShadow = false; //default
+
+            cone.position.set(x, y + height / 2, 0);
+
+            // scene.add(cone);
+
+            // Assume the code above this comment is your part of the tree creation.
+            // Now let's fix the confetti creation.
+
+            let scale = 0.5;
+            let yPos = y + height * 4;
+            let num_confetti = conf_count;
+            const confettiMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff, // Base color; individual colors will be set per instance.
+                vertexColors: true, // Allow per-instance coloring.
+            });
+
+            const confettiGeometry = new THREE.BoxGeometry(0.02 * 10, 0.001, 0.04 * 10);
+            const confettiMesh = new THREE.InstancedMesh(confettiGeometry, confettiMaterial, num_confetti);
+            
+            // add additional properties
+            confettiMesh.rotationSpeed = new THREE.Vector3(Math.random() * 0.01, Math.random() * 0.01, Math.random() * 0.01);
+            confettiMesh.angleOffset = new THREE.Vector3(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+
+            // We need a dummy object to compute each instance's transformation matrix.
+            const dummy = new THREE.Object3D();
+            const color = new THREE.Color();
+            for (let j = 0; j < num_confetti; j++) {
+                // Random position each confetti piece; for example within the cone volume.
+                const point_in_cone = getRandomPositionInCone(cone.geometry, cone.position);
+                point_in_cone.x += cone.position.x;
+                point_in_cone.y += cone.position.y - height / 2;
+                point_in_cone.z += cone.position.z;
+
+                // We assign the position directly to dummy.position (as a Vector3)
+                dummy.position.set(point_in_cone.x, point_in_cone.y, point_in_cone.z);
+
+                // Random rotation
+                dummy.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+                dummy.updateMatrix();
+
+                // Set matrix at index j
+                confettiMesh.setMatrixAt(j, dummy.matrix);
+
+                // Set color
+                color.setHex(Math.random() * 0x808080 + 0x808080);
+                confettiMesh.setColorAt(j, color);
+
+                const velocity = new THREE.Vector3(Math.random() * 5, Math.random() * 5, Math.random() * 5);
+                confettiVelocities.push(velocity);
+
+                const angle = new THREE.Vector3(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+                confettiAngles.push(angle);
+            }
+
+            // Since we're working with the instances' matrices, the position for confettiMesh (as a whole) is a little different.
+            confettiMesh.position.set(0, 0, 0);
+            // confettiMesh.scale.set(scale * 1.85, scale * 1.9, scale * 1.85);
+            confettiMesh.castShadow = true; //default is false
+            confettiMesh.receiveShadow = false; //default
+            confettiMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
+            confettiMesh.instanceColor.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
+
+            // After all instances have been created, we need to call instanceMatrix.needsUpdate
+            confettiMesh.instanceMatrix.needsUpdate = true;
+
+            // Optional: Update the colors if they change.
+            confettiMesh.instanceColor.needsUpdate = true;
+
+            scene.add(confettiMesh);
+
+            return [cone, confettiMesh, confettiVelocities, confettiAngles];
+        }
+    </script>
+    <script>
+        let scene, camera, renderer, controls;
+        let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, rotateLeft = false, rotateRight = false;
+        const velocity = new THREE.Vector3();
+        const direction = new THREE.Vector3();
+        const speed = .5; // units per second
+        const rotSpeed = 0.03; // radians per frame
+        const clock = new THREE.Clock();
+
+        // Set up the scene
+        scene = new THREE.Scene();
+
+        // Add perspective camera
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(5.410454135560342, 3, 41.240690009835085);
+
+        // Create WebGL Renderer
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add a plane to represent a grassy plain
+        const planeGeometry = new THREE.PlaneGeometry(100, 100, 32, 32);
+        const planeMaterial = new THREE.MeshPhysicalMaterial({ color: 0x00ff00 });
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = -Math.PI / 2; // rotate the plane to lie flat
+        plane.receiveShadow = true; // enable shadows on the plane
+        scene.add(plane);
+
+        // Add skybox skyblue color
+        scene.background = new THREE.Color(0x777777);
+
+        // Add lighting
+        const light = new THREE.DirectionalLight(0xffffff, 10);
+        light.position.set(0, 20, 10);
+        light.castShadow = true; // default false
+        scene.add(light);
+
+
+        // Create the objects
+        let confettis = [];
+        let tree = makeTree(5, 0, 0, 25, 5000); // all_confetti should be an InstancedMesh we've created above
+        let cone = tree[0];
+        let confettiMesh = tree[1];
+        let confettiVelocities = tree[2];
+        let confettiAngles = tree[3];
+        let dummy = new THREE.Object3D();
+
+        confettis.push(confettiMesh);
+
+        let cv = new THREE.Vector3(0, 0.01, 0);
+        let color = new THREE.Color();
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            const delta = clock.getDelta(); // Get the time between frames
+            updateControls(delta); // Update the controls, if you have controls
+
+            // update confetti
+            let position = new THREE.Vector3();
+            let quaternion = new THREE.Quaternion();
+            let scale = new THREE.Vector3();
+
+
+            // // Update rotation using offset and a sine function for smoothness
+            // confetti.rotation.x += Math.sin(confetti.angleOffset.x);
+            // confetti.rotation.y += Math.sin(confetti.angleOffset.y);
+            // confetti.rotation.z += Math.sin(confetti.angleOffset.z);
+
+            // // Update position using a sine function and the confetti velocity
+            // confetti.position.x += confetti.velocity.dx * Math.sin(confetti.position.x);
+            // // confetti.position.y += confetti.velocity.dy * Math.sin(confetti.position.y) - confetti.gravity * confetti.fallSpeed;  // Applying some gravity
+            // // confetti.position.z += confetti.velocity.dz * Math.sin(confetti.position.z);
+
+            // Add flow movement
+            for (let i = 0; i < confettis.length; i++) {
+                let confettiMesh = confettis[i];
+                // console.log(confettiMesh);
+                for (let j = 0; j < confettiMesh.count; j++) {
+                    confettiMesh.getMatrixAt(j, dummy.matrix);
+                    dummy.matrix.decompose(position, quaternion, scale);
+
+                    // Calculate the angle for rotation
+                    // let angle = Math.atan2(position.z - cone.position.z, position.x - cone.position.x);
+                    // Increment the angle for rotation
+                    confettiAngles[j].x += confettiMesh.rotationSpeed.x;
+
+                    // Calculate the new position
+                    let radiusAtHeight = getRadiusAtHeight(position.y, cone.geometry);
+                    position.x = cone.position.x + radiusAtHeight * Math.cos(confettiAngles[j].x) * Math.cos(confettiAngles[j].y);
+                    position.z = cone.position.z + radiusAtHeight * Math.sin(confettiAngles[j].x) * Math.cos(confettiAngles[j].y);
+
+                    dummy.matrix.compose(position, quaternion, scale);
+                    confettiMesh.setMatrixAt(j, dummy.matrix);
+
+                    // Set color for each instance
+                    confettiMesh.setColorAt(j, new THREE.Color(Math.random(), Math.random(), Math.random()));
+                }
+            }
+            // for (let i = 0; i < confettiMesh.count; i++) {
+            //     //     // Step 1: Retrieve the current transformation matrix
+            //     confettiMesh.getMatrixAt(i, dummy.matrix);
+            //     // get the color
+            //     confettiMesh.getColorAt(i, color);
+            //     // console.log(color);
+            // }
+
+            //     // Step 2: Decompose the matrix into its position, quaternion, and scale components
+            //     dummy.matrix.decompose(position, quaternion, scale);
+            //     // Step 3: Update the position, quaternion, and scale components
+            //     // position.add(cv.clone().multiplyScalar(delta));
+            //     quaternion.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0.01, 0)));
+            //     position.add(confettiVelocities[i].clone().multiplyScalar(delta));
+            //     position.x += Math.sin(delta) * 0.01; // Adding sinusoidal movement in x direction
+            //     position.y += Math.sin(delta) * 0.01; // Adding sinusoidal movement in y direction
+            //     position.z += Math.sin(delta) * 0.01; // Adding sinusoidal movement in z direction
+
+            //     // Check if the mesh is outside the cone
+            //     if (isPositionOutsideCone(position, cone.geometry, cone.position, quaternion)) {
+            //         // If it is outside, randomize the movement in a direction to keep it inside
+            //         // make the movemnet faster after retrierving
+            //         const randomPoint = getRandomConeSurfacePoint(cone.geometry.parameters.radius, cone.geometry.parameters.height);
+            //         const randomPosition = localToWorld(cone.position, quaternion, randomPoint);
+            //         confettiVelocities[i] = randomPosition.sub(position).normalize().multiplyScalar(2); // Increased speed from 0.1 to 0.2
+            //     }
+            //     // scale.multiplyScalar(1.01);
+
+
+            // }
+
+            // // Inform Three.js that the instance matrix and color has been updated
+            confettiMesh.instanceMatrix.needsUpdate = true;
+            // confettiMesh.instanceColor.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        };
+
+        // Handler for key down
+        document.addEventListener('keydown', (event) => {
+            switch (event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    moveForward = true;
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    moveLeft = true;
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    moveBackward = true;
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    moveRight = true;
+                    break;
+                case 'KeyQ':
+                    rotateLeft = true;
+                    break;
+                case 'KeyE':
+                    rotateRight = true;
+                    break;
+            }
+        }, false);
+
+        // Handler for key up
+        document.addEventListener('keyup', (event) => {
+            switch (event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    moveForward = false;
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    moveLeft = false;
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    moveBackward = false;
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    moveRight = false;
+                    break;
+                case 'KeyQ':
+                    rotateLeft = false;
+                    break;
+                case 'KeyE':
+                    rotateRight = false;
+                    break;
+
+            }
+        }, false);
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Update controls
+        function updateControls(delta) {
+            velocity.x -= velocity.x * 10.0 * delta;
+            velocity.z -= velocity.z * 10.0 * delta;
+            direction.z = Number(moveForward) - Number(moveBackward);
+            direction.x = -Number(moveRight) - -Number(moveLeft);
+            direction.normalize(); // this ensures consistent movements in all directions
+
+            if (moveForward || moveBackward) velocity.z -= direction.z * 1000.0 * delta * speed;
+            if (moveLeft || moveRight) velocity.x -= direction.x * 1000.0 * delta * speed;
+            if (rotateLeft) camera.rotation.y += rotSpeed;
+            if (rotateRight) camera.rotation.y -= rotSpeed;
+
+            camera.translateX(velocity.x * delta);
+            camera.translateZ(velocity.z * delta);
+        }
+
+        // Start the animation loop
+        animate();
+
+    </script>
+</body>
+
+</html>

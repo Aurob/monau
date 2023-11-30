@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAU</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, controls;
+        let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, rotateLeft = false, rotateRight = false;
+        const velocity = new THREE.Vector3();
+        const direction = new THREE.Vector3();
+        const speed = .5; // units per second
+        const rotSpeed = 0.03; // radians per frame
+        const clock = new THREE.Clock();
+
+        // Set up the scene
+        scene = new THREE.Scene();
+
+        // Add perspective camera
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 1, 20);
+
+        // Create WebGL Renderer
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        
+        // Add a plane to represent a grassy plain
+        const planeGeometry = new THREE.PlaneGeometry(100, 100, 32, 32);
+        const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); // green color for grass
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = -Math.PI / 2; // rotate the plane to lie flat
+        scene.add(plane);
+
+        // Add skybox skyblue color
+        scene.background = new THREE.Color(0x87ceeb);
+
+        // Add billboard pillars
+        const pillarGeometry = new THREE.CylinderGeometry(0.5, 0.5, 10, 32);
+        const pillarMaterial = new THREE.MeshBasicMaterial({ color: 0x808080 });
+        const pillar1 = new THREE.Mesh(pillarGeometry, pillarMaterial);
+        const pillar2 = pillar1.clone();
+        pillar1.position.set(-5, 5, 0); // position the pillars on either side of the billboard
+        pillar2.position.set(5, 5, 0);
+        scene.add(pillar1);
+        scene.add(pillar2);
+
+        // Add billboard advertisement
+        const adGeometry = new THREE.PlaneGeometry(10, 5);
+        const adMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide }); // yellow color for advertisement, two-sided
+        const ad = new THREE.Mesh(adGeometry, adMaterial);
+        ad.position.y = 12.5; // position the advertisement at the top of the pillars
+        scene.add(ad);
+
+        // Handler for key down
+        document.addEventListener('keydown', (event) => {
+            switch(event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    moveForward = true;
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    moveLeft = true;
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    moveBackward = true;
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    moveRight = true;
+                    break;
+                case 'KeyQ':
+                    rotateLeft = true;
+                    break;
+                case 'KeyE':
+                    rotateRight = true;
+                    break;
+            }
+        }, false);
+
+        // Handler for key up
+        document.addEventListener('keyup', (event) => {
+            switch(event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    moveForward = false;
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    moveLeft = false;
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    moveBackward = false;
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    moveRight = false;
+                    break;
+                case 'KeyQ':
+                    rotateLeft = false;
+                    break;
+                case 'KeyE':
+                    rotateRight = false;
+                    break;
+
+            }
+        }, false);
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Update controls
+        function updateControls(delta) {
+            velocity.x -= velocity.x * 10.0 * delta;
+            velocity.z -= velocity.z * 10.0 * delta;
+            direction.z = Number(moveForward) - Number(moveBackward);
+            direction.x = -Number(moveRight) - -Number(moveLeft);
+            direction.normalize(); // this ensures consistent movements in all directions
+
+            if (moveForward || moveBackward) velocity.z -= direction.z * 1000.0 * delta * speed;
+            if (moveLeft || moveRight) velocity.x -= direction.x * 1000.0 * delta * speed;
+            if (rotateLeft) camera.rotation.y += rotSpeed;
+            if (rotateRight) camera.rotation.y -= rotSpeed;
+
+            camera.translateX(velocity.x * delta);
+            camera.translateZ(velocity.z * delta);
+        }
+
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            const delta = clock.getDelta(); // Get the time between frames
+            updateControls(delta); // Update the controls
+            renderer.render(scene, camera);
+        };
+
+        // Start the animation loop
+        animate();
+    </script>
+</body>
+</html>

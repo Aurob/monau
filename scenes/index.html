@@ -1,0 +1,19 @@
+<body>
+    <script src="libs/perlin.js"></script>
+    <script type="module" src="libs/Engine.js"></script>
+    <script type="module" src="LevelManager.js"></script>
+    <ul>
+    </ul>
+    <script>
+        
+        fetch("https://dev.rau.lol/cgi-bin/scenelist.pl")
+            .then(response => response.text())
+            .then(data => {
+                data.split('<br>').forEach((project, i) => {
+                    if(project && project != window.location.pathname.replaceAll('/','') ) {
+                        document.querySelector('ul').innerHTML += `<li><a href="?l=${project}">${project}</a></li>`;
+                    }
+                });
+            });
+    </script>
+</body>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAU</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, controls;
+        let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, rotateLeft = false, rotateRight = false;
+        const velocity = new THREE.Vector3();
+        const direction = new THREE.Vector3();
+        const speed = .5; // units per second
+        const rotSpeed = 0.03; // radians per frame
+        const clock = new THREE.Clock();
+
+        // Set up the scene
+        scene = new THREE.Scene();
+
+        // Add perspective camera
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(-20.8286522410931, -0.5, 18.037611538890655);
+        camera.rotation.set(0, 5.430000000000001, 0);
+
+        // Create WebGL Renderer
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add skybox skyblue color
+        scene.background = new THREE.Color(0x777777);
+
+        // Add lighting
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(0, 20, 10);
+        light.castShadow = true; // default false
+        scene.add(light);
+
+        // Add AmbientLight
+        const ambientLight = new THREE.AmbientLight(0x404040, 1); // soft white light
+        scene.add(ambientLight);
+        // Create a 3D grid of confetti
+        let confettis = [];
+        for (let x = -10; x <= 10; x += 2) {
+            for (let y = -10; y <= 10; y += 2) {
+                for (let z = -10; z <= 10; z += 2) {
+                    const confettiMaterial = new THREE.MeshBasicMaterial({
+                        color: (Math.random() * 0x808080 + 0x808080), // Random color for each confetti piece, avoiding too dark or too bright colors
+                    });
+
+                    let altScale = 10;
+                    const confetti = new THREE.Mesh(
+                        new THREE.BoxGeometry(0.08*altScale, 0.001*altScale, 0.08*altScale),
+                        confettiMaterial
+                    );
+
+                    // random rotation
+                    confetti.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+
+                    // Each confetti now has a velocity object containing dx, dy, and dz, representing their unique speeds in each axis.
+                    confetti.velocity = {
+                        dx: Math.random() * 0.001,
+                        dy: Math.random() * 0.001,
+                        dz: Math.random() * 0.001
+                    };
+
+                    // The angleOffset has been added to introduce variety in the sine wave calculation, for more natural movement.
+                    confetti.angleOffset = {
+                        x: Math.random() * Math.PI * 2/100,
+                        y: Math.random() * Math.PI * 2/100,
+                        z: Math.random() * Math.PI * 2/100
+                    };
+                    confetti.receiveShadow = true; // Enable receiving shadows for each confetti piece
+                    confetti.castShadow = true; // Enable shadows for each confetti piece
+
+                    confetti.position.set(x, y, z); // Set the position of the confetti
+                    scene.add(confetti);
+                    confettis.push(confetti);
+                }
+            }
+        }
+
+
+        // Handler for key down
+        document.addEventListener('keydown', (event) => {
+            switch (event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    moveForward = true;
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    moveLeft = true;
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    moveBackward = true;
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    moveRight = true;
+                    break;
+                case 'KeyQ':
+                    rotateLeft = true;
+                    break;
+                case 'KeyE':
+                    rotateRight = true;
+                    break;
+            }
+        }, false);
+
+        // Handler for key up
+        document.addEventListener('keyup', (event) => {
+            switch (event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    moveForward = false;
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    moveLeft = false;
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    moveBackward = false;
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    moveRight = false;
+                    break;
+                case 'KeyQ':
+                    rotateLeft = false;
+                    break;
+                case 'KeyE':
+                    rotateRight = false;
+                    break;
+
+            }
+        }, false);
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Update controls
+        function updateControls(delta) {
+            velocity.x -= velocity.x * 10.0 * delta;
+            velocity.z -= velocity.z * 10.0 * delta;
+            direction.z = Number(moveForward) - Number(moveBackward);
+            direction.x = -Number(moveRight) - -Number(moveLeft);
+            direction.normalize(); // this ensures consistent movements in all directions
+
+            if (moveForward || moveBackward) velocity.z -= direction.z * 1000.0 * delta * speed;
+            if (moveLeft || moveRight) velocity.x -= direction.x * 1000.0 * delta * speed;
+            if (rotateLeft) camera.rotation.y += rotSpeed;
+            if (rotateRight) camera.rotation.y -= rotSpeed;
+
+            camera.translateX(velocity.x * delta);
+            camera.translateZ(velocity.z * delta);
+        }
+
+        
+        
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            const delta = clock.getDelta(); // Get the time between frames
+            updateControls(delta); // Update the controls
+            
+
+            // Loop over confettis
+            for (let i = 0; i < confettis.length; i++) {
+                let confetti = confettis[i];
+
+                // Adjust the velocity for variation and apply it to the angle offset
+                // confetti.angleOffset.x += confetti.velocity.dx;
+                // confetti.angleOffset.y += confetti.velocity.dy;
+                // confetti.angleOffset.z += confetti.velocity.dz;
+
+                // Update rotation using offset and a sine function for smoothness
+                confetti.rotation.x += Math.sin(confetti.angleOffset.x);
+                confetti.rotation.y += Math.sin(confetti.angleOffset.y);
+                confetti.rotation.z += Math.sin(confetti.angleOffset.z);
+
+                // Update position using a sine function and the confetti velocity
+                confetti.position.x += confetti.velocity.dx * Math.sin(confetti.position.x);
+                // confetti.position.y += confetti.velocity.dy * Math.sin(confetti.position.y) - confetti.gravity * confetti.fallSpeed;  // Applying some gravity
+                confetti.position.z += confetti.velocity.dz * Math.sin(confetti.position.z);
+            }
+
+            renderer.render(scene, camera);
+        };
+        // Start the animation loop
+        animate();
+
+    </script>
+</body>
+
+</html>
