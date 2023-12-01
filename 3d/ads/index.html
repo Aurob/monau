@@ -10,6 +10,7 @@
     </style>
 </head>
 <body>
+    <iframe id="iframe" src="https://rau.dev" width="800" height="600" style="display: none;"></iframe>
     <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
     <script>
         let scene, camera, renderer, controls;
@@ -32,18 +33,44 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
         
-        // Add a plane to represent a grassy plain
-        const planeGeometry = new THREE.PlaneGeometry(100, 100, 32, 32);
-        const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); // green color for grass
-        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        plane.rotation.x = -Math.PI / 2; // rotate the plane to lie flat
-        scene.add(plane);
+
+        // Add a terrain to represent a grassy plain with smooth rolling hills
+        const terrainGeometry = new THREE.PlaneGeometry(1000, 1000, 32, 32);
+        // Create rolling hills by adjusting the vertices of the plane
+        // Three.js r125+ uses .attributes.position.array instead of .vertices
+        const vertices = terrainGeometry.attributes.position.array;
+        for (let i = 0, l = vertices.length; i < l; i += 3) {
+            // Access every vertex's z component and modify it
+            // Simplex noise or Perlin noise can be used for smooth terrain generation
+            // For example purposes, we'll use Math.sin and Math.cos to create the hills
+            vertices[i + 2] = Math.sin(vertices[i] / 50) * Math.cos(vertices[i + 1] / 50) * 5;
+        }
+        terrainGeometry.attributes.position.needsUpdate = true; // Required after changing the vertices
+        terrainGeometry.computeVertexNormals(); // Ensure the lighting is recalculated
+        const terrainMaterial = new THREE.MeshBasicMaterial({
+            color: (0x007700),
+            // vertexColors: THREE.VertexColors
+        });
+        // Create color attribute for vertices to simulate snow patches
+        const terrainColors = [];
+        for (let i = 0, l = vertices.length / 3; i < l; i++) {
+            // Use height of the vertex to determine if it should be snow or grass
+            const height = vertices[i * 3 + 2];
+            const color = new THREE.Color(0x007700); // default to green
+            terrainColors.push(color.r, color.g, color.b);
+        }
+        const colorAttribute = new THREE.BufferAttribute(new Float32Array(terrainColors), 3);
+        terrainGeometry.setAttribute('color', colorAttribute);
+        const terrain = new THREE.Mesh(terrainGeometry, terrainMaterial);
+        terrain.rotation.x = -Math.PI / 2; // rotate the terrain to lie flat
+        // terrain.receiveShadow = true; // enable shadows on the terrain
+        scene.add(terrain);
 
         // Add skybox skyblue color
         scene.background = new THREE.Color(0x87ceeb);
 
         // Add billboard pillars
-        const pillarGeometry = new THREE.CylinderGeometry(0.5, 0.5, 10, 32);
+        const pillarGeometry = new THREE.CylinderGeometry(0.25, 0.25, 10, 32);
         const pillarMaterial = new THREE.MeshBasicMaterial({ color: 0x808080 });
         const pillar1 = new THREE.Mesh(pillarGeometry, pillarMaterial);
         const pillar2 = pillar1.clone();
@@ -54,10 +81,59 @@
 
         // Add billboard advertisement
         const adGeometry = new THREE.PlaneGeometry(10, 5);
-        const adMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide }); // yellow color for advertisement, two-sided
+        const adMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc, side: THREE.DoubleSide }); // yellow color for advertisement, two-sided
         const ad = new THREE.Mesh(adGeometry, adMaterial);
         ad.position.y = 12.5; // position the advertisement at the top of the pillars
         scene.add(ad);
+
+        // Add image
+        // const imageGeometry = new THREE.PlaneGeometry(9.5, 4.5);
+        // const imageMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('https://i.imgur.com/5X9Z3X4.png') }); // load the image from imgur
+        // const image = new THREE.Mesh(imageGeometry, imageMaterial);
+        // image.position.y = 12.5; // position the image at the top of the pillars
+        // scene.add(image);
+
+        // Add iframe as a plane
+        // const iframe = document.createElement('iframe');
+        // iframe.src = 'https://example.com';
+        // iframe.style.width = '1024px';
+        // iframe.style.height = '512px';
+        // iframe.style.display = 'none'; // Hide the iframe element
+        // document.body.appendChild(iframe); // Add iframe to the document so it's part of the DOM
+        // const texture = new THREE.Texture(iframe.contentWindow.document.body);
+        // texture.needsUpdate = true;
+        // iframe.addEventListener('load', () => {
+        //     texture.needsUpdate = true;
+        // });
+        // const iframeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+        // const iframeGeometry = new THREE.PlaneGeometry(10, 5);
+        // const iframePlane = new THREE.Mesh(iframeGeometry, iframeMaterial);
+        // iframePlane.position.y = 12.5;
+        // scene.add(iframePlane);
+
+
+        // Function to create and add border elements
+        const addBorder = (width, height, depth, position) => {
+            const borderGeometry = new THREE.BoxGeometry(width, height, depth);
+            const border = new THREE.Mesh(borderGeometry, borderMaterial);
+            border.position.set(...position);
+            scene.add(border);
+        };
+
+        // Add border around the advertisement
+        const borderThickness = 0.2;
+        const borderHeight = 5.4; // slightly taller than the ad to cover the edges
+        const borderWidth = 10.4; // slightly wider than the ad to cover the edges
+        const borderMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 }); // black color for the border
+
+        // Top border
+        addBorder(borderWidth, borderThickness, borderThickness, [0, 12.5 + borderHeight / 2 - borderThickness / 2, 0]);
+        // Bottom border
+        addBorder(borderWidth, borderThickness, borderThickness, [0, 12.5 - borderHeight / 2 + borderThickness / 2, 0]);
+        // Left border
+        addBorder(borderThickness, borderHeight, borderThickness, [-borderWidth / 2 + borderThickness / 2, 12.5, 0]);
+        // Right border
+        addBorder(borderThickness, borderHeight, borderThickness, [borderWidth / 2 - borderThickness / 2, 12.5, 0]);
 
         // Handler for key down
         document.addEventListener('keydown', (event) => {

@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://0b.lol/3d/tree/tree.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:title" content="Liquid Motion Glitter Christmas Tree">
+    <meta property="og:description" content="Happy Holidays!">
     <title>RAU</title>
     <style>
         body {
@@ -127,7 +132,7 @@
 
             const geometry = new THREE.ConeGeometry(radius, height, 32);
             const material = new THREE.MeshPhysicalMaterial({
-                color: 0xffffff, // Color can be set to white for a clear glass effect
+                color: 0xffffff,
                 metalness: 0,   // Glass is non-metallic
                 roughness: 0,   // Smooth glass surface has no roughness
                 transmission: 1, // Transmission controls the transparency - 1 for full glass effect
@@ -146,7 +151,8 @@
             //     vertexColors: true, // Allow per-instance coloring.
             // });
             const cone = new THREE.Mesh(geometry, material);
-            cone.receiveShadow = false; //default
+            cone.receiveShadow = true; //default
+            // cone.castShadow = true; //default
 
             cone.position.set(x, y + height / 2, 0);
 
@@ -159,24 +165,33 @@
                 colors.push(color.r, color.g, color.b); // Flatten the color values directly into the array
             }
 
-            const confettiMaterial = new THREE.MeshBasicMaterial({});
-
+            // const confettiMaterial = new THREE.MeshBasicMaterial({});
+            const confettiMaterial = new THREE.PointsMaterial({
+                size: 0.1,
+                vertexColors: true,
+                // transparent: true,
+                opacity: 0.5,
+                // map: new THREE.TextureLoader().load("https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/sprites/disc.png"),
+                blending: THREE.NormalBlending,
+            });
+            
             // Create a Float32BufferAttribute to hold the colors for the instances
             const colorAttribute = new THREE.InstancedBufferAttribute(new Float32Array(colors), 3);
 
 
-            const confettiGeometry = new THREE.BoxGeometry(0.02 * 10, 0.001, 0.04 * 10);
+            const confettiGeometry = new THREE.BoxGeometry(0.07, 0.001, 0.1);
             const confettiMesh = new THREE.InstancedMesh(confettiGeometry, confettiMaterial, num_confetti);
 
             confettiMesh.geometry.setAttribute('color', colorAttribute);
             confettiMaterial.vertexColors = true;
 
             // add additional properties
-            confettiMesh.rotationSpeed = rotSpeed ? new THREE.Vector3(rotSpeed, rotSpeed, rotSpeed) : new THREE.Vector3(Math.random() * 0.01, Math.random() * 0.01, Math.random() * 0.01);
+            confettiMesh.rotationSpeed = rotSpeed ? new THREE.Vector3(rotSpeed, rotSpeed, rotSpeed) : new THREE.Vector3(Math.random() * 1, Math.random() * 1, Math.random() * 1);
             confettiMesh.angleOffset = new THREE.Vector3(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
 
             // We need a dummy object to compute each instance's transformation matrix.
             const dummy = new THREE.Object3D();
+            let totalX = 0, totalY = 0, totalZ = 0;
             for (let j = 0; j < num_confetti; j++) {
                 // Random position each confetti piece; for example within the cone volume.
                 const point_in_cone = getRandomPositionInCone(cone.geometry, cone.position);
@@ -199,14 +214,22 @@
 
                 const angle = new THREE.Vector3(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
                 confettiAngles.push(angle);
+
+                // totalX += point_in_cone.x;
+                // totalY += point_in_cone.y;
+                // totalZ += point_in_cone.z;
             }
 
+            let scalePadding = 1.95;
             // Since we're working with the instances' matrices, the position for confettiMesh (as a whole) is a little different.
-            confettiMesh.position.set(0, 0, 0);
-            // confettiMesh.scale.set(scale * 1.55, scale * 1.55, scale * 1.55);
-            // confettiMesh.castShadow = true; //default is false
-            // confettiMesh.receiveShadow = true; //default
-            // confettiMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
+            confettiMesh.position.set(-totalX / num_confetti, -totalY / num_confetti, -totalZ / num_confetti);
+            confettiMesh.scale.set(scale * scalePadding, scale * scalePadding, scale * scalePadding);
+            confettiMesh.position.x += cone.geometry.parameters.radius / 4;
+            // reposition
+            
+            confettiMesh.castShadow = true; //default is false
+            confettiMesh.receiveShadow = true; //default
+            confettiMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
             // confettiMesh.instanceColor.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
 
             // After all instances have been created, we need to call instanceMatrix.needsUpdate
@@ -219,6 +242,72 @@
 
             return [cone, confettiMesh, confettiVelocities, confettiAngles];
         }
+
+        
+        // Function to create a star topper
+        function createStarTopper(outerRadius, innerRadius, numPoints, color, position) {
+            // Create a star shape
+            const starShape = new THREE.Shape();
+
+            // Calculate the inner and outer angle increments
+            const angleIncrement = Math.PI / numPoints;
+            const innerAngleIncrement = angleIncrement;
+            const outerAngleIncrement = angleIncrement * 2;
+
+            // Start at the top of the star
+            let currentAngle = -Math.PI / 2;
+            let x, y;
+
+            for (let i = 0; i < numPoints * 2; i++) {
+                // Calculate position for the point
+                x = Math.cos(currentAngle) * ((i % 2 === 0) ? outerRadius : innerRadius);
+                y = Math.sin(currentAngle) * ((i % 2 === 0) ? outerRadius : innerRadius);
+
+                // Draw line to the point
+                if (i === 0) {
+                    starShape.moveTo(x, y);
+                } else {
+                    starShape.lineTo(x, y);
+                }
+
+                // Increment the angle to draw the next point
+                currentAngle += angleIncrement;
+            }
+
+            // Close the path of the star shape
+            starShape.lineTo(0, -outerRadius);
+
+            // Extrude the star shape to give it 3D volume; you can skip extrusion if you want a flat star
+            const extrudeSettings = { depth: .5, bevelEnabled: false };
+            const starGeometry = new THREE.ExtrudeGeometry(starShape, extrudeSettings);
+
+            // Create a material for the star with a glittery, shiny appearance
+            const starMaterial = new THREE.MeshPhysicalMaterial({
+                    color: color, // Color set to light gold
+                    metalness: 0,   // Glass is non-metallic
+                    roughness: 0,   // Smooth glass surface has no roughness
+                    transmission: 1, // Transmission controls the transparency - 1 for full glass effect
+                    transparent: true,
+                    reflectivity: 1, // This can also affect the glass-like appearance
+                    ior: 1.5, // Index of refraction for glass-like materials, around 1.5 for glass
+                    // side: THREE.DoubleSide, // Render both sides of the material
+                    envMapIntensity: 5, // Intensity of the environment map
+                    clearcoat: 1, // Use clearcoat for a glossy finish
+                    clearcoatRoughness: 0 // Smooth clearcoat surface
+                });
+
+            // Create a mesh from the geometry and material
+            const starMesh = new THREE.Mesh(starGeometry, starMaterial);
+            starMesh.castShadow = true; // default false
+            starMesh.receiveShadow = true; // default
+
+            // Position the star on top of the tree
+            starMesh.position.set(...position);
+
+            // Return the star mesh
+            return starMesh;
+        }
+
     </script>
     <script>
         let scene, camera, renderer, controls;
@@ -235,7 +324,8 @@
 
         // Add perspective camera
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(5.410454135560342, 3, 41.240690009835085);
+        camera.position.set(14.640864766869214, 9.899999999999963, 1.9633214328560946);
+        camera.rotation.y = 1.320000000000001;
 
         // Create WebGL Renderer
         renderer = new THREE.WebGLRenderer({
@@ -248,21 +338,80 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Add a plane to represent a grassy plain
-        const planeGeometry = new THREE.PlaneGeometry(100, 100, 32, 32);
-        const planeMaterial = new THREE.MeshPhysicalMaterial({ color: 0xeeeeee });
-        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        plane.rotation.x = -Math.PI / 2; // rotate the plane to lie flat
-        plane.receiveShadow = true; // enable shadows on the plane
-        scene.add(plane);
+        // Add a terrain to represent a grassy plain with smooth rolling hills
+        const terrainGeometry = new THREE.PlaneGeometry(1000, 1000, 32, 32);
+        // Create rolling hills by adjusting the vertices of the plane
+        // Three.js r125+ uses .attributes.position.array instead of .vertices
+        const vertices = terrainGeometry.attributes.position.array;
+        for (let i = 0, l = vertices.length; i < l; i += 3) {
+            // Access every vertex's z component and modify it
+            // Simplex noise or Perlin noise can be used for smooth terrain generation
+            // For example purposes, we'll use Math.sin and Math.cos to create the hills
+            vertices[i + 2] = Math.sin(vertices[i] / 50) * Math.cos(vertices[i + 1] / 50) * 5;
+        }
+        terrainGeometry.attributes.position.needsUpdate = true; // Required after changing the vertices
+        terrainGeometry.computeVertexNormals(); // Ensure the lighting is recalculated
+        const terrainMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            vertexColors: THREE.VertexColors
+        });
+        // Create color attribute for vertices to simulate snow patches
+        const terrainColors = [];
+        for (let i = 0, l = vertices.length / 3; i < l; i++) {
+            // Use height of the vertex to determine if it should be snow or grass
+            const height = vertices[i * 3 + 2];
+            const color = new THREE.Color(0xffffff);
+            terrainColors.push(color.r, color.g, color.b);
+        }
+        const colorAttribute = new THREE.BufferAttribute(new Float32Array(terrainColors), 3);
+        terrainGeometry.setAttribute('color', colorAttribute);
+        const terrain = new THREE.Mesh(terrainGeometry, terrainMaterial);
+        terrain.rotation.x = -Math.PI / 2; // rotate the terrain to lie flat
+        terrain.receiveShadow = true; // enable shadows on the terrain
+        scene.add(terrain);
 
-        // Add skybox skyblue color
-        scene.background = new THREE.Color(0x777777);
+        // Add skybox with gradient from skyblue in the middle to grey-white at the top
+        const skyColor = new THREE.Color('skyblue'); // color of the sky
+        const groundColor = new THREE.Color('lightgrey'); // color of the ground
+        const intensity = 1;
+        const skyGeometry = new THREE.SphereGeometry(900, 32, 32);
+        const skyMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                skyColor: { type: 'c', value: skyColor },
+                groundColor: { type: 'c', value: groundColor },
+                intensity: { type: 'f', value: intensity }
+            },
+            vertexShader: `
+                varying vec3 vWorldPosition;
+                void main() {
+                    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+                    vWorldPosition = worldPosition.xyz;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 skyColor;
+                uniform vec3 groundColor;
+                uniform float intensity;
+                varying vec3 vWorldPosition;
+                void main() {
+                    float h = normalize(vWorldPosition + vec3(0,-1,0)).y;
+                    gl_FragColor = vec4(mix(skyColor, groundColor, max(pow(max(h, 0.0), intensity), 0.0)), 1.0);
+                }
+            `,
+            side: THREE.BackSide
+        });
+        const skyMesh = new THREE.Mesh(skyGeometry, skyMaterial);
+        scene.add(skyMesh);
 
-        // Add lighting
-        const light = new THREE.DirectionalLight(0xffffff, 10);
+        // Add lighting with increased area
+        const light = new THREE.DirectionalLight(0xffffff, 1);
         light.position.set(0, 20, 0);
         light.castShadow = true; // default false
+        light.shadow.camera.left = -8; // Increase shadow camera width (left boundary)
+        light.shadow.camera.right = 8; // Increase shadow camera width (right boundary)
+        light.shadow.camera.top = 8; // Increase shadow camera height (top boundary)
+        light.shadow.camera.bottom = -8; // Increase shadow camera height (bottom boundary)
         scene.add(light);
 
         // ambient
@@ -275,33 +424,33 @@
         let angles = [];
         let cones = [];
 
-        let tree1 = makeTree(5, 5, 10, 15, 1000, .005); // all_confetti should be an InstancedMesh we've created above
+        let tree1 = makeTree(5, 5, 2, 4, 450, .005);
         let cone1 = tree1[0];
         let confettiMesh1 = tree1[1];
         let confettiVelocities1 = tree1[2];
         let confettiAngles1 = tree1[3];
 
-        let tree2 = makeTree(5, 15, 6, 10, 700, .0025); // all_confetti should be an InstancedMesh we've created above
+        let tree2 = makeTree(5, 7.5, 1.5, 3, 325, .003);
         let cone2 = tree2[0];
         let confettiMesh2 = tree2[1];
         let confettiVelocities2 = tree2[2];
         let confettiAngles2 = tree2[3];
 
-        let tree3 = makeTree(5, 22, 3, 5, 300, .002); // all_confetti should be an InstancedMesh we've created above
+        let tree3 = makeTree(5, 9.5, 1, 2, 162.5, .002);
         let cone3 = tree3[0];
         let confettiMesh3 = tree3[1];
         let confettiVelocities3 = tree3[2];
         let confettiAngles3 = tree3[3];
 
-        let tree4 = makeTree(5, 26, 1.5, 3, 100, .001); // all_confetti should be an InstancedMesh we've created above
+        let tree4 = makeTree(5, 11, 0.5, 1, 91.25, .001);
         let cone4 = tree4[0];
         let confettiMesh4 = tree4[1];
         let confettiVelocities4 = tree4[2];
         let confettiAngles4 = tree4[3];
 
-        confettis.push(confettiMesh1, confettiMesh2, confettiMesh3);
-        angles.push(confettiAngles1, confettiAngles2, confettiAngles3);
-        cones.push(cone1, cone2, cone3);
+        confettis.push(confettiMesh1, confettiMesh2, confettiMesh3, confettiMesh4);
+        angles.push(confettiAngles1, confettiAngles2, confettiAngles3, confettiAngles4);
+        cones.push(cone1, cone2, cone3, cone4);
 
 
         // add a simple cylinder as a trunk
@@ -309,80 +458,26 @@
         const trunkMaterial = new THREE.MeshPhysicalMaterial({ color: 0xC0C0C0 });
         const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
         trunk.position.set(5, 2.5, 0);
-        // trunk.castShadow = true; // default false
-        // trunk.receiveShadow = true; // default
+        trunk.castShadow = true; // default false
+        trunk.receiveShadow = true; // default
         scene.add(trunk);
 
-        // Star Topper
-        // Create a star shape
-        const starShape = new THREE.Shape();
+        // Add star topper to the scene
+        const starTopper = createStarTopper(.35, .225, 5, 0xffff00, [4.8, 12, 0]);
+        starTopper.rotation.x = Math.PI / 2;
+        starTopper.rotation.y = Math.PI / 2;
+        starTopper.rotation.z = Math.PI / 2;
+        scene.add(starTopper);
 
-        // Constants for star creation
-        const outerRadius = 1; // Outer radius of the star points
-        const innerRadius = .5; // Inner radius (between star points)
-        const numPoints = 6; // Number of points in a star
-
-        // Calculate the inner and outer angle increments
-        const angleIncrement = Math.PI / numPoints;
-        const innerAngleIncrement = angleIncrement;
-        const outerAngleIncrement = angleIncrement * 2;
-
-        // Start at the top of the star
-        let currentAngle = -Math.PI / 2;
-        let x, y;
-
-        for (let i = 0; i < numPoints; i++) {
-            // Draw line from inner to outer point
-            x = Math.cos(currentAngle) * outerRadius;
-            y = Math.sin(currentAngle) * outerRadius;
-            if (i === 0) {
-                starShape.moveTo(x, y);
-            } else {
-                starShape.lineTo(x, y);
-            }
-
-            // Increment the angle to draw the next point
-            currentAngle += innerAngleIncrement;
-
-            // Calculate position for the inner point
-            x = Math.cos(currentAngle) * innerRadius;
-            y = Math.sin(currentAngle) * innerRadius;
-            starShape.lineTo(x, y);
-
-            // Increment the angle to draw the next outer point
-            currentAngle += outerAngleIncrement;
-        }
-
-        // Close the path of the star shape
-        starShape.lineTo(0, -outerRadius);
-
-        // Extrude the star shape to give it 3D volume; you can skip extrusion if you want a flat star
-        const extrudeSettings = { depth: 1, bevelEnabled: false };
-        const starGeometry = new THREE.ExtrudeGeometry(starShape, extrudeSettings);
-
-        // Create a material for the star
-        const starMaterial = new THREE.MeshPhysicalMaterial({
-                color: 0xffffff, // Color can be set to white for a clear glass effect
-                metalness: 0,   // Glass is non-metallic
-                roughness: 0,   // Smooth glass surface has no roughness
-                transmission: 1, // Transmission controls the transparency - 1 for full glass effect
-                transparent: true,
-                reflectivity: 1, // This can also affect the glass-like appearance
-                ior: 1.5, // Index of refraction for glass-like materials, around 1.5 for glass
-                // side: THREE.DoubleSide, // Render both sides of the material
-                envMapIntensity: 5, // Intensity of the environment map
-                clearcoat: 1, // Use clearcoat for a glossy finish
-                clearcoatRoughness: 0 // Smooth clearcoat surface
-            });
-
-        // Create a mesh from the geometry and material
-        const starMesh = new THREE.Mesh(starGeometry, starMaterial);
-
-        // Position the star on top of the tree
-        starMesh.position.set(5, 30, 0);
-
-        // Add it to the scene
-        scene.add(starMesh);
+        // Add a long thin cylinder to the top of the trunk and spin it to simulate a fan
+        const fanGeometry = new THREE.CylinderGeometry(.05, .05, 2, 32);
+        const fanMaterial = new THREE.MeshPhysicalMaterial({ color: 0xffffff });
+        const fan = new THREE.Mesh(fanGeometry, fanMaterial);
+        fan.position.set(5, 5.5, 0);
+        fan.rotation.x = Math.PI / 2;
+        fan.castShadow = true; // default false
+        fan.receiveShadow = true; // default
+        scene.add(fan);
 
 
         let cv = new THREE.Vector3(0, 0.01, 0);
@@ -393,6 +488,9 @@
 
             const delta = clock.getDelta(); // Get the time between frames
             updateControls(delta); // Update the controls, if you have controls
+
+            // update fan
+            fan.rotation.z += 0.1;
 
             // update confetti
             let position = new THREE.Vector3();
@@ -415,9 +513,16 @@
                     // position.z = cone.position.z + radiusAtHeight * Math.sin(angles[i][j].x) * Math.cos(angles[i][j].y);
 
                     let radiusAtHeight = getRadiusAtHeight(cone.geometry, position, cone.position);
-                    position.x = cone.position.x + radiusAtHeight / 2 * Math.cos(angles[i][j].x) * Math.cos(angles[i][j].y);
-                    position.z = cone.position.z + radiusAtHeight / 2 * Math.sin(angles[i][j].x) * Math.cos(angles[i][j].y);
-                    // position.x = cone.position.x + radiusAtHeight * Math.cos(angles[i][j].x) * Math.cos(angles[i][j].y)
+                    position.x = cone.position.x + radiusAtHeight / 2 * Math.cos(angles[i][j].x 
+                        + Math.sin(clock.getElapsedTime())) 
+                        * Math.sin(angles[i][j].z + Math.cos(clock.getElapsedTime()/1000) + angles[i][j].y);
+
+                    position.y += Math.sin(clock.getElapsedTime()) * 0.005;
+
+                    position.z = cone.position.z + radiusAtHeight / 2 * Math.sin(angles[i][j].x 
+                        + Math.cos(clock.getElapsedTime()))
+                        * Math.cos(angles[i][j].x + Math.sin(clock.getElapsedTime()/1000) + angles[i][j].y);
+
                     // position.z = cone.position.z + radiusAtHeight * Math.sin(angles[i][j].x) * Math.cos(angles[i][j].y);
                     dummy.matrix.compose(position, quaternion, scale);
                     confettiMesh.setMatrixAt(j, dummy.matrix);
@@ -524,6 +629,39 @@
         // Start the animation loop
         animate();
 
+    </script>
+    <script>
+        // Create audio element and load the mp3 file
+        const audio = new Audio('enchanted-chimes-177906.mp3');
+        let isPlaying = false;
+
+        // Function to toggle play/pause
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Listen for any key press or click to start the music
+        function startMusic() {
+            if (!isPlaying) {
+                togglePlayPause();
+            }
+        }
+        window.addEventListener('keydown', startMusic);
+        window.addEventListener('click', startMusic);
+
+        // Create a button to toggle the music play/pause
+        const musicToggleButton = document.createElement('button');
+        musicToggleButton.textContent = 'Toggle Music';
+        musicToggleButton.style.position = 'fixed';
+        musicToggleButton.style.bottom = '10px';
+        musicToggleButton.style.left = '10px';
+        musicToggleButton.addEventListener('click', togglePlayPause);
+        document.body.appendChild(musicToggleButton);
     </script>
 </body>
 
