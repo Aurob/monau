@@ -1,0 +1,8 @@
+<script>
+    fetch('dumps')
+    .then(response => response.text())
+    .then(data => {
+        document.body.innerHTML = data.split('--').join('<br><hr><br>')
+    });
+
+</script>

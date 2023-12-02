@@ -1,0 +1,14 @@
+{
+    "name": "PWA GPS Locator",
+    "short_name": "GPS Locator",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A simple PWA that shows your current location on a map.",
+    "theme_color": "#3f51b5",
+    "icons": [{
+      "src": "black_sq.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }]
+  }

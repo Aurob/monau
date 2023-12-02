@@ -1,0 +1,56 @@
+<!-- p5.js cube mesh with a camera I can move around the view-->
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        // Set constants for iso angle and lengths
+        let angle = Math.atan(1 / Math.sqrt(2));
+        let cubeWidth = 100 + Math.random() * 100;
+        let cubeHeight = 100 + Math.random() * 100;
+        let rx = 0, ry = 0, rz = 0;
+        console.log(cubeWidth, cubeHeight);
+        function setup() {
+            createCanvas(400, 400, WEBGL);
+            ortho(-width / 2, width / 2, height / 2, -height / 2, 0, 500);
+            noFill();
+            rotateX(-HALF_PI / 3);
+            rotateY(HALF_PI);
+        }
+
+        function draw() {
+            background(200);
+            if(keyIsDown(LEFT_ARROW)){
+                ry -= 0.01;
+            }
+            if(keyIsDown(RIGHT_ARROW)){
+                ry += 0.01;
+            }
+            if(keyIsDown(UP_ARROW)){
+                rx -= 0.01;
+            }
+            if(keyIsDown(DOWN_ARROW)){
+                rx += 0.01;
+            }
+
+            rotateX(rx);
+            rotateY(ry);
+
+            // noFill toggle
+            if(keyIsDown(32)){
+                noFill();
+            }
+            else{
+                fill(255);
+            }
+            box(cubeWidth, 100, cubeHeight);
+
+        }
+    </script>
+</body>
+
+</html>
