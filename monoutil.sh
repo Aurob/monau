@@ -17,29 +17,32 @@ fi
 choice=$(whiptail --title "Directory Selection" --radiolist \
 "Choose directory:" 15 60 2 \
 "Current" "Use current directory" ON \
-"Enter" "Enter a directory" OFF 3>&1 1>&2 2>&3)
+"Select" "Select a directory" OFF 3>&1 1>&2 2>&3)
 
 # Exit if the user pressed Cancel.
 if [ $? -ne 0 ]; then
     exit 1
 fi
 
-if [ "$choice" == "Enter" ]; then
-    # Prompt the user to enter a target directory path
-    target_directory=$(whiptail --title "Input" --inputbox "Enter the target directory path:" 10 60 3>&1 1>&2 2>&3)
+if [ "$choice" == "Select" ]; then
+    # List all directories in /var/www
+    dirs_in_www=(/var/www/*/)
+    # Create an array to hold the directory names
+    dir_options=()
+    for dir in "${dirs_in_www[@]}"; do
+        dir_name=$(basename "$dir")
+        dir_options+=("$dir_name" "" OFF)
+    done
+    # Prompt the user to select a directory
+    target_directory=$(whiptail --title "Directory Selection" --radiolist \
+    "Choose a target directory:" 15 60 ${#dir_options[@]} \
+    "${dir_options[@]}" 3>&1 1>&2 2>&3)
     # Exit if Cancel is pressed.
     if [ $? -ne 0 ]; then
         exit 1
     fi
-    # Check if the directory exists
-    if [ ! -d "$target_directory" ]; then
-        # Ask the user if the directory should be created
-        if (whiptail --title "Directory Not Found" --yesno "The directory does not exist. Do you want to create it?" 10 60); then
-            mkdir -p "$target_directory"
-        else
-            exit 1
-        fi
-    fi
+    # Prepend /var/www to the selected directory name
+    target_directory="/var/www/$target_directory"
 else
     # Use the current directory as the target directory
     target_directory=$(pwd)
@@ -101,6 +104,14 @@ case $action in
             echo "Creating symlink for $dir_unquoted"
             echo "ln -s $SOURCE_PATH_CLEANED/$dir_unquoted $target_directory/$dir_unquoted"
             ln -s $SOURCE_PATH_CLEANED/$dir_unquoted $target_directory/$dir_unquoted
+            # Check if sitemap.html exists in the target directory, if not, copy it from the source
+            if [ ! -f "$target_directory/sitemap.html" ]; then
+                echo "sitemap.html not found in target. Creating symlink from source..."
+                ln -s "$SOURCE_PATH_CLEANED/sitemap.html" "$target_directory/sitemap.html"
+            fi
+            # After creating the symlink, run sitemap.py to update the sitemap
+            echo "Updating sitemap..."
+            python3 sitemap.py $target_directory
         done
         ;;
 

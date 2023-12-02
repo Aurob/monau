@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sitemap Visualization</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            margin-left: 20px;
+            border-left: 1px dashed #ccc;
+            padding-left: 10px;
+            position: relative;
+        }
+        li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 8px;
+            height: 1px;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sitemap-container"></div>
+
+    <script>
+       
+        // Fetch the sitemap, then visualize it
+        fetch('sitemap.txt')
+            .then(response => response.text())
+            .then(data =>{
+
+                let current_domain = window.location.origin;
+
+                let paths = data.split('\n');
+                // sort alphabetically
+                paths.sort();
+
+                let sitemap = document.getElementById('sitemap-container');
+                let ul = document.createElement('ul');
+                sitemap.appendChild(ul);
+                paths.forEach(path => {
+                    path = path.replace(current_domain, '');
+
+                    let li = document.createElement('li');
+                    let a = document.createElement('a');
+                    a.href = path;
+                    a.innerHTML = path;
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error fetching sitemap:', error));
+    </script>
+</body>
+</html>
