@@ -1,0 +1,37 @@
+<style>
+    .banner-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .banner-text {
+        display: inline-block;
+        white-space: nowrap;
+        animation: scrollBanner 10s linear infinite;
+    }
+
+    @keyframes scrollBanner {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+</style>
+<div class="banner-container">
+    <div class="banner-text">Your scrolling text goes here</div>
+</div>
+<script>
+    const bannerText = document.querySelector('.banner-text');
+    const bannerContainer = document.querySelector('.banner-container');
+    const bannerWidth = bannerText.offsetWidth;
+    const containerWidth = bannerContainer.offsetWidth;
+
+    if (bannerWidth > containerWidth) {
+        const scrollDistance = bannerWidth + containerWidth;
+        bannerContainer.style.animationDuration = `${scrollDistance / 100}px`;
+    }
+
+</script>

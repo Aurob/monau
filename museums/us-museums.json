@@ -1,0 +1,3590 @@
+{
+    "alabama": {
+        "museums": [
+            {
+                "name": "Jule Collins Smith Museum of Fine Art at Auburn University",
+                "link": "http://www.julecollinssmithmuseum.com/"
+            },
+            {
+                "name": "Birmingham Museum of Art",
+                "link": "http://www.ARTSbma.org/"
+            },
+            {
+                "name": "American Sport Art Museum and Archives",
+                "link": "http://www.asama.org/"
+            },
+            {
+                "name": "Carnegie Visual Arts Center",
+                "link": "http://www.carnegiearts.org/"
+            },
+            {
+                "name": "Wiregrass Museum of Art",
+                "link": "http://www.wiregrassmuseum.org/"
+            },
+            {
+                "name": "Gadsden Museum of Art",
+                "link": "http://www.gadsdenmuseum.com/"
+            },
+            {
+                "name": "Huntsville Museum of Art",
+                "link": "http://www.hsvmuseum.org/"
+            },
+            {
+                "name": "Mobile Museum of Art",
+                "link": "http://www.mobilemuseumofart.com/"
+            },
+            {
+                "name": "Montgomery Museum of Fine Arts",
+                "link": "http://www.mmfa.org/"
+            },
+            {
+                "name": "Westervelt-Warner Museum of American Art",
+                "link": "http://www.warnermuseum.org/"
+            }
+        ]
+    },
+    "indiana": {
+        "museums": [
+            {
+                "name": "Indiana University Art Museum",
+                "link": "http://www.indiana.edu/~iuam/"
+            },
+            {
+                "name": "Midwest Museum of American Art",
+                "link": "http://midwestmuseum.us/"
+            },
+            {
+                "name": "Evansville Museum of Arts and Science",
+                "link": "http://www.emuseum.org/"
+            },
+            {
+                "name": "Fort Wayne Museum of Art",
+                "link": "http://www.fwmoa.org/"
+            },
+            {
+                "name": "Greentown Glass Museum",
+                "link": "http://www.eastern.k12.in.us/gpl/newgreentownglass.htm"
+            },
+            {
+                "name": "Eiteljorg Museum of American Indians and Western Art",
+                "link": "http://www.eiteljorg.org/"
+            },
+            {
+                "name": "Herron School of Art Gallery",
+                "link": "http://www.herron.iupui.edu/galleries"
+            },
+            {
+                "name": "Indiana State Museum",
+                "link": "http://www.indianamuseum.org/"
+            },
+            {
+                "name": "Indianapolis Art Center",
+                "link": "http://www.indplsartcenter.org/"
+            },
+            {
+                "name": "Indianapolis Museum of Art",
+                "link": "http://www.imamuseum.org/"
+            },
+            {
+                "name": "National Art Museum of Sport at Indiana University",
+                "link": "http://www.namos.iupui.edu/"
+            },
+            {
+                "name": "Greater Lafayette Museum of Art",
+                "link": "http://www.glmart.org/"
+            },
+            {
+                "name": "Ball State University Museum of Art",
+                "link": "http://www.bsu.edu/artmuseum/"
+            },
+            {
+                "name": "Richmond Art Museum",
+                "link": "http://www.richmondartmuseum.org/"
+            },
+            {
+                "name": "Snite Museum of Art at the University of Notre Dame",
+                "link": "http://www.nd.edu/~sniteart/"
+            },
+            {
+                "name": "South Bend Museum of Art",
+                "link": "http://www.southbendart.org/"
+            },
+            {
+                "name": "Indiana State University Art Gallery",
+                "link": "http://www.indstate.edu/artgallery/"
+            },
+            {
+                "name": "Swope Art Museum",
+                "link": "http://www.swope.org/"
+            },
+            {
+                "name": "Brauer Museum of Art at Valparaiso University",
+                "link": "http://www.valpo.edu/artmuseum/"
+            },
+            {
+                "name": "Purdue University Galleries",
+                "link": "http://www.purdue.edu/galleries/"
+            }
+        ]
+    },
+    "nebraska": {
+        "museums": [
+            {
+                "name": "Bone Creek Museum of Agrarian Art",
+                "link": "http://www.bonecreek.org/"
+            },
+            {
+                "name": "Museum of Nebraska Art at the University of Nebraska",
+                "link": "http://monet.unk.edu/mona/"
+            },
+            {
+                "name": "Great Plains Art Museum at the University of Nebraska",
+                "link": "http://www.unl.edu/plains/gallery/gallery.shtml"
+            },
+            {
+                "name": "Sheldon Memorial Art Gallery at the University of Nebraska",
+                "link": "http://www.sheldonartgallery.org/"
+            },
+            {
+                "name": "Norfolk Arts Center",
+                "link": "http://www.norfolkartscenter.org/"
+            },
+            {
+                "name": "Joslyn Art Museum",
+                "link": "http://joslyn.org/"
+            }
+        ]
+    },
+    "south-carolina": {
+        "museums": [
+            {
+                "name": "Gibbes Museum of Art",
+                "link": "http://www.gibbesmuseum.org/"
+            },
+            {
+                "name": "Columbia Museum of Art",
+                "link": "http://www.columbiamuseum.org/"
+            },
+            {
+                "name": "McKissick Museum at the University of South Carolina",
+                "link": "http://www.cas.sc.edu/mcks/"
+            },
+            {
+                "name": "South Carolina State Museum",
+                "link": "http://www.museum.state.sc.us/"
+            },
+            {
+                "name": "Bob Jones University Museum and Gallery",
+                "link": "http://www.bjumg.org/"
+            },
+            {
+                "name": "Greenville County Museum of Art",
+                "link": "http://www.greenvillemuseum.org/"
+            },
+            {
+                "name": "Huntington Sculpture Garden",
+                "link": "http://www.brookgreen.org/bridge.cfm"
+            },
+            {
+                "name": "Spartanburg County Museum of Art",
+                "link": "http://www.spartanburgartmuseum.org/"
+            }
+        ]
+    },
+    "alaska": {
+        "museums": [
+            {
+                "name": "Anchorage Museum of History and Art",
+                "link": "http://www.anchoragemuseum.org/"
+            },
+            {
+                "name": "University of Alaska Museum",
+                "link": "http://www.uaf.edu/museum/"
+            },
+            {
+                "name": "Alaska State Museum",
+                "link": "http://www.museums.state.ak.us/asm/asmhome.html"
+            }
+        ]
+    },
+    "iowa": {
+        "museums": [
+            {
+                "name": "Brunnier Art Museum at Iowa State University",
+                "link": "http://www.museums.iastate.edu/"
+            },
+            {
+                "name": "Cedar Rapids Museum of Art",
+                "link": "http://www.crma.org/"
+            },
+            {
+                "name": "Figge Art Museum",
+                "link": "http://figgeart.org/"
+            },
+            {
+                "name": "Des Moines Art Center",
+                "link": "http://www.desmoinesartcenter.org/"
+            },
+            {
+                "name": "Dubuque Museum of Art",
+                "link": "http://www.dbqart.com/"
+            },
+            {
+                "name": "Blanden Memorial Art Museum",
+                "link": "http://www.blanden.org/"
+            },
+            {
+                "name": "Arts Iowa City",
+                "link": "http://www.artsiowacity.org/"
+            },
+            {
+                "name": "University of Iowa Museum of Art",
+                "link": "http://uima.uiowa.edu/"
+            },
+            {
+                "name": "MacNider Art Museum",
+                "link": "http://www.macniderart.org/"
+            },
+            {
+                "name": "Muscatine Art Center",
+                "link": "http://www.muscatineartcenter.org/"
+            },
+            {
+                "name": "Sioux City Art Center",
+                "link": "http://www.siouxcityartcenter.org/"
+            },
+            {
+                "name": "Waterloo Center for the Arts",
+                "link": "http://www.waterloocenterforthearts.org/"
+            }
+        ]
+    },
+    "nevada": {
+        "museums": [
+            {
+                "name": "Bellagio Gallery of Fine Art",
+                "link": "http://www.bellagio.com/amenities/gallery-of-fine-art.aspx"
+            },
+            {
+                "name": "Nevada Museum of Art",
+                "link": "http://www.nevadaart.org/"
+            }
+        ]
+    },
+    "south-dakota": {
+        "museums": [
+            {
+                "name": "South Dakota Art Museum",
+                "link": "http://www.southdakotaartmuseum.com/"
+            },
+            {
+                "name": "Redlin Art Center",
+                "link": "http://www.redlinart.com/"
+            }
+        ]
+    },
+    "arizona": {
+        "museums": [
+            {
+                "name": "Museum of Northern Arizona",
+                "link": "http://www.musnaz.org/"
+            },
+            {
+                "name": "Northern Arizona University Art Museum",
+                "link": "http://www4.nau.edu/art%5Fmuseum/"
+            },
+            {
+                "name": "Heard Museum",
+                "link": "http://www.heard.org/"
+            },
+            {
+                "name": "Phoenix Art Museum",
+                "link": "http://www.phxart.org/"
+            },
+            {
+                "name": "Phippen Art Museum",
+                "link": "http://www.phippenartmuseum.org/"
+            },
+            {
+                "name": "Fleischer Museum of American and Russian Impressionism",
+                "link": "http://www.fleischer.org/"
+            },
+            {
+                "name": "Scottsdale Museum of Contemporary Art",
+                "link": "http://www.smoca.org/"
+            },
+            {
+                "name": "West Valley Art Museum",
+                "link": "http://www.wvam.org/"
+            },
+            {
+                "name": "Arizona State University Art Museum",
+                "link": "http://asuartmuseum.asu.edu/"
+            },
+            {
+                "name": "Tucson Museum of Art",
+                "link": "http://www.tucsonmuseumofart.org/"
+            },
+            {
+                "name": "University of Arizona Museum of Art",
+                "link": "http://artmuseum.arizona.edu/"
+            },
+            {
+                "name": "Center for Creative Photography at the University of Arizona",
+                "link": "http://www.creativephotography.org/"
+            },
+            {
+                "name": "Desert Caballeros Western Museum",
+                "link": "http://westernmuseum.org/"
+            }
+        ]
+    },
+    "kansas": {
+        "museums": [
+            {
+                "name": "Prairie Museum of Art and History",
+                "link": "http://www.prairiemuseum.org/"
+            },
+            {
+                "name": "Coutts Memorial Museum of Art",
+                "link": "http://www.skyways.org/museums/coutts/"
+            },
+            {
+                "name": "Shafer Memorial Gallery at Barton Community College",
+                "link": "http://www.bartonccc.edu/community/artsentertainment/shafergallery/"
+            },
+            {
+                "name": "Spencer Museum of Art at the University of Kansas",
+                "link": "http://www.spencerart.ku.edu/"
+            },
+            {
+                "name": "Birger Sandzen Memorial Gallery",
+                "link": "http://www.sandzen.org/"
+            },
+            {
+                "name": "Dane G. Hansen Museum",
+                "link": "http://www.hansenmuseum.org/"
+            },
+            {
+                "name": "Beach Museum of Art at Kansas State University",
+                "link": "http://beach.k-state.edu/"
+            },
+            {
+                "name": "Nerman Museum of Contemporary Art",
+                "link": "http://www.nermanmuseum.org/"
+            },
+            {
+                "name": "Mulvane Art Museum at Washburn University",
+                "link": "http://www.washburn.edu/mulvane/index.html"
+            },
+            {
+                "name": "Ulrich Museum of Art at Wichita State University",
+                "link": "http://webs.wichita.edu/?view=ulrich"
+            },
+            {
+                "name": "Wichita Art Museum",
+                "link": "http://wichitaartmuseum.org/"
+            }
+        ]
+    },
+    "new-hampshire": {
+        "museums": [
+            {
+                "name": "Saint-Gaudens National Historic Site",
+                "link": "http://sgnhs.org/"
+            },
+            {
+                "name": "Cornish Colony Gallery and Museum",
+                "link": "http://www.almagilbert.com/"
+            },
+            {
+                "name": "Art Gallery at the University of New Hampshire",
+                "link": "http://www.unh.edu/moa/"
+            },
+            {
+                "name": "Hood Museum of Art",
+                "link": "http://hoodmuseum.dartmouth.edu/"
+            },
+            {
+                "name": "Thorne-Sagendorph Art Gallery at Keene State College",
+                "link": "http://www.keene.edu/tsag/"
+            },
+            {
+                "name": "Currier Gallery of Art",
+                "link": "http://www.currier.org/"
+            }
+        ]
+    },
+    "tennessee": {
+        "museums": [
+            {
+                "name": "Hunter Museum of American Art",
+                "link": "http://www.huntermuseum.org/"
+            },
+            {
+                "name": "Carroll Reece Museum at East Tennessee State University",
+                "link": "http://www.etsu.edu/reece/"
+            },
+            {
+                "name": "Knoxville Museum of Art",
+                "link": "http://www.knoxart.org/"
+            },
+            {
+                "name": "McClung Museum at the University of Tennesse",
+                "link": "http://mcclungmuseum.utk.edu/"
+            },
+            {
+                "name": "Art Museum of the University of Memphis",
+                "link": "http://www.memphis.edu/amum/"
+            },
+            {
+                "name": "Dixon Gallery and Gardens",
+                "link": "http://www.dixon.org/"
+            },
+            {
+                "name": "Memphis Brooks Museum of Art",
+                "link": "http://www.brooksmuseum.org/"
+            },
+            {
+                "name": "University of Memphis Institute of Egyptian Art and Archaeology",
+                "link": "http://www.memphis.edu/egypt/"
+            },
+            {
+                "name": "Cheekwood Museum of Art",
+                "link": "http://www.cheekwood.org/Art.aspx"
+            },
+            {
+                "name": "Frist Center for the Visual Arts",
+                "link": "http://www.fristcenter.org/"
+            },
+            {
+                "name": "Tennessee State Museum",
+                "link": "http://www.tnmuseum.org/"
+            },
+            {
+                "name": "The Parthenon",
+                "link": "http://www.parthenon.org/"
+            },
+            {
+                "name": "Vanderbilt University Fine Arts Gallery",
+                "link": "http://sitemason.vanderbilt.edu/gallery"
+            }
+        ]
+    },
+    "arkansas": {
+        "museums": [
+            {
+                "name": "Crystal Bridges Museum of American Art",
+                "link": "http://crystalbridges.org/"
+            },
+            {
+                "name": "Baum Gallery of Fine Art at the University of Central Arkansas",
+                "link": "http://www.uca.edu/art/baum/"
+            },
+            {
+                "name": "South Arkansas Arts Center",
+                "link": "http://www.saac-arts.org/"
+            },
+            {
+                "name": "Arkansas Arts Center",
+                "link": "http://www.arkarts.com/"
+            }
+        ]
+    },
+    "kentucky": {
+        "museums": [
+            {
+                "name": "Doris Ulmann Galleries at Berea College",
+                "link": "http://www.berea.edu/Art/dug/default.asp"
+            },
+            {
+                "name": "Kentucky Museum at Western Kentucky University",
+                "link": "http://www.wku.edu/Library/museum/"
+            },
+            {
+                "name": "Janice Mason Art Museum",
+                "link": "http://www.jmam.org/"
+            },
+            {
+                "name": "International Museum of the Horse",
+                "link": "http://www.imh.org/"
+            },
+            {
+                "name": "University of Kentucky Art Museum",
+                "link": "http://www.uky.edu/ArtMuseum/"
+            },
+            {
+                "name": "Kentucky Art and Craft Foundation",
+                "link": "http://www.kentuckycrafts.org/"
+            },
+            {
+                "name": "Speed Art Museum",
+                "link": "http://www.speedmuseum.org/"
+            }
+        ]
+    },
+    "new-jersey": {
+        "museums": [
+            {
+                "name": "Jane Voorhees Zimmerli Art Museum at Rutgers University",
+                "link": "http://www.zimmerlimuseum.rutgers.edu/"
+            },
+            {
+                "name": "Hunterdon Museum of Art",
+                "link": "http://www.hunterdonartmuseum.org/"
+            },
+            {
+                "name": "Bergen Museum",
+                "link": "http://thebergenmuseum.com/"
+            },
+            {
+                "name": "Grounds For Sculpture",
+                "link": "http://www.groundsforsculpture.org/"
+            },
+            {
+                "name": "Jersey City Museum",
+                "link": "http://www.jerseycitymuseum.org/"
+            },
+            {
+                "name": "Shore Institute of the Contemporary Arts (SICA)",
+                "link": "http://www.sica.org/"
+            },
+            {
+                "name": "Wheaton Village Museum of American Glass",
+                "link": "http://www.wheatonvillage.org/"
+            },
+            {
+                "name": "Montclair Art Museum",
+                "link": "http://www.montclair-art.com/"
+            },
+            {
+                "name": "Stickley Museum at Craftsman Farms",
+                "link": "http://www.stickleymuseum.org/"
+            },
+            {
+                "name": "Morris Museum",
+                "link": "http://morrismuseum.org/"
+            },
+            {
+                "name": "Newark Museum",
+                "link": "http://www.newarkmuseum.org/"
+            },
+            {
+                "name": "Noyes Museum of Art",
+                "link": "http://www.noyesmuseum.org/"
+            },
+            {
+                "name": "Princeton University Art Museum",
+                "link": "http://www.princetonartmuseum.org/"
+            },
+            {
+                "name": "Visual Arts Center of New Jersey",
+                "link": "http://www.artcenternj.org/"
+            },
+            {
+                "name": "New Jersey State Museum",
+                "link": "http://www.newjerseystatemuseum.org/"
+            }
+        ]
+    },
+    "texas": {
+        "museums": [
+            {
+                "name": "Grace Museum",
+                "link": "http://www.thegracemuseum.org/"
+            },
+            {
+                "name": "The Old Jail Art Center",
+                "link": "http://www.theoldjailartcenter.org/"
+            },
+            {
+                "name": "Amarillo Museum of Art",
+                "link": "http://www.amarilloart.org/"
+            },
+            {
+                "name": "Arlington Museum of Art",
+                "link": "http://www.arlingtonmuseum.org/"
+            },
+            {
+                "name": "Austin Museum of Art",
+                "link": "http://www.amoa.org/"
+            },
+            {
+                "name": "Blanton Museum of Art at the University of Texas",
+                "link": "http://blantonmuseum.org/"
+            },
+            {
+                "name": "Mexic-Arte Museum",
+                "link": "http://www.main.org/mexic-arte/"
+            },
+            {
+                "name": "Ransom Humanities Research Center at the University of Texas",
+                "link": "http://www.hrc.utexas.edu/"
+            },
+            {
+                "name": "Art Museum of Southeast Texas",
+                "link": "http://www.amset.org/"
+            },
+            {
+                "name": "Beeville Art Museum",
+                "link": "http://Beeville.net/BeevilleArtMuseum/"
+            },
+            {
+                "name": "Panhandle Plains Historical Museum",
+                "link": "http://www.panhandleplains.org/"
+            },
+            {
+                "name": "Cushing Memorial Library at Texas A&M University",
+                "link": "http://cushing.library.tamu.edu/"
+            },
+            {
+                "name": "South Texas Institute for the Arts",
+                "link": "http://www.stia.org/"
+            },
+            {
+                "name": "",
+                "link": "http://dallasmuseumofart.org/index.htm"
+            },
+            {
+                "name": "Crow Collection of Asian Art",
+                "link": "http://www.crowcollection.org/"
+            },
+            {
+                "name": "Meadows Museum at Southern Methodist University",
+                "link": "http://smu.edu/meadowsmuseum/"
+            },
+            {
+                "name": "Nasher Sculpture Center",
+                "link": "http://www.nashersculpturecenter.org/"
+            },
+            {
+                "name": "The McKinney Avenue Contemporary (MAC)",
+                "link": "http://www.the-mac.org/"
+            },
+            {
+                "name": "University of North Texas Art Galleries",
+                "link": "http://gallery.unt.edu/"
+            },
+            {
+                "name": "El Paso Museum of Art",
+                "link": "http://www.elpasoartmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.kimbellart.org/"
+            },
+            {
+                "name": "Amon Carter Museum",
+                "link": "http://www.cartermuseum.org/"
+            },
+            {
+                "name": "Modern Art Museum of Fort Worth",
+                "link": "http://www.themodern.org/"
+            },
+            {
+                "name": "Sid Richardson Collection of Western Art",
+                "link": "http://www.sidrichardsonmuseum.org/"
+            },
+            {
+                "name": "Texas Sculpture Garden",
+                "link": "http://www.texassculpturegarden.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.mfah.org/"
+            },
+            {
+                "name": "Blaffer Gallery at the University of Houston",
+                "link": "http://www.class.uh.edu/blaffer/"
+            },
+            {
+                "name": "Contemporary Arts Museum Houston",
+                "link": "http://www.camh.org/"
+            },
+            {
+                "name": "Menil Collection",
+                "link": "http://www.menil.org/"
+            },
+            {
+                "name": "Rice University Art Gallery",
+                "link": "http://www.ricegallery.org/"
+            },
+            {
+                "name": "The Art Car Museum",
+                "link": "http://www.artcarmuseum.com/"
+            },
+            {
+                "name": "Museum of Western Art",
+                "link": "http://www.caamuseum.com/"
+            },
+            {
+                "name": "Longview Museum of Fine Arts",
+                "link": "http://www.lmfa.org/"
+            },
+            {
+                "name": "Museum of Texas Tech University",
+                "link": "http://www.depts.ttu.edu/museumttu/"
+            },
+            {
+                "name": "Chinati Foundation",
+                "link": "http://www.chinati.org/"
+            },
+            {
+                "name": "Museum of the Southwest",
+                "link": "http://museumsw.org/"
+            },
+            {
+                "name": "Ellen Noel Art Museum",
+                "link": "http://www.noelartmuseum.org/"
+            },
+            {
+                "name": "Stark Museum of Art",
+                "link": "http://www.starkmuseum.org/"
+            },
+            {
+                "name": "San Angelo Museum of Fine Arts",
+                "link": "http://www.samfa.org/"
+            },
+            {
+                "name": "McNay Art Museum",
+                "link": "http://www.mcnayart.org/"
+            },
+            {
+                "name": "San Antonio Art League Museum",
+                "link": "http://www.saalm.org/"
+            },
+            {
+                "name": "San Antonio Museum of Art",
+                "link": "http://www.samuseum.org/"
+            },
+            {
+                "name": "Tyler Museum of Art",
+                "link": "http://www.tylermuseum.org/"
+            },
+            {
+                "name": "Art Center Waco",
+                "link": "http://www.artcenterwaco.org/"
+            },
+            {
+                "name": "Martin Museum of Art at Baylor University",
+                "link": "http://www.baylor.edu/martinmuseum/"
+            }
+        ]
+    },
+    "california": {
+        "museums": [
+            {
+                "name": "Bakersfield Museum of Art",
+                "link": "http://www.bmoa.org/"
+            },
+            {
+                "name": "Berkeley Art Museum and Pacific Film Archive at U.C. Berkeley",
+                "link": "http://www.bampfa.berkeley.edu/"
+            },
+            {
+                "name": "Judah L. Magnes Museum",
+                "link": "http://www.magnes.org/"
+            },
+            {
+                "name": "Paley Center for Media",
+                "link": "http://www.paleycenter.org/"
+            },
+            {
+                "name": "Claremont Museum of Art",
+                "link": "http://claremontmuseum.org/"
+            },
+            {
+                "name": "Pomona College Museum of Art",
+                "link": "http://www.pomona.edu/museum/"
+            },
+            {
+                "name": "Ruth Chandler Williamson Gallery at Scripps College",
+                "link": "http://www.scrippscollege.edu/williamson-gallery/index.php"
+            },
+            {
+                "name": "California Center for the Arts",
+                "link": "http://www.artcenter.org/"
+            },
+            {
+                "name": "Queen Califia's Magical Circle Garden",
+                "link": "http://www.queencalifia.org/"
+            },
+            {
+                "name": "Fresno Art Museum",
+                "link": "http://www.fresnoartmuseum.org/"
+            },
+            {
+                "name": "City of Fullerton Museum",
+                "link": "http://www.ci.fullerton.ca.us/depts/museum/default.asp"
+            },
+            {
+                "name": "Forest Lawn Museum",
+                "link": "http://www.forestlawn.com/Special-Events-And-Facilities/Museum-Exhibits-And-Educational-Series.asp"
+            },
+            {
+                "name": "Lee Institute for Japanese Art",
+                "link": "http://www.shermanleeinstitute.org/"
+            },
+            {
+                "name": "Irvine Museum",
+                "link": "http://www.irvinemuseum.org/"
+            },
+            {
+                "name": "Laguna Art Museum",
+                "link": "http://www.lagunaartmuseum.org/"
+            },
+            {
+                "name": "California State University Art Museum",
+                "link": "http://www.csulb.edu/org/uam/"
+            },
+            {
+                "name": "Long Beach Museum of Art",
+                "link": "http://www.lbma.org/"
+            },
+            {
+                "name": "Museum of Latin American Art",
+                "link": "http://www.molaa.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.getty.edu/museum/"
+            },
+            {
+                "name": "",
+                "link": "http://www.lacma.org/"
+            },
+            {
+                "name": "A+D Museum (Architectural and Design Museum)",
+                "link": "http://aplusd.org/"
+            },
+            {
+                "name": "California African-American Museum",
+                "link": "http://www.caam.ca.gov/"
+            },
+            {
+                "name": "Corita (Kent) Art Center",
+                "link": "http://www.corita.org/"
+            },
+            {
+                "name": "Craft and Folk Art Museum",
+                "link": "http://www.cafam.org/"
+            },
+            {
+                "name": "Hammer Museum",
+                "link": "http://hammer.ucla.edu/"
+            },
+            {
+                "name": "Japanese American National Museum",
+                "link": "http://www.janm.org/"
+            },
+            {
+                "name": "Korean American Museum",
+                "link": "http://www.kamuseum.org/"
+            },
+            {
+                "name": "MAK Center for Art and Architecture",
+                "link": "http://www.makcenter.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art",
+                "link": "http://moca.org/"
+            },
+            {
+                "name": "Museum of Neon Art",
+                "link": "http://www.neonmona.org/"
+            },
+            {
+                "name": "Museum of the American West",
+                "link": "http://theautry.org/"
+            },
+            {
+                "name": "Skirball Cultural Center",
+                "link": "http://www.skirball.org/"
+            },
+            {
+                "name": "UCLA Fowler Museum of Cultural History",
+                "link": "http://www.fowler.ucla.edu/incEngine/"
+            },
+            {
+                "name": "USC Fisher Museum of Art",
+                "link": "http://fisher.usc.edu/"
+            },
+            {
+                "name": "Wildling Art Museum",
+                "link": "http://www.wildlingmuseum.org/"
+            },
+            {
+                "name": "Monterey Museum of Art",
+                "link": "http://www.montereyart.org/"
+            },
+            {
+                "name": "Hearst Art Gallery at Saint Mary's College",
+                "link": "http://www.stmarys-ca.edu/arts/hearst-art-gallery/index.html"
+            },
+            {
+                "name": "di Rosa Preserve",
+                "link": "http://www.dirosaart.org/"
+            },
+            {
+                "name": "Orange County Museum of Art",
+                "link": "http://www.ocma.net/"
+            },
+            {
+                "name": "Oakland Museum of California",
+                "link": "http://museumca.org/"
+            },
+            {
+                "name": "Oceanside Museum of Art",
+                "link": "http://www.oma-online.org/"
+            },
+            {
+                "name": "Carnegie Art Museum",
+                "link": "http://www.carnegieam.org/"
+            },
+            {
+                "name": "Palm Springs Desert Museum",
+                "link": "http://www.psmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.nortonsimon.org/"
+            },
+            {
+                "name": "Pacific Asia Museum",
+                "link": "http://www.pacificasiamuseum.org/"
+            },
+            {
+                "name": "Pasadena Museum of California Art",
+                "link": "http://www.pmcaonline.org/"
+            },
+            {
+                "name": "Latino Art Museum",
+                "link": "http://www.lamoa.net/"
+            },
+            {
+                "name": "Historical Glass Museum",
+                "link": "http://historicalglassmuseum.com/"
+            },
+            {
+                "name": "California Museum of Photography at U.C. Riverside",
+                "link": "http://www.cmp.ucr.edu/"
+            },
+            {
+                "name": "Riverside Art Museum",
+                "link": "http://www.riversideartmuseum.org/"
+            },
+            {
+                "name": "Sweeney Art Gallery at U.C. Riverside",
+                "link": "http://sweeney.ucr.edu/"
+            },
+            {
+                "name": "Sonoma State University Art Gallery",
+                "link": "http://www.sonoma.edu/artgallery/"
+            },
+            {
+                "name": "Center for Contemporary Art, Sacramento",
+                "link": "http://www.ccasac.org/"
+            },
+            {
+                "name": "Crocker Art Museum",
+                "link": "http://www.crockerartmuseum.org/"
+            },
+            {
+                "name": "Robert V. Fullerton Art Museum at California State University",
+                "link": "http://museum.csusb.edu/"
+            },
+            {
+                "name": "Mingei International Museum of Folk Art",
+                "link": "http://www.mingei.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art",
+                "link": "http://www.mcasd.org/"
+            },
+            {
+                "name": "Museum of Photographic Arts",
+                "link": "http://www.mopa.org/"
+            },
+            {
+                "name": "San Diego Art Institute",
+                "link": "http://www.sandiego-art.org/"
+            },
+            {
+                "name": "San Diego Museum Of Art",
+                "link": "http://www.sdmart.org/"
+            },
+            {
+                "name": "Stuart Collection of Sculpture at U.C. San Diego",
+                "link": "http://stuartcollection.ucsd.edu/"
+            },
+            {
+                "name": "Timken Museum of Art",
+                "link": "http://www.timkenmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://deyoung.famsf.org/"
+            },
+            {
+                "name": "",
+                "link": "http://legionofhonor.famsf.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.sfmoma.org/"
+            },
+            {
+                "name": "Asian Art Museum of San Francisco",
+                "link": "http://www.asianart.org/"
+            },
+            {
+                "name": "Cartoon Art Museum",
+                "link": "http://cartoonart.org/"
+            },
+            {
+                "name": "Contemporary Jewish Museum",
+                "link": "http://www.thecjm.org/"
+            },
+            {
+                "name": "Museo ItaloAmericano",
+                "link": "http://www.museoitaloamericano.org/"
+            },
+            {
+                "name": "Museum of Craft and Folk Art",
+                "link": "http://www.mocfa.org/"
+            },
+            {
+                "name": "Museum of Performance and Design",
+                "link": "http://www.mpdsf.org/"
+            },
+            {
+                "name": "San Francisco State University Fine Arts Gallery",
+                "link": "http://gallery.sfsu.edu/"
+            },
+            {
+                "name": "Thacher Gallery at the University of San Francisco",
+                "link": "http://www.usfca.edu/library/thacher/"
+            },
+            {
+                "name": "Yerba Buena Center for the Arts",
+                "link": "http://www.ybca.org/"
+            },
+            {
+                "name": "Art-Tech (Silicon Valley Institute for Art and Technology)",
+                "link": "http://www.art-tech.org/"
+            },
+            {
+                "name": "Rosicrucian Egyptian Museum",
+                "link": "http://www.egyptianmuseum.org/"
+            },
+            {
+                "name": "San Jose Museum of Art",
+                "link": "http://www.sjmusart.org/"
+            },
+            {
+                "name": "San Jose Museum of Quilts and Textiles",
+                "link": "http://www.sjquiltmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.huntington.org/"
+            },
+            {
+                "name": "Bowers Museum of Cultural Art",
+                "link": "http://www.bowers.org/"
+            },
+            {
+                "name": "Art Museum at U.C. Santa Barbara",
+                "link": "http://www.uam.ucsb.edu/"
+            },
+            {
+                "name": "Reynolds Gallery at Westmont College",
+                "link": "http://www.westmont.edu/reynolds_gallery/"
+            },
+            {
+                "name": "Santa Barbara Museum of Art",
+                "link": "http://www.sbmuseart.org/"
+            },
+            {
+                "name": "de Saisset Museum at Santa Clara University",
+                "link": "http://www.scu.edu/desaisset/"
+            },
+            {
+                "name": "Triton Museum of Art",
+                "link": "http://www.tritonmuseum.org/"
+            },
+            {
+                "name": "Museum Of Art And History",
+                "link": "http://www.santacruzmah.org/"
+            },
+            {
+                "name": "California Heritage Museum",
+                "link": "http://web.mac.com/calmuseum/Site/Home.html"
+            },
+            {
+                "name": "Santa Monica Museum of Art",
+                "link": "http://www.smmoa.org/"
+            },
+            {
+                "name": "Charles M. Schulz Museum and Research Center",
+                "link": "http://www.schulzmuseum.org/"
+            },
+            {
+                "name": "Sonoma County Museum",
+                "link": "http://www.sonomacountymuseum.org/"
+            },
+            {
+                "name": "Sonoma Valley Museum of Art",
+                "link": "http://www.svma.org/"
+            },
+            {
+                "name": "Cantor Center for Visual Arts at Stanford University",
+                "link": "http://museum.stanford.edu/"
+            },
+            {
+                "name": "New Guinea Sculpture Garden at Stanford University",
+                "link": "http://www.stanford.edu/~mjpeters/png/"
+            },
+            {
+                "name": "Haggin Museum",
+                "link": "http://www.hagginmuseum.org/"
+            },
+            {
+                "name": "Ventura County Museum of History and Art",
+                "link": "http://www.venturamuseum.org/"
+            },
+            {
+                "name": "Napa Valley Museum",
+                "link": "http://www.napavalleymuseum.org/"
+            }
+        ]
+    },
+    "louisiana": {
+        "museums": [
+            {
+                "name": "Alexandria Museum of Art",
+                "link": "http://www.themuseum.org/"
+            },
+            {
+                "name": "Louisiana Art and Science Museum",
+                "link": "http://www.lasm.org/"
+            },
+            {
+                "name": "Louisiana State University Museum of Art",
+                "link": "http://www.lsumoa.com/"
+            },
+            {
+                "name": "University of Louisiana Art Museum",
+                "link": "http://www.louisiana.edu/uam"
+            },
+            {
+                "name": "Contemporary Arts Center New Orleans",
+                "link": "http://www.cacno.org/"
+            },
+            {
+                "name": "Louisiana State Museum",
+                "link": "http://lsm.crt.state.la.us/"
+            },
+            {
+                "name": "New Orleans Museum of Art",
+                "link": "http://www.noma.org/"
+            },
+            {
+                "name": "Ogden Museum of Southern Art",
+                "link": "http://www.ogdenmuseum.org/"
+            },
+            {
+                "name": "Meadows Museum of Art at Centenary College",
+                "link": "http://www.centenary.edu/meadows/"
+            },
+            {
+                "name": "R.W. Norton Art Gallery",
+                "link": "http://www.rwnaf.org/"
+            }
+        ]
+    },
+    "new-mexico": {
+        "museums": [
+            {
+                "name": "Albuquerque Museum",
+                "link": "http://www.cabq.gov/museum/"
+            },
+            {
+                "name": "Roswell Museum and Art Center",
+                "link": "http://www.roswellmuseum.org/"
+            },
+            {
+                "name": "Georgia O'Keeffe Museum",
+                "link": "http://www.okeeffemuseum.org/"
+            },
+            {
+                "name": "Institute of American Indian Arts Museum",
+                "link": "http://www.iaia.edu/museum/"
+            },
+            {
+                "name": "Museum of International Folk Art",
+                "link": "http://www.moifa.org/"
+            },
+            {
+                "name": "Museum of New Mexico",
+                "link": "http://www.museumofnewmexico.org/"
+            },
+            {
+                "name": "New Mexico Museum of Art",
+                "link": "http://www.nmartmuseum.org/"
+            },
+            {
+                "name": "SITE Santa Fe",
+                "link": "http://www.sitesantafe.org/"
+            },
+            {
+                "name": "Wheelwright Museum of the American Indian",
+                "link": "http://www.wheelwright.org/"
+            },
+            {
+                "name": "Harwood Museum at the University of New Mexico",
+                "link": "http://harwoodmuseum.org/"
+            },
+            {
+                "name": "Millicent Rogers Museum of Northern New Mexico",
+                "link": "http://www.millicentrogers.org/"
+            },
+            {
+                "name": "Taos Art Museum",
+                "link": "http://www.taosartmuseum.org/"
+            }
+        ]
+    },
+    "utah": {
+        "museums": [
+            {
+                "name": "Braithwaite Arts Gallery at Southern Utah University",
+                "link": "http://www.suu.edu/museums/"
+            },
+            {
+                "name": "Nora Eccles Harrison Museum of Art at Utah State University",
+                "link": "http://www.artmuseum.usu.edu/"
+            },
+            {
+                "name": "Kimball Art Center",
+                "link": "http://www.kimballartcenter.org/"
+            },
+            {
+                "name": "Brigham Young University Museum of Art",
+                "link": "http://cfac.byu.edu/index.php?id=194"
+            },
+            {
+                "name": "Utah Museum of Fine Arts at the University of Utah",
+                "link": "http://www.umfa.utah.edu/"
+            },
+            {
+                "name": "Springville Museum of Art",
+                "link": "http://www.sma.nebo.edu/"
+            }
+        ]
+    },
+    "colorado": {
+        "museums": [
+            {
+                "name": "Aspen Art Museum",
+                "link": "http://www.aspenartmuseum.org/"
+            },
+            {
+                "name": "Boulder Museum of Contemporary Art",
+                "link": "http://www.BMoCA.org/"
+            },
+            {
+                "name": "Leanin' Tree Museum of Western Art",
+                "link": "http://www.leanintreemuseum.com/"
+            },
+            {
+                "name": "Colorado Springs Fine Arts Center",
+                "link": "http://www.csfineartscenter.org/"
+            },
+            {
+                "name": "Denver Art Museum",
+                "link": "http://www.denverartmuseum.org/"
+            },
+            {
+                "name": "Kirkland Museum",
+                "link": "http://www.kirklandmuseum.org/"
+            },
+            {
+                "name": "Museo de las Americas",
+                "link": "http://www.museo.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art/Denver",
+                "link": "http://www.mcadenver.org/"
+            },
+            {
+                "name": "The Museum of Outdoor Arts",
+                "link": "http://www.moaonline.org/"
+            },
+            {
+                "name": "Fort Collins Museum of Contemporary Art",
+                "link": "http://www.fcmoca.org/"
+            }
+        ]
+    },
+    "maine": {
+        "museums": [
+            {
+                "name": "Bowdoin College Museum of Art",
+                "link": "http://www.bowdoin.edu/art-museum/"
+            },
+            {
+                "name": "Bates Museum of Art",
+                "link": "http://www.bates.edu/museum.xml"
+            },
+            {
+                "name": "Davistown Museum",
+                "link": "http://www.davistownmuseum.org/"
+            },
+            {
+                "name": "Hudson Museum at the University of Maine",
+                "link": "http://www.umaine.edu/hudsonmuseum/"
+            },
+            {
+                "name": "University of Maine Museum of Art",
+                "link": "http://www.umma.umaine.edu/"
+            },
+            {
+                "name": "Portland Museum of Art",
+                "link": "http://www.portlandmuseum.org/"
+            },
+            {
+                "name": "Farnsworth Art Museum",
+                "link": "http://www.farnsworthmuseum.org/"
+            },
+            {
+                "name": "Center for Maine Contemporary Art",
+                "link": "http://www.cmcanow.org/"
+            },
+            {
+                "name": "Colby College Museum of Art",
+                "link": "http://www.colby.edu/academics_cs/museum/"
+            }
+        ]
+    },
+    "new-york": {
+        "museums": [
+            {
+                "name": "Albany Institute of History and Art",
+                "link": "http://www.albanyinstitute.org/"
+            },
+            {
+                "name": "New York State Museum",
+                "link": "http://www.nysm.nysed.gov/"
+            },
+            {
+                "name": "University Art Museum",
+                "link": "http://www.albany.edu/museum/"
+            },
+            {
+                "name": "Schein-Joseph International Museum of Ceramic Art",
+                "link": "http://ceramicsmuseum.alfred.edu/"
+            },
+            {
+                "name": "American Museum of the Moving Image",
+                "link": "http://www.movingimage.us/site/site.php"
+            },
+            {
+                "name": "Dia: Beacon",
+                "link": "http://www.diabeacon.org/"
+            },
+            {
+                "name": "The Adirondack Museum",
+                "link": "http://www.adkmuseum.org/"
+            },
+            {
+                "name": "Albright-Knox Art Gallery",
+                "link": "http://www.albrightknox.org/"
+            },
+            {
+                "name": "The Burchfield Penney Art Center",
+                "link": "http://www.burchfieldpenney.org/"
+            },
+            {
+                "name": "University at Buffalo Art Gallery",
+                "link": "http://www.ubartgalleries.org/"
+            },
+            {
+                "name": "Arkell Museum at Canajoharie",
+                "link": "http://www.arkellmuseum.org/"
+            },
+            {
+                "name": "Cedar Grove | Thomas Cole National Historic Site",
+                "link": "http://www.thomascole.org/"
+            },
+            {
+                "name": "Emerson Gallery at Hamilton College",
+                "link": "http://my.hamilton.edu/college/emerson_gallery/index.html"
+            },
+            {
+                "name": "Fenimore Art Museum",
+                "link": "http://www.fenimoreartmuseum.org/"
+            },
+            {
+                "name": "Corning Museum of Glass",
+                "link": "http://www.cmog.org/"
+            },
+            {
+                "name": "Rockwell Museum of Western Art",
+                "link": "http://www.rockwellmuseum.org/"
+            },
+            {
+                "name": "Guild Hall Museum",
+                "link": "http://www.guildhall.org/museum.ihtml"
+            },
+            {
+                "name": "Islip Art Museum",
+                "link": "http://www.islipartmuseum.org/"
+            },
+            {
+                "name": "Arnot Art Museum",
+                "link": "http://www.arnotartmuseum.org/"
+            },
+            {
+                "name": "Hyde Collection Art Museum",
+                "link": "http://www.hydecollection.org/"
+            },
+            {
+                "name": "Picker Art Gallery at Colgate University",
+                "link": "http://picker.colgate.edu/"
+            },
+            {
+                "name": "Newington-Cropsey Foundation",
+                "link": "http://www.newingtoncropsey.com/"
+            },
+            {
+                "name": "Hofstra University Museum",
+                "link": "http://www.hofstra.edu/Community/museum/index.html"
+            },
+            {
+                "name": "Heckscher Museum of Art",
+                "link": "http://www.Heckscher.org/"
+            },
+            {
+                "name": "Johnson Museum of Art at Cornell University",
+                "link": "http://www.museum.cornell.edu/"
+            },
+            {
+                "name": "Katonah Museum of Art",
+                "link": "http://www.katonahmuseum.org/"
+            },
+            {
+                "name": "Hillwood Art Museum",
+                "link": "http://www.liu.edu/cwis/cwp/but06/hillwood/"
+            },
+            {
+                "name": "Fisher Landau Center for Art",
+                "link": "http://flcart.org/"
+            },
+            {
+                "name": "Isamu Noguchi Garden Museum",
+                "link": "http://www.noguchi.org/"
+            },
+            {
+                "name": "P.S. 1 Museum",
+                "link": "http://www.ps1.org/"
+            },
+            {
+                "name": "Sculpture Center",
+                "link": "http://www.sculpture-center.org/"
+            },
+            {
+                "name": "Storm King Art Center",
+                "link": "http://www.stormking.org/"
+            },
+            {
+                "name": "Genesee Country Village and Museum",
+                "link": "http://www.gcv.org/"
+            },
+            {
+                "name": "Samuel Dorsky Museum of Art at SUNY New Paltz",
+                "link": "http://www.newpaltz.edu/museum/"
+            },
+            {
+                "name": "",
+                "link": "http://www.frick.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.guggenheim.org/new-york"
+            },
+            {
+                "name": "",
+                "link": "http://www.thejewishmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.metmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://moma.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.mcny.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.nmai.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://whitney.org/"
+            },
+            {
+                "name": "Alternative Museum",
+                "link": "http://www.alternativemuseum.org/"
+            },
+            {
+                "name": "American Folk Art Museum",
+                "link": "http://www.folkartmuseum.org/"
+            },
+            {
+                "name": "American Museum of Natural History",
+                "link": "http://www.amnh.org/"
+            },
+            {
+                "name": "Asia Society Museum",
+                "link": "http://www.asiasocietymuseum.org/"
+            },
+            {
+                "name": "BRIC Rotunda Gallery",
+                "link": "http://www.bricartsmedia.org/contemporary-art"
+            },
+            {
+                "name": "Bronx Museum of the Arts",
+                "link": "http://www.bronxmuseum.org/"
+            },
+            {
+                "name": "Brooklyn Museum of Art",
+                "link": "http://www.brooklynmuseum.org/"
+            },
+            {
+                "name": "Chelsea Art Museum",
+                "link": "http://chelseaartmuseum.org/"
+            },
+            {
+                "name": "Cooper-Hewitt, National Design Museum",
+                "link": "http://www.cooperhewitt.org/"
+            },
+            {
+                "name": "Dahesh Museum",
+                "link": "http://www.daheshmuseum.org/"
+            },
+            {
+                "name": "Dia Center for the Arts",
+                "link": "http://www.diacenter.org/"
+            },
+            {
+                "name": "Dia: at the Hispanic Society of America",
+                "link": "http://www.diaart.org/sites/main/hsa"
+            },
+            {
+                "name": "Drawing Center",
+                "link": "http://www.drawingcenter.org/"
+            },
+            {
+                "name": "El Museo del Barrio",
+                "link": "http://www.elmuseo.org/"
+            },
+            {
+                "name": "Grey Art Gallery at New York University",
+                "link": "http://www.nyu.edu/greyart/"
+            },
+            {
+                "name": "Hispanic Society of America",
+                "link": "http://hispanicsociety.org/"
+            },
+            {
+                "name": "International Center of Photography",
+                "link": "http://www.icp.org/"
+            },
+            {
+                "name": "International Print Center",
+                "link": "http://www.ipcny.org/"
+            },
+            {
+                "name": "Japan Society Gallery",
+                "link": "http://www.japansociety.org/gallery"
+            },
+            {
+                "name": "Lehman College Art Gallery",
+                "link": "http://www.lehman.cuny.edu/vpadvance/artgallery/gallery/"
+            },
+            {
+                "name": "Morgan Library",
+                "link": "http://www.themorgan.org/"
+            },
+            {
+                "name": "Museum at the Fashion Institute of Technology (FIT)",
+                "link": "http://www.fitnyc.edu/aspx/Content.aspx?menu=FutureGlobal:Museum"
+            },
+            {
+                "name": "Museum for African Art",
+                "link": "http://www.africanart.org/"
+            },
+            {
+                "name": "Museum of Arts and Design",
+                "link": "http://www.madmuseum.org/"
+            },
+            {
+                "name": "Museum of Biblical Art",
+                "link": "http://www.mobia.org/"
+            },
+            {
+                "name": "Museum of Comic and Cartoon Art",
+                "link": "http://www.moccany.org/"
+            },
+            {
+                "name": "Museum of Contemporary African Diasporan Arts",
+                "link": "http://www.mocada.org/"
+            },
+            {
+                "name": "Museum of the National Academy of Design",
+                "link": "http://www.nationalacademy.org/"
+            },
+            {
+                "name": "Neue Galerie Museum for German and Austrian Art",
+                "link": "http://www.neuegalerie.org/"
+            },
+            {
+                "name": "New Museum of Contemporary Art",
+                "link": "http://www.newmuseum.org/"
+            },
+            {
+                "name": "New-York Historical Society",
+                "link": "http://www.nyhistory.org/web/"
+            },
+            {
+                "name": "Nicholas Roerich Museum",
+                "link": "http://www.roerich.org/"
+            },
+            {
+                "name": "Queens Museum of Art",
+                "link": "http://www.queensmuseum.org/"
+            },
+            {
+                "name": "Rubin Museum of Art: Art of the Himalayas",
+                "link": "http://www.rmanyc.org/"
+            },
+            {
+                "name": "Society of Illustrators Museum of American Illustration",
+                "link": "http://www.societyillustrators.org/At-the-Museum/Overview.aspx"
+            },
+            {
+                "name": "Staten Island Museum",
+                "link": "http://www.statenislandmuseum.org/"
+            },
+            {
+                "name": "Studio Museum in Harlem",
+                "link": "http://www.studiomuseum.org/"
+            },
+            {
+                "name": "UBS Art Collection",
+                "link": "http://www.ubs.com/4/artcollection/index.html"
+            },
+            {
+                "name": "Ukrainian Museum",
+                "link": "http://www.ukrainianmuseum.org/"
+            },
+            {
+                "name": "Wallach Art Gallery at Columbia University",
+                "link": "http://www.columbia.edu/cu/wallach/"
+            },
+            {
+                "name": "Castellani Art Museum of Niagara University",
+                "link": "http://www.castellaniartmuseum.org/"
+            },
+            {
+                "name": "Hammond Museum and Japanese Stroll Garden",
+                "link": "http://www.hammondmuseum.org/"
+            },
+            {
+                "name": "Frederic Remington Art Museum",
+                "link": "http://www.fredericremington.org/"
+            },
+            {
+                "name": "Shaker Museum and Library",
+                "link": "http://www.shakermuseumandlibrary.org/"
+            },
+            {
+                "name": "Art Omi International Arts Center and Fields Sculpture Park",
+                "link": "http://www.artomi.org/"
+            },
+            {
+                "name": "Hudson Valley Center for Contemporary Art",
+                "link": "http://www.hvcca.org/"
+            },
+            {
+                "name": "Plattsburgh State University Art Museum",
+                "link": "http://clubs.plattsburgh.edu/museum/"
+            },
+            {
+                "name": "Loeb Art Center at Vassar College",
+                "link": "http://fllac.vassar.edu/"
+            },
+            {
+                "name": "Neuberger Museum of Art at Purchase College",
+                "link": "http://www.neuberger.org/"
+            },
+            {
+                "name": "George Eastman House International Museum of Photography and Film",
+                "link": "http://www.eastmanhouse.org/"
+            },
+            {
+                "name": "Memorial Art Gallery at the University of Rochester",
+                "link": "http://mag.rochester.edu/"
+            },
+            {
+                "name": "Rochester Contemporary Art Center",
+                "link": "http://www.rochestercontemporary.org/"
+            },
+            {
+                "name": "Nassau County Museum of Art",
+                "link": "http://www.nassaumuseum.com/"
+            },
+            {
+                "name": "The Schick Art Gallery and The Tang Museum at Skidmore College",
+                "link": "http://www.skidmore.edu/academics/art/"
+            },
+            {
+                "name": "Parrish Art Museum",
+                "link": "http://www.parrishart.org/"
+            },
+            {
+                "name": "Long Island Museum of American Art, History and Carriages",
+                "link": "http://www.longislandmuseum.org/"
+            },
+            {
+                "name": "Everson Museum of Art",
+                "link": "http://www.everson.org/"
+            },
+            {
+                "name": "Syracuse University Art Collection",
+                "link": "http://suart.syr.edu/"
+            },
+            {
+                "name": "Munson-Williams-Proctor Arts Institute Museum of Art",
+                "link": "http://mwpai.org/museum-of-art/"
+            },
+            {
+                "name": "Hudson River Museum",
+                "link": "http://www.hrm.org/"
+            }
+        ]
+    },
+    "vermont": {
+        "museums": [
+            {
+                "name": "Bennington Museum",
+                "link": "http://www.benningtonmuseum.org/"
+            },
+            {
+                "name": "Brattleboro Museum and Art Center",
+                "link": "http://www.brattleboromuseum.org/"
+            },
+            {
+                "name": "Fleming Museum at the University of Vermont",
+                "link": "http://www.uvm.edu/~fleming/"
+            },
+            {
+                "name": "Southern Vermont Arts Center",
+                "link": "http://www.svac.org/"
+            },
+            {
+                "name": "Middlebury College Museum of Art",
+                "link": "http://museum.middlebury.edu/"
+            },
+            {
+                "name": "Norman Rockwell Museum of Vermont",
+                "link": "http://www.normanrockwellvt.com/"
+            },
+            {
+                "name": "Shelburne Museum",
+                "link": "http://www.shelburnemuseum.org/"
+            },
+            {
+                "name": "St. Johnsbury Athenaeum",
+                "link": "http://www.stjathenaeum.org/"
+            }
+        ]
+    },
+    "connecticut": {
+        "museums": [
+            {
+                "name": "Housatonic Museum of Art",
+                "link": "http://www.hctc.commnet.edu/artmuseum/index.html"
+            },
+            {
+                "name": "New England Center for the Contemporary Arts",
+                "link": "http://www.museum-necca.org/"
+            },
+            {
+                "name": "Walsh Art Gallery at Fairfield University",
+                "link": "http://www.fairfield.edu/arts/qc_walsh.html"
+            },
+            {
+                "name": "Hill-Stead Museum",
+                "link": "http://www.hillstead.org/"
+            },
+            {
+                "name": "Bruce Museum of Arts and Science",
+                "link": "http://brucemuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.wadsworthatheneum.org/"
+            },
+            {
+                "name": "Davison Art Center at Wesleyan University",
+                "link": "http://www.wesleyan.edu/dac/"
+            },
+            {
+                "name": "",
+                "link": "http://www.nbmaa.org/"
+            },
+            {
+                "name": "Yale Center for British Art",
+                "link": "http://ycba.yale.edu/index.asp"
+            },
+            {
+                "name": "Yale University Art Gallery",
+                "link": "http://artgallery.yale.edu/"
+            },
+            {
+                "name": "Lyman Allyn Art Museum",
+                "link": "http://www.lymanallyn.org/"
+            },
+            {
+                "name": "Slater Museum at Norwich Free Academy",
+                "link": "http://www.norwichfreeacademy.com/museum/"
+            },
+            {
+                "name": "Florence Griswold Museum",
+                "link": "http://www.flogris.org/"
+            },
+            {
+                "name": "Aldrich Contemporary Art Museum",
+                "link": "http://www.aldrichart.org/"
+            },
+            {
+                "name": "The Stamford Museum and Nature Center",
+                "link": "http://www.stamfordmuseum.org/"
+            },
+            {
+                "name": "William Benton Museum of Art",
+                "link": "http://www.thebenton.org/"
+            },
+            {
+                "name": "Mattatuck Museum",
+                "link": "http://www.mattatuckmuseum.org/"
+            },
+            {
+                "name": "Mercy Gallery at the Loomis Chaffee School",
+                "link": "http://www.loomischaffee.org/page.cfm?p=343"
+            }
+        ]
+    },
+    "maryland": {
+        "museums": [
+            {
+                "name": "Mitchell Gallery at St. John's College",
+                "link": "http://www.stjohnscollege.edu/events/AN/art/main.shtml"
+            },
+            {
+                "name": "",
+                "link": "http://www.artbma.org/"
+            },
+            {
+                "name": "",
+                "link": "http://thewalters.org/"
+            },
+            {
+                "name": "American Visionary Art Museum",
+                "link": "http://www.avam.org/"
+            },
+            {
+                "name": "Contemporary Museum",
+                "link": "http://www.contemporary.org/"
+            },
+            {
+                "name": "Peabody Gallery of Art",
+                "link": "http://www.msa.md.gov/msa/speccol/sc4600/sc4680/html/intro_peabody.html"
+            },
+            {
+                "name": "Art Gallery at the University of Maryland",
+                "link": "http://www.artgallery.umd.edu/"
+            },
+            {
+                "name": "Academy Art Museum",
+                "link": "http://www.academyartmuseum.org/"
+            },
+            {
+                "name": "Washington County Museum of Fine Arts",
+                "link": "http://www.wcmfa.org/"
+            },
+            {
+                "name": "Ward Museum of Wildfowl Art",
+                "link": "http://www.wardmuseum.org/"
+            }
+        ]
+    },
+    "north-carolina": {
+        "museums": [
+            {
+                "name": "Asheville Art Museum",
+                "link": "http://www.ashevilleart.org/"
+            },
+            {
+                "name": "Ackland Art Museum at the University of North Carolina",
+                "link": "http://www.ackland.org/"
+            },
+            {
+                "name": "Harvey B. Gantt Center for African-American Arts and Culture",
+                "link": "http://www.aacc-charlotte.org/"
+            },
+            {
+                "name": "Mint Museum of Art",
+                "link": "http://www.mintmuseum.org/"
+            },
+            {
+                "name": "Gaston County Museum",
+                "link": "http://www.gastoncountymuseum.org/"
+            },
+            {
+                "name": "Nasher Museum of Art at Duke University",
+                "link": "http://www.nasher.duke.edu/"
+            },
+            {
+                "name": "Fayetteville Museum of Art",
+                "link": "http://www.fayettevillemuseumart.org/"
+            },
+            {
+                "name": "Green Hill Center for North Carolina Art",
+                "link": "http://www.greenhillcenter.org/"
+            },
+            {
+                "name": "Guilford College Art Gallery",
+                "link": "http://www.guilford.edu/artgallery/"
+            },
+            {
+                "name": "Weatherspoon Art Museum",
+                "link": "http://weatherspoon.uncg.edu/"
+            },
+            {
+                "name": "Greenville Museum of Art",
+                "link": "http://www.gmoa.org/"
+            },
+            {
+                "name": "Hickory Museum of Art",
+                "link": "http://www.hickorymuseumofart.org/"
+            },
+            {
+                "name": "Contemporary Art Museum",
+                "link": "http://cam.ncsu.edu/"
+            },
+            {
+                "name": "Gregg Museum of Art and Design at North Carolina State University",
+                "link": "http://www.ncsu.edu/gregg/"
+            },
+            {
+                "name": "North Carolina Museum of Art",
+                "link": "http://ncartmuseum.org/"
+            },
+            {
+                "name": "The Waterworks Visual Arts Center",
+                "link": "http://www.waterworks.org/"
+            },
+            {
+                "name": "Cameron Art Museum",
+                "link": "http://www.cameronartmuseum.com/"
+            },
+            {
+                "name": "Old Salem Museum of Early Southern Decorative Arts",
+                "link": "http://www.oldsalem.org/index.php?id=55"
+            },
+            {
+                "name": "Reynolda House Museum of American Art",
+                "link": "http://www.reynoldahouse.org/"
+            },
+            {
+                "name": "Southeastern Center for Contemporary Art (SECCA)",
+                "link": "http://www.secca.org/"
+            },
+            {
+                "name": "Wake Forest University Fine Arts Gallery",
+                "link": "http://www.wfu.edu/art/gallery/gall_index.html"
+            }
+        ]
+    },
+    "virginia": {
+        "museums": [
+            {
+                "name": "William King Museum",
+                "link": "http://williamkingmuseum.org/"
+            },
+            {
+                "name": "Northern Virginia Fine Arts Association Athenaeum",
+                "link": "http://www.nvfaa.org/"
+            },
+            {
+                "name": "Museum for American Studies at the University of Virginia",
+                "link": "http://xroads.virginia.edu/~MUSEUM/front.html"
+            },
+            {
+                "name": "University of Virginia Art Museum",
+                "link": "http://www.virginia.edu/artmuseum/"
+            },
+            {
+                "name": "Belmont, The Gari Melchers Estate and Memorial Gallery",
+                "link": "http://www.umw.edu/gari_melchers/"
+            },
+            {
+                "name": "Hampton University Museum",
+                "link": "http://www.hamptonu.edu/museum/"
+            },
+            {
+                "name": "Maier Museum of Art at Randolph-Macon Woman's College",
+                "link": "http://www.maiermuseum.org/"
+            },
+            {
+                "name": "Peninsula Fine Arts Center",
+                "link": "http://www.pfac-va.org/"
+            },
+            {
+                "name": "Chrysler Museum",
+                "link": "http://www.chrysler.org/"
+            },
+            {
+                "name": "Hermitage Foundation Museum",
+                "link": "http://www.hermitagefoundation.org/"
+            },
+            {
+                "name": "Anderson Gallery at the VCU School for the Arts",
+                "link": "http://www.vcu.edu/arts/gallery/"
+            },
+            {
+                "name": "University of Richmond Museums",
+                "link": "http://museums.richmond.edu/"
+            },
+            {
+                "name": "Virginia Museum of Fine Arts",
+                "link": "http://www.vmfa.state.va.us/"
+            },
+            {
+                "name": "O. Winston Link Museum",
+                "link": "http://www.linkmuseum.org/"
+            },
+            {
+                "name": "Taubman Museum of Art",
+                "link": "http://www.taubmanmuseum.org/"
+            },
+            {
+                "name": "Sweet Briar College Art Galleries",
+                "link": "http://www.artgallery.sbc.edu/"
+            },
+            {
+                "name": "Colonial Williamsburg Museums",
+                "link": "http://www.history.org/history/museums/"
+            },
+            {
+                "name": "Muscarelle Museum of Art at the College of William and Mary",
+                "link": "http://web.wm.edu/muscarelle/"
+            }
+        ]
+    },
+    "delaware": {
+        "museums": [
+            {
+                "name": "Biggs Museum of American Art",
+                "link": "http://www.biggsmuseum.org/"
+            },
+            {
+                "name": "University of Delaware Gallery",
+                "link": "http://www.museums.udel.edu/"
+            },
+            {
+                "name": "Delaware Art Museum",
+                "link": "http://www.delart.org/"
+            },
+            {
+                "name": "Delaware Center for the Contemporary Arts",
+                "link": "http://www.thedcca.org/"
+            },
+            {
+                "name": "Winterthur Museum, Garden and Library",
+                "link": "http://www.winterthur.org/"
+            }
+        ]
+    },
+    "massachusetts": {
+        "museums": [
+            {
+                "name": "Eric Carle Museum of Picture Book Art",
+                "link": "http://www.carlemuseum.org/"
+            },
+            {
+                "name": "Mead Art Museum at Amherst College",
+                "link": "http://www.amherst.edu/museums/mead/"
+            },
+            {
+                "name": "",
+                "link": "http://www.addisongallery.org/"
+            },
+            {
+                "name": "Cyrus E. Dallin Art Museum",
+                "link": "http://dallin.org/"
+            },
+            {
+                "name": "Attleboro Arts Museum",
+                "link": "http://www.attleboroartsmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.mfa.org/"
+            },
+            {
+                "name": "Boston Athenaeum",
+                "link": "http://www.bostonathenaeum.org/"
+            },
+            {
+                "name": "Boston University Art Gallery",
+                "link": "http://www.bu.edu/art/"
+            },
+            {
+                "name": "Institute of Contemporary Art",
+                "link": "http://www.icaboston.org/"
+            },
+            {
+                "name": "Isabella Stewart Gardner Museum",
+                "link": "http://www.gardnermuseum.org/"
+            },
+            {
+                "name": "Fuller Craft Museum",
+                "link": "http://www.fullercraft.org/"
+            },
+            {
+                "name": "Harvard Art Museums",
+                "link": "http://www.harvardartmuseums.org/"
+            },
+            {
+                "name": "MIT List Visual Arts Center",
+                "link": "http://listart.mit.edu/"
+            },
+            {
+                "name": "Peabody Museum of Archaeology and Ethnology at Harvard University",
+                "link": "http://www.peabody.harvard.edu/"
+            },
+            {
+                "name": "McMullen Museum of Art at Boston College",
+                "link": "http://www.bc.edu/bc_org/avp/cas/artmuseum/"
+            },
+            {
+                "name": "Cahoon Museum of American Art",
+                "link": "http://www.cahoonmuseum.org/"
+            },
+            {
+                "name": "Museum of Bad Art",
+                "link": "http://www.museumofbadart.org/"
+            },
+            {
+                "name": "Cape Cod Museum of Art",
+                "link": "http://www.cmfa.org/"
+            },
+            {
+                "name": "The Art Complex Museum",
+                "link": "http://www.artcomplex.org/"
+            },
+            {
+                "name": "Fitchburg Art Museum",
+                "link": "http://www.fitchburgartmuseum.org/"
+            },
+            {
+                "name": "Danforth Museum of Art",
+                "link": "http://www.danforthmuseum.org/"
+            },
+            {
+                "name": "National Heritage Museum",
+                "link": "http://www.nationalheritagemuseum.org/"
+            },
+            {
+                "name": "DeCordova Museum and Sculpture Park",
+                "link": "http://www.decordova.org/"
+            },
+            {
+                "name": "American Textile History Museum",
+                "link": "http://www.athm.org/"
+            },
+            {
+                "name": "Whistler House Museum Of Art",
+                "link": "http://www.whistlerhouse.org/"
+            },
+            {
+                "name": "Tufts University Gallery",
+                "link": "http://www.tufts.edu/as/gallery/"
+            },
+            {
+                "name": "New Bedford Art Museum",
+                "link": "http://www.newbedfordartmuseum.org/"
+            },
+            {
+                "name": "Massachusetts Museum of Contemporary Art",
+                "link": "http://www.massmoca.org/"
+            },
+            {
+                "name": "Smith College Museum of Art",
+                "link": "http://www.smith.edu/artmuseum/"
+            },
+            {
+                "name": "Berkshire Museum",
+                "link": "http://www.berkshiremuseum.org/"
+            },
+            {
+                "name": "Pilgrim Hall Museum",
+                "link": "http://www.pilgrimhall.org/"
+            },
+            {
+                "name": "Provincetown Art Association and Museum",
+                "link": "http://www.paam.org/"
+            },
+            {
+                "name": "Peabody Essex Museum",
+                "link": "http://www.pem.org/index.php"
+            },
+            {
+                "name": "Heritage Museums and Gardens",
+                "link": "http://www.heritagemuseumsandgardens.org/"
+            },
+            {
+                "name": "Kendall Whaling Museum",
+                "link": "http://www.kwm.org/"
+            },
+            {
+                "name": "Mount Holyoke College Art Museum",
+                "link": "http://www.mtholyoke.edu/artmuseum/"
+            },
+            {
+                "name": "The Springfield Museums at the Quadrangle",
+                "link": "http://www.springfieldmuseums.org/"
+            },
+            {
+                "name": "Norman Rockwell Museum",
+                "link": "http://www.nrm.org/"
+            },
+            {
+                "name": "Rose Art Museum at Brandeis University",
+                "link": "http://www.brandeis.edu/rose/"
+            },
+            {
+                "name": "Davis Museum and Cultural Center at Wellesley College",
+                "link": "http://www.wellesley.edu/DavisMuseum/davismenu.html"
+            },
+            {
+                "name": "",
+                "link": "http://www.clarkart.edu/"
+            },
+            {
+                "name": "Williams College Museum of Art",
+                "link": "http://www.wcma.org/"
+            },
+            {
+                "name": "Griffin Museum of Photography",
+                "link": "http://www.griffinmuseum.org/"
+            },
+            {
+                "name": "Worcester Art Museum",
+                "link": "http://www.worcesterart.org/"
+            }
+        ]
+    },
+    "north-dakota": {
+        "museums": [
+            {
+                "name": "Plains Art Museum",
+                "link": "http://plainsart.org/"
+            },
+            {
+                "name": "North Dakota Museum of Art",
+                "link": "http://www.ndmoa.com/"
+            }
+        ]
+    },
+    "washington": {
+        "museums": [
+            {
+                "name": "Bellevue Arts Museum",
+                "link": "http://www.bellevuearts.org/"
+            },
+            {
+                "name": "Whatcom Museum of History and Art",
+                "link": "http://www.whatcommuseum.org/"
+            },
+            {
+                "name": "Maryhill Museum of Art",
+                "link": "http://www.maryhillmuseum.org/"
+            },
+            {
+                "name": "Kirkland Arts Center",
+                "link": "http://www.kirklandartscenter.org/"
+            },
+            {
+                "name": "Museum of Northwest Art",
+                "link": "http://www.museumofnwart.org/"
+            },
+            {
+                "name": "Center on Contemporary Art",
+                "link": "http://www.cocaseattle.org/"
+            },
+            {
+                "name": "Frye Art Museum",
+                "link": "http://fryemuseum.org/"
+            },
+            {
+                "name": "Henry Art Gallery at the University of Washington",
+                "link": "http://www.henryart.org/"
+            },
+            {
+                "name": "Seattle Art Museum",
+                "link": "http://www.seattleartmuseum.org/"
+            },
+            {
+                "name": "Wing Luke Asian Museum",
+                "link": "http://www.wingluke.org/"
+            },
+            {
+                "name": "Jundt Art Center and Museum at Gonzaga University",
+                "link": "http://www.gonzaga.edu/Campus+Resources/Museums+and+Libraries/Jundt+Art+Museum/default.htm"
+            },
+            {
+                "name": "Northwest Museum of Arts and Culture",
+                "link": "http://www.northwestmuseum.org/"
+            },
+            {
+                "name": "Museum of Glass",
+                "link": "http://www.museumofglass.org/"
+            },
+            {
+                "name": "Tacoma Art Museum",
+                "link": "http://www.tacomaartmuseum.org/"
+            }
+        ]
+    },
+    "florida": {
+        "museums": [
+            {
+                "name": "Boca Raton Museum of Art",
+                "link": "http://www.bocamuseum.org/"
+            },
+            {
+                "name": "Lowe Art Museum at the University of Miami",
+                "link": "http://www6.miami.edu/lowe/"
+            },
+            {
+                "name": "Museum of Arts and Sciences",
+                "link": "http://www.moas.org/"
+            },
+            {
+                "name": "Southeast Museum of Photography",
+                "link": "http://www.smponline.org/"
+            },
+            {
+                "name": "Museum of Florida Art",
+                "link": "http://www.museumoffloridaart.com/"
+            },
+            {
+                "name": "Morikami Museum and Japanese Gardens",
+                "link": "http://www.morikami.org/"
+            },
+            {
+                "name": "Dunedin Fine Art Center",
+                "link": "http://www.dfac.org/"
+            },
+            {
+                "name": "Lake Eustis Museum of Art",
+                "link": "http://lakeeustismuseumofart.org/"
+            },
+            {
+                "name": "Museum of Art at Nova Southeastern University",
+                "link": "http://moaflnsu.org/"
+            },
+            {
+                "name": "Harn Museum at the University of Florida",
+                "link": "http://www.harn.ufl.edu/"
+            },
+            {
+                "name": "Art and Culture Center of Hollywood",
+                "link": "http://www.artandculturecenter.org/"
+            },
+            {
+                "name": "Cummer Museum of Art and Gardens",
+                "link": "http://www.cummer.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art",
+                "link": "http://www.mocajacksonville.org/"
+            },
+            {
+                "name": "Hibel Museum of Art",
+                "link": "http://www.hibel.com/museum.htm"
+            },
+            {
+                "name": "Palm Beach Institute of Contemporary Art",
+                "link": "http://www.kmoser.com/pbica/"
+            },
+            {
+                "name": "Polk Museum of Art",
+                "link": "http://www.polkmuseumofart.org/"
+            },
+            {
+                "name": "Maitland Art Center",
+                "link": "http://maitlandartcenter.org/"
+            },
+            {
+                "name": "Brevard Art Museum",
+                "link": "http://www.brevardartmuseum.org/"
+            },
+            {
+                "name": "Frost Art Museum at Florida International University",
+                "link": "http://thefrost.fiu.edu/"
+            },
+            {
+                "name": "Martin Z. Margulies Sculpture Park at Florida International University",
+                "link": "http://www2.fiu.edu/~mzmpark/"
+            },
+            {
+                "name": "Miami Art Museum",
+                "link": "http://www.miamiartmuseum.org/"
+            },
+            {
+                "name": "Rubell Family Collection",
+                "link": "http://rfc.museum/"
+            },
+            {
+                "name": "Vizcaya Museum and Gardens",
+                "link": "http://www.vizcayamuseum.org/"
+            },
+            {
+                "name": "Bass Museum of Art",
+                "link": "http://www.bassmuseum.org/"
+            },
+            {
+                "name": "The Wolfsonian at Florida International University",
+                "link": "http://www.wolfsonian.fiu.edu/"
+            },
+            {
+                "name": "Naples Museum of Art",
+                "link": "http://www.thephil.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art (MoCA)",
+                "link": "http://www.mocanomi.org/"
+            },
+            {
+                "name": "Appleton Museum of Art",
+                "link": "http://www.appletonmuseum.org/"
+            },
+            {
+                "name": "Mennello Museum of American Art",
+                "link": "http://www.mennellomuseum.org/"
+            },
+            {
+                "name": "Orlando Museum of Art",
+                "link": "http://www.omart.org/"
+            },
+            {
+                "name": "Ormond Memorial Art Museum and Gardens",
+                "link": "http://www.ormondartmuseum.org/"
+            },
+            {
+                "name": "Visual Arts Center of Northwest Florida",
+                "link": "http://www.vac.org.cn/"
+            },
+            {
+                "name": "Pensacola Museum of Art",
+                "link": "http://www.pensacolamuseumofart.org/"
+            },
+            {
+                "name": "John and Mable Ringling Museum of Art",
+                "link": "http://www.ringling.org/"
+            },
+            {
+                "name": "Lightner Museum",
+                "link": "http://www.lightnermuseum.org/"
+            },
+            {
+                "name": "Florida International Museum",
+                "link": "http://www.spcollege.edu/fimuseum/index.html"
+            },
+            {
+                "name": "Morean Arts Center",
+                "link": "http://www.theartscenter.org/"
+            },
+            {
+                "name": "Museum of Fine Arts",
+                "link": "http://www.fine-arts.org/"
+            },
+            {
+                "name": "Salvador Dali Museum",
+                "link": "http://salvadordalimuseum.org/"
+            },
+            {
+                "name": "Florida State University Museum of Fine Arts",
+                "link": "http://www.mofa.fsu.edu/"
+            },
+            {
+                "name": "Mary Brogan Museum of Art and Science",
+                "link": "http://www.thebrogan.org/"
+            },
+            {
+                "name": "Florida Museum of Photographic Arts",
+                "link": "http://www.tgpa.org/"
+            },
+            {
+                "name": "Tampa Museum of Art",
+                "link": "http://www.tampamuseum.org/"
+            },
+            {
+                "name": "University of South Florida Contemporary Art Museum",
+                "link": "http://ira.usf.edu/CAM/cam_about.html"
+            },
+            {
+                "name": "Leepa-Rattner Museum of Art",
+                "link": "http://www.spcollege.edu/central/museum/"
+            },
+            {
+                "name": "Vero Beach Museum of Art",
+                "link": "http://www.vbmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.norton.org/"
+            },
+            {
+                "name": "Cornell Fine Arts Museum at Rollins College",
+                "link": "http://www.rollins.edu/cfam/"
+            },
+            {
+                "name": "Morse Museum of American Art",
+                "link": "http://www.morsemuseum.org/"
+            }
+        ]
+    },
+    "michigan": {
+        "museums": [
+            {
+                "name": "Besser Museum for Northeast Michigan",
+                "link": "http://www.bessermuseum.org/"
+            },
+            {
+                "name": "Kelsey Museum of Archaeology at the University of Michigan",
+                "link": "http://www.umich.edu/~kelseydb/"
+            },
+            {
+                "name": "University of Michigan Museum of Art",
+                "link": "http://www.umma.umich.edu/"
+            },
+            {
+                "name": "Art Center of Battle Creek",
+                "link": "http://www.artcenterofbattlecreek.org/"
+            },
+            {
+                "name": "Cranbrook Art Museum",
+                "link": "http://www.cranbrookart.edu/museum/"
+            },
+            {
+                "name": "",
+                "link": "http://www.dia.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art",
+                "link": "http://www.mocadetroit.org/"
+            },
+            {
+                "name": "Kresge Art Museum at Michigan State University",
+                "link": "http://www.artmuseum.msu.edu/"
+            },
+            {
+                "name": "Flint Institute of Arts",
+                "link": "http://www.flintarts.org/"
+            },
+            {
+                "name": "Grand Rapids Art Museum",
+                "link": "http://www.artmuseumgr.org/"
+            },
+            {
+                "name": "Meijer Gardens and Sculpture Park",
+                "link": "http://www.meijergardens.org/"
+            },
+            {
+                "name": "Urban Institute for Contemporary Arts",
+                "link": "http://www.uica.org/"
+            },
+            {
+                "name": "Ella Sharp Museum of Art and History",
+                "link": "http://www.ellasharp.org/index.html"
+            },
+            {
+                "name": "Kalamazoo Institute of Arts",
+                "link": "http://www.kiarts.org/"
+            },
+            {
+                "name": "Muskegon Museum of Art",
+                "link": "http://www.muskegonartmuseum.org/"
+            },
+            {
+                "name": "Shiawassee Arts Center",
+                "link": "http://www.shiawasseearts.org/"
+            },
+            {
+                "name": "Saginaw Art Museum",
+                "link": "http://www.saginawartmuseum.org/"
+            },
+            {
+                "name": "Krasl Art Center",
+                "link": "http://www.krasl.org/"
+            },
+            {
+                "name": "Michigan Legacy Art Park",
+                "link": "http://www.michlegacyartpark.org/"
+            },
+            {
+                "name": "Dennos Museum Center",
+                "link": "http://www.dennosmuseum.org/"
+            }
+        ]
+    },
+    "ohio": {
+        "museums": [
+            {
+                "name": "Akron Art Museum",
+                "link": "http://www.akronartmuseum.org/"
+            },
+            {
+                "name": "Canton Museum of Art",
+                "link": "http://www.cantonart.org/"
+            },
+            {
+                "name": "Cincinnati Art Museum",
+                "link": "http://www.cincinnatiartmuseum.org/"
+            },
+            {
+                "name": "Contemporary Arts Center",
+                "link": "http://www.contemporaryartscenter.org/"
+            },
+            {
+                "name": "DAAP Galleries at the University of Cincinnati",
+                "link": "http://www.daap.uc.edu/gallery/"
+            },
+            {
+                "name": "Taft Museum",
+                "link": "http://www.taftmuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.clevelandart.org/"
+            },
+            {
+                "name": "Cleveland Institute of Art/Reinberger Galleries",
+                "link": "http://www.cia.edu/galleries/reinberger.php"
+            },
+            {
+                "name": "Cleveland State University Art Gallery",
+                "link": "http://www.csuohio.edu/artgallery/"
+            },
+            {
+                "name": "Museum of Contemporary Art",
+                "link": "http://www.mocacleveland.org/"
+            },
+            {
+                "name": "Columbus Museum of Art",
+                "link": "http://www.columbusmuseum.org/"
+            },
+            {
+                "name": "Wexner Center for the Arts at Ohio State University",
+                "link": "http://www.wexarts.org/"
+            },
+            {
+                "name": "Dayton Art Institute",
+                "link": "http://www.daytonartinstitute.org/"
+            },
+            {
+                "name": "Pyramid Hill Sculpture Park and Museum",
+                "link": "http://www.pyramidhill.org/"
+            },
+            {
+                "name": "Kent State University Museum of Costume and Decorative Arts",
+                "link": "http://dept.kent.edu/museum/"
+            },
+            {
+                "name": "Cleveland Artists Foundation",
+                "link": "http://www.clevelandartists.org/"
+            },
+            {
+                "name": "Allen Memorial Art Museum at Oberlin College",
+                "link": "http://www.oberlin.edu/amam/"
+            },
+            {
+                "name": "Miami University Art Museum",
+                "link": "http://arts.muohio.edu/art-museum"
+            },
+            {
+                "name": "University of Rio Grande Sculpture Park",
+                "link": "http://fa.rio.edu/sofa/pages/art/art_sculpture_park.html"
+            },
+            {
+                "name": "Springfield Museum of Art",
+                "link": "http://www.springfieldart.museum/"
+            },
+            {
+                "name": "Toledo Museum of Art",
+                "link": "http://www.toledomuseum.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.butlerart.com/"
+            }
+        ]
+    },
+    "west-virginia": {
+        "museums": [
+            {
+                "name": "Clay Center for the Arts and Sciences",
+                "link": "http://www.theclaycenter.org/"
+            },
+            {
+                "name": "Huntington Museum of Art",
+                "link": "http://www.hmoa.org/"
+            },
+            {
+                "name": "West Virginia Museum of American Glass",
+                "link": "http://wvmag.bglances.com/"
+            }
+        ]
+    },
+    "georgia": {
+        "museums": [
+            {
+                "name": "Albany Museum of Art",
+                "link": "http://www.albanymuseum.com/"
+            },
+            {
+                "name": "Georgia Museum of Art at the University of Georgia",
+                "link": "http://www.uga.edu/gamuseum/"
+            },
+            {
+                "name": "Atlanta Contemporary Art Center | The Contemporary",
+                "link": "http://thecontemporary.org/"
+            },
+            {
+                "name": "Carlos Museum at Emory University",
+                "link": "http://carlos.emory.edu/"
+            },
+            {
+                "name": "High Museum of Art",
+                "link": "http://www.high.org/"
+            },
+            {
+                "name": "Madison Museum of Fine Art",
+                "link": "http://www.madisonmuseum.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art of Georgia",
+                "link": "http://www.mocaga.org/"
+            },
+            {
+                "name": "Museum of Design Atlanta",
+                "link": "http://www.museumofdesign.org/"
+            },
+            {
+                "name": "Oglethorpe University Museum",
+                "link": "http://museum.oglethorpe.edu/"
+            },
+            {
+                "name": "Spelman College Museum of Fine Art",
+                "link": "http://www.spelman.edu/museum/"
+            },
+            {
+                "name": "Gertrude Herbert Institute of Art",
+                "link": "http://www.ghia.org/"
+            },
+            {
+                "name": "Morris Museum of Art",
+                "link": "http://www.themorris.org/"
+            },
+            {
+                "name": "Booth Western Art Museum",
+                "link": "http://www.boothmuseum.org/"
+            },
+            {
+                "name": "Columbus Museum",
+                "link": "http://www.columbusmuseum.com/"
+            },
+            {
+                "name": "Museum of Arts and Sciences",
+                "link": "http://www.masmacon.com/"
+            },
+            {
+                "name": "Tubman African American Museum",
+                "link": "http://www.tubmanmuseum.com/"
+            },
+            {
+                "name": "Marietta/Cobb Museum of Art",
+                "link": "http://www.mariettacobbartmuseum.org/"
+            },
+            {
+                "name": "Savannah College of Art and Design (SCAD) Museum of Art",
+                "link": "http://www.scad.edu/museum/"
+            },
+            {
+                "name": "Telfair Museum of Art",
+                "link": "http://telfair.org/"
+            }
+        ]
+    },
+    "minnesota": {
+        "museums": [
+            {
+                "name": "Tweed Museum of Art at the University of Minnesota",
+                "link": "http://www.d.umn.edu/tma/"
+            },
+            {
+                "name": "Minneapolis Institute of Arts",
+                "link": "http://www.artsmia.org/"
+            },
+            {
+                "name": "Walker Art Center",
+                "link": "http://www.walkerart.org/"
+            },
+            {
+                "name": "Weisman Art Museum at the University of Minnesota",
+                "link": "http://www.weisman.umn.edu/"
+            },
+            {
+                "name": "Carleton College Art Gallery",
+                "link": "http://apps.carleton.edu/campus/gallery/"
+            },
+            {
+                "name": "Rochester Art Center",
+                "link": "http://www.rochesterartcenter.org/"
+            },
+            {
+                "name": "Denler Art Gallery at Northwestern College",
+                "link": "http://art.nwc.edu/denler/"
+            },
+            {
+                "name": "American Museum of Asmat Art",
+                "link": "http://www.stthomas.edu/arthistory/asmat/"
+            },
+            {
+                "name": "Goldstein Museum of Design at the University of Minnesota",
+                "link": "http://goldstein.che.umn.edu/"
+            },
+            {
+                "name": "Minnesota Museum of American Art",
+                "link": "http://www.mmaa.org/"
+            }
+        ]
+    },
+    "oklahoma": {
+        "museums": [
+            {
+                "name": "Price Tower Arts Center",
+                "link": "http://www.pricetower.org/"
+            },
+            {
+                "name": "Fred Jones Jr. Museum of Art at the University of Oklahoma",
+                "link": "http://www.ou.edu/fjjma/home.html"
+            },
+            {
+                "name": "National Cowboy and Western Heritage Museum",
+                "link": "http://www.nationalcowboymuseum.org/"
+            },
+            {
+                "name": "Oklahoma City Art Museum",
+                "link": "http://www.okcmoa.com/"
+            },
+            {
+                "name": "World Organization of China Painters Museum",
+                "link": "http://www.theshop.net/wocporg/"
+            },
+            {
+                "name": "Mabee-Gerrer Museum of Art",
+                "link": "http://www.mgmoa.org/"
+            },
+            {
+                "name": "Gilcrease Museum",
+                "link": "http://www.gilcrease.org/"
+            },
+            {
+                "name": "Philbrook Museum of Art",
+                "link": "http://www.philbrook.org/"
+            }
+        ]
+    },
+    "wisconsin": {
+        "museums": [
+            {
+                "name": "Wright Museum of Art at Beloit College",
+                "link": "http://www.beloit.edu/wright/"
+            },
+            {
+                "name": "Chazen Museum of Art at the University of Wisconsin",
+                "link": "http://chazen.wisc.edu/"
+            },
+            {
+                "name": "Madison Museum of Contemporary Art",
+                "link": "http://www.mmoca.org/"
+            },
+            {
+                "name": "Rahr West Art Museum",
+                "link": "http://www.rahrwestartmuseum.org/"
+            },
+            {
+                "name": "Haggerty Museum of Art at Marquette University",
+                "link": "http://www.marquette.edu/haggerty/"
+            },
+            {
+                "name": "Milwaukee Art Museum",
+                "link": "http://www.mam.org/"
+            },
+            {
+                "name": "William F. Eisner Museum of Advertising and Design",
+                "link": "http://www.eisnermuseum.org/"
+            },
+            {
+                "name": "Bergstrom-Mahler Paperweight Museum",
+                "link": "http://www.paperweightmuseum.com/"
+            },
+            {
+                "name": "Paine Art Center and Gardens",
+                "link": "http://www.thepaine.org/"
+            },
+            {
+                "name": "Racine Art Museum",
+                "link": "http://www.ramart.org/"
+            },
+            {
+                "name": "John Michael Kohler Arts Center",
+                "link": "http://jmkac.com/"
+            },
+            {
+                "name": "Leigh Yawkey Woodson Art Museum",
+                "link": "http://www.lywam.org/"
+            },
+            {
+                "name": "Museum of Wisconsin Art",
+                "link": "http://wisconsinart.org/"
+            }
+        ]
+    },
+    "hawaii": {
+        "museums": [
+            {
+                "name": "Hana Cultural Center and Museum",
+                "link": "http://www.hookele.com/hccm/"
+            },
+            {
+                "name": "Contemporary Museum",
+                "link": "http://www.tcmhi.org/"
+            },
+            {
+                "name": "Honolulu Academy of Arts",
+                "link": "http://www.honoluluacademy.org/"
+            },
+            {
+                "name": "Ramsay Museum",
+                "link": "http://ramsay.art.museum/"
+            }
+        ]
+    },
+    "mississippi": {
+        "museums": [
+            {
+                "name": "George E. Ohr Arts and Cultural Center",
+                "link": "http://www.georgeohr.org/"
+            },
+            {
+                "name": "Mississippi Museum of Art",
+                "link": "http://www.msmuseumart.org/"
+            },
+            {
+                "name": "Lauren Rogers Museum of Art",
+                "link": "http://www.lrma.org/"
+            },
+            {
+                "name": "Meridian Museum of Art",
+                "link": "http://www.meridianmuseum.org/"
+            },
+            {
+                "name": "Walter Anderson Museum of Art",
+                "link": "http://www.walterandersonmuseum.org/"
+            },
+            {
+                "name": "University of Mississippi Museum",
+                "link": "http://www.olemiss.edu/depts/u_museum/"
+            }
+        ]
+    },
+    "oregon": {
+        "museums": [
+            {
+                "name": "Schneider Museum of Art at Southern Oregon University",
+                "link": "http://www.sou.edu/sma/"
+            },
+            {
+                "name": "Coos Art Museum",
+                "link": "http://www.coosart.org/"
+            },
+            {
+                "name": "Jordan Schnitzer Museum of Art at the University of Oregon",
+                "link": "http://jsma.uoregon.edu/"
+            },
+            {
+                "name": "The Art Gym at Marylhurst University",
+                "link": "http://www.marylhurst.edu/theartgym/"
+            },
+            {
+                "name": "Portland Art Museum",
+                "link": "http://www.portlandartmuseum.org/"
+            },
+            {
+                "name": "Portland Institute for Contemporary Art",
+                "link": "http://www.pica.org/"
+            },
+            {
+                "name": "Umpqua Valley Arts Center",
+                "link": "http://www.uvarts.com/"
+            },
+            {
+                "name": "Hallie Ford Museum of Art at Willamette University",
+                "link": "http://www.willamette.edu/museum_of_art/index.htm"
+            }
+        ]
+    },
+    "wyoming": {
+        "museums": [
+            {
+                "name": "Buffalo Bill Historical Center",
+                "link": "http://www.bbhc.org/"
+            },
+            {
+                "name": "National Museum of Wildlife Art",
+                "link": "http://www.wildlifeart.org/"
+            },
+            {
+                "name": "University of Wyoming Art Museum",
+                "link": "http://www.uwyo.edu/artmuseum/"
+            }
+        ]
+    },
+    "idaho": {
+        "museums": [
+            {
+                "name": "Boise Art Museum",
+                "link": "http://www.boiseartmuseum.org/"
+            }
+        ]
+    },
+    "missouri": {
+        "museums": [
+            {
+                "name": "University of Missouri Museum of Art and Archaeology",
+                "link": "http://maa.missouri.edu/"
+            },
+            {
+                "name": "Ashby-Hodge Gallery of American Art at Central Methodist University",
+                "link": "http://www.centralmethodist.edu/cmashbyhodge/"
+            },
+            {
+                "name": "",
+                "link": "http://www.nelson-atkins.org/"
+            },
+            {
+                "name": "Kemper Museum of Contemporary Art",
+                "link": "http://www.kemperart.org/"
+            },
+            {
+                "name": "Margaret Harwell Art Museum",
+                "link": "http://www.mham.org/"
+            },
+            {
+                "name": "Pulitzer Foundation for the Arts",
+                "link": "http://www.pulitzerarts.org/"
+            },
+            {
+                "name": "Saint Louis Art Museum",
+                "link": "http://stlouis.art.museum/"
+            },
+            {
+                "name": "Saint Louis University Museum of Art",
+                "link": "http://sluma.slu.edu/"
+            },
+            {
+                "name": "Sheldon Art Galleries",
+                "link": "http://www.sheldonconcerthall.org/galleries.asp"
+            },
+            {
+                "name": "Daum Museum of Contemporary Art",
+                "link": "http://www.daummuseum.org/"
+            },
+            {
+                "name": "Albrecht-Kemper Museum of Art",
+                "link": "http://www.albrecht-kemper.org/"
+            },
+            {
+                "name": "Contemporary Art Museum St. Louis",
+                "link": "http://www.contemporarystl.org/"
+            },
+            {
+                "name": "Laumeier Sculpture Park",
+                "link": "http://www.laumeier.org/"
+            },
+            {
+                "name": "Mildred Lane Kemper Art Museum at Washington University",
+                "link": "http://kemperartmuseum.wustl.edu/"
+            }
+        ]
+    },
+    "pennsylvania": {
+        "museums": [
+            {
+                "name": "Allentown Art Museum",
+                "link": "http://www.allentownartmuseum.org/"
+            },
+            {
+                "name": "Arnold Art Gallery at Lebanon Valley College",
+                "link": "http://www.lvc.edu/gallery/"
+            },
+            {
+                "name": "Glencairn Museum",
+                "link": "http://www.glencairnmuseum.org/"
+            },
+            {
+                "name": "Brandywine River Museum",
+                "link": "http://www.brandywinemuseum.org/"
+            },
+            {
+                "name": "Widener University Art Gallery",
+                "link": "http://www.widener.edu/artgallery/"
+            },
+            {
+                "name": "Berman Museum of Art at Ursinus College",
+                "link": "http://www.ursinus.edu/NetCommunity/Page.aspx?pid=1024"
+            },
+            {
+                "name": "James Michener Art Museum",
+                "link": "http://www.michenermuseum.org/"
+            },
+            {
+                "name": "Erie Art Museum",
+                "link": "http://www.erieartmuseum.org/"
+            },
+            {
+                "name": "Westmoreland Museum of American Art",
+                "link": "http://www.wmuseumaa.org/"
+            },
+            {
+                "name": "State Museum of Pennsylvania",
+                "link": "http://www.statemuseumpa.org/"
+            },
+            {
+                "name": "Juniata College Museum of Art",
+                "link": "http://services.juniata.edu/museum/"
+            },
+            {
+                "name": "Abington Art Center",
+                "link": "http://abingtonartcenter.org/"
+            },
+            {
+                "name": "Southern Alleghenies Museum of Art",
+                "link": "http://www.sama-art.org/"
+            },
+            {
+                "name": "Charles Demuth Foundation and Museum",
+                "link": "http://www.demuth.org/"
+            },
+            {
+                "name": "Lancaster Museum of Art",
+                "link": "http://www.lmapa.org/"
+            },
+            {
+                "name": "Samek Art Gallery at Bucknell University",
+                "link": "http://www.bucknell.edu/Samek.xml"
+            },
+            {
+                "name": "Barnes Foundation",
+                "link": "http://www.barnesfoundation.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.philamuseum.org/"
+            },
+            {
+                "name": "Arthur Ross Gallery at the University of Pennsylvania",
+                "link": "http://www.upenn.edu/ARG/index.html"
+            },
+            {
+                "name": "Fabric Workshop and Museum",
+                "link": "http://www.fabricworkshopandmuseum.org/"
+            },
+            {
+                "name": "Institute of Contemporary Art",
+                "link": "http://www.icaphila.org/"
+            },
+            {
+                "name": "La Salle University Art Museum",
+                "link": "http://www.lasalle.edu/museum/"
+            },
+            {
+                "name": "Moore College of Art and Design Galleries",
+                "link": "http://www.thegalleriesatmoore.org/"
+            },
+            {
+                "name": "National Liberty Museum",
+                "link": "http://www.libertymuseum.org/"
+            },
+            {
+                "name": "Pennsylvania Academy of the Fine Arts",
+                "link": "http://www.pafa.org/"
+            },
+            {
+                "name": "Philadelphia Art Alliance",
+                "link": "http://www.philartalliance.org/"
+            },
+            {
+                "name": "Rodin Museum at the Philadelphia Museum of Art",
+                "link": "http://www.rodinmuseum.org/"
+            },
+            {
+                "name": "Rosenbach Museum and Library",
+                "link": "http://www.rosenbach.org/"
+            },
+            {
+                "name": "The Eakins Gallery at Thomas Jefferson University",
+                "link": "http://www.tju.edu/eakins/"
+            },
+            {
+                "name": "University of Pennsylvania Museum of Archaeology and Anthropology",
+                "link": "http://www.penn.museum/"
+            },
+            {
+                "name": "Woodmere Art Museum",
+                "link": "http://www.woodmereartmuseum.org/"
+            },
+            {
+                "name": "Andy Warhol Museum",
+                "link": "http://www.warhol.org/"
+            },
+            {
+                "name": "Carnegie Museum of Art",
+                "link": "http://web.cmoa.org/"
+            },
+            {
+                "name": "Frick Art and Historical Center",
+                "link": "http://www.frickart.org/index.php"
+            },
+            {
+                "name": "Mattress Factory Museum of Contemporary Art",
+                "link": "http://www.mattress.org/"
+            },
+            {
+                "name": "Society for Contemporary Craft",
+                "link": "http://www.contemporarycraft.org/"
+            },
+            {
+                "name": "Freedman Gallery at Albright College",
+                "link": "http://www.albright.edu/freedman/"
+            },
+            {
+                "name": "Reading Public Museum",
+                "link": "http://www.readingpublicmuseum.org/"
+            },
+            {
+                "name": "Everhart Museum",
+                "link": "http://everhart-museum.org/"
+            },
+            {
+                "name": "Palmer Museum of Art at Pennsylvania State University",
+                "link": "http://www.palmermuseum.psu.edu/"
+            }
+        ]
+    },
+    "illinois": {
+        "museums": [
+            {
+                "name": "McLean County Arts Center",
+                "link": "http://www.mcac.org/"
+            },
+            {
+                "name": "Southern Illinois University Museum",
+                "link": "http://www.museum.siu.edu/"
+            },
+            {
+                "name": "John A. Logan College Museum and Art Galleries",
+                "link": "http://www.jal.cc.il.us/museum/"
+            },
+            {
+                "name": "Krannert Art Museum",
+                "link": "http://www.kam.uiuc.edu/"
+            },
+            {
+                "name": "Tarble Arts Center at Eastern Illinois University",
+                "link": "http://www.eiu.edu/~tarble/"
+            },
+            {
+                "name": "",
+                "link": "http://www.artic.edu/aic/"
+            },
+            {
+                "name": "Chicago Athenaeum International Sculpture Park",
+                "link": "http://www.chi-athenaeum.org/park.htm"
+            },
+            {
+                "name": "Chicago Athenaeum Museum of Architecture and Design",
+                "link": "http://www.chi-athenaeum.org/"
+            },
+            {
+                "name": "DePaul University Museum",
+                "link": "http://museums.depaul.edu/artwebsite/"
+            },
+            {
+                "name": "DuSable Museum of African American History",
+                "link": "http://www.dusablemuseum.org/"
+            },
+            {
+                "name": "Loyola University Museum of Art",
+                "link": "http://www.luc.edu/luma/"
+            },
+            {
+                "name": "Mexican Fine Arts Center Museum",
+                "link": "http://www.mfacmchicago.org/"
+            },
+            {
+                "name": "Museum of Contemporary Art",
+                "link": "http://www.mcachicago.org/"
+            },
+            {
+                "name": "Museum of Contemporary Photography at Columbia College",
+                "link": "http://www.mocp.org/"
+            },
+            {
+                "name": "National Museum of Mexican Art",
+                "link": "http://www.nationalmuseumofmexicanart.org/"
+            },
+            {
+                "name": "National Vietnam Veterans Art Museum",
+                "link": "http://www.nvam.org/"
+            },
+            {
+                "name": "Oriental Institute Museum at the University of Chicago",
+                "link": "http://oi.uchicago.edu/museum/"
+            },
+            {
+                "name": "Smart Museum of Art at the University of Chicago",
+                "link": "http://smartmuseum.uchicago.edu/"
+            },
+            {
+                "name": "Terra Foundation for American Art",
+                "link": "http://www.terraamericanart.org/"
+            },
+            {
+                "name": "Ukrainian Institute of Modern Art",
+                "link": "http://www.uima-art.org/"
+            },
+            {
+                "name": "Northern Illinois University Art Museum",
+                "link": "http://www.vpa.niu.edu/museum/index.html"
+            },
+            {
+                "name": "Oakton Sculpture Park",
+                "link": "http://www.oakton.edu/news/events/gallery/park.html"
+            },
+            {
+                "name": "Elmhurst Art Museum",
+                "link": "http://www.elmhurstartmuseum.org/"
+            },
+            {
+                "name": "Block Museum of Art at Northwestern University",
+                "link": "http://www.blockmuseum.northwestern.edu/"
+            },
+            {
+                "name": "Cedarhurst Center For The Arts",
+                "link": "http://www.cedarhurst.org/"
+            },
+            {
+                "name": "Lakeview Museum of Arts and Sciences",
+                "link": "http://www.lakeview-museum.org/"
+            },
+            {
+                "name": "Rockford Art Museum",
+                "link": "http://www.rockfordartmuseum.org/"
+            },
+            {
+                "name": "Skokie North Shore Sculpture Park",
+                "link": "http://www.sculpturepark.org/"
+            },
+            {
+                "name": "Nathan Manilow Sculpture Park",
+                "link": "http://www.govst.edu/sculpture/"
+            }
+        ]
+    },
+    "montana": {
+        "museums": [
+            {
+                "name": "Yellowstone Art Museum",
+                "link": "http://yellowstone.artmuseum.org/"
+            },
+            {
+                "name": "C.M. Russell Museum",
+                "link": "http://www.cmrussell.org/"
+            },
+            {
+                "name": "Holter Museum of Art",
+                "link": "http://www.holtermuseum.org/"
+            },
+            {
+                "name": "Hockaday Museum of Art",
+                "link": "http://www.hockadaymuseum.org/"
+            },
+            {
+                "name": "Missoula Art Museum",
+                "link": "http://www.missoulaartmuseum.org/"
+            },
+            {
+                "name": "Montana Museum of Art and Culture",
+                "link": "http://www.umt.edu/montanamuseum/"
+            }
+        ]
+    },
+    "rhode-island": {
+        "museums": [
+            {
+                "name": "National Museum of American Illustration",
+                "link": "http://www.americanillustration.org/"
+            },
+            {
+                "name": "Newport Art Museum",
+                "link": "http://www.newportartmuseum.org/"
+            },
+            {
+                "name": "David Winton Bell Gallery at Brown University",
+                "link": "http://www.brown.edu/Facilities/David_Winton_Bell_Gallery/"
+            },
+            {
+                "name": "Rhode Island School of Design Museum of Art",
+                "link": "http://www.risdmuseum.org/"
+            }
+        ]
+    },
+    "washington-dc": {
+        "museums": [
+            {
+                "name": "",
+                "link": "http://www.corcoran.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.nga.gov/home.htm"
+            },
+            {
+                "name": "",
+                "link": "http://www.nmwa.org/"
+            },
+            {
+                "name": "",
+                "link": "http://www.phillipscollection.org/"
+            },
+            {
+                "name": "",
+                "link": "http://americanart.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://hirshhorn.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://www.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://africa.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://www.nmai.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://www.npg.si.edu/"
+            },
+            {
+                "name": "",
+                "link": "http://www.asia.si.edu/"
+            },
+            {
+                "name": "Art Museum of the Americas",
+                "link": "http://www.museum.oas.org/"
+            },
+            {
+                "name": "Dimock Gallery at George Washington University",
+                "link": "http://www.gwu.edu/~dimock/"
+            },
+            {
+                "name": "Dumbarton Oaks Research Library and Collection",
+                "link": "http://www.doaks.org/"
+            },
+            {
+                "name": "Hillwood Museum and Gardens",
+                "link": "http://www.hillwoodmuseum.org/"
+            },
+            {
+                "name": "Howard University Gallery of Art",
+                "link": "http://www.howard.edu/library/art@Howard/"
+            },
+            {
+                "name": "Kreeger Museum",
+                "link": "http://www.kreegermuseum.org/"
+            },
+            {
+                "name": "National Building Museum",
+                "link": "http://www.nbm.org/"
+            },
+            {
+                "name": "National Statuary Hall",
+                "link": "http://www.aoc.gov/cc/art/nsh/index.cfm"
+            },
+            {
+                "name": "Textile Museum",
+                "link": "http://www.textilemuseum.org/"
+            },
+            {
+                "name": "U.S. Capital Art Collection",
+                "link": "http://uschsonline-exhibits.uschs.org/collection/uschs_collection-00.htm"
+            },
+            {
+                "name": "U.S. Navy Art Collection",
+                "link": "http://www.history.navy.mil/branches/nhcorg6.htm"
+            }
+        ]
+    },
+    "puerto-rico": {
+        "museums": [
+            {
+                "name": "Museo de Arte de Ponce",
+                "link": "http://www.museoarteponce.org/"
+            },
+            {
+                "name": "Museo de Arte de Puerto Rico",
+                "link": "http://www.mapr.org/"
+            }
+        ]
+    }
+}

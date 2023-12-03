@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+body {
+    font-family:'Yu Gothic', 'YuGothic', 'Meiryo', 'メイリオ', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'Osaka', 'MS PGothic', 'arial', 'helvetica', 'sans-serif';
+    display: flex;
+    justify-content: center;
+}
+
+#msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    flex-direction: column;
+}
+
+#msgcnt {
+    background-color: aliceblue;
+    text-align: center;
+    border-radius: .5em;
+    padding: 1em;
+    border: solid gray;
+}
+
+#_404 {
+    /* position: fixed; */
+    font-size: 4em;
+    font-weight: bolder;
+}
+
+.pnf {
+    position: absolute;
+    /* padding-top: 4em; */
+    font-size: 2em;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: aliceblue;
+}
+
+.pnf span {
+    padding: 4em;
+}
+
+#bg {
+    word-break: break-word;
+    position: absolute;
+}
+
+main {
+    position: absolute;
+    z-index: -1;
+}

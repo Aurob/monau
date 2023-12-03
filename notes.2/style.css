@@ -1,0 +1,174 @@
+
+html, body {
+    height: 100%;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f2f2f2;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    /* height: 100%; */
+  }
+
+  .left, .right, .center {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .left, .right {
+    flex-basis: 25%;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .center {
+    flex-grow: 1;
+    /* width: 50vw !important; */
+  }
+
+  .top {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .top span {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .top textarea {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    resize: none;
+  }
+
+  #name {
+    overflow-wrap: anywhere;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .note-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 30vh;
+    display: block;
+  }
+
+  label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  input[type="text"] {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 50%;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #3e8e41;
+  }
+
+  #editor {
+    height: calc(100vh - 150px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0,0.3);
+    resize: none;
+  }
+
+  .ql-container {
+    height: auto !important;
+  }
+
+  .container {
+    padding-top: 3em;
+  }
+
+  .ql-toolbar.ql-snow {
+    position: sticky;
+    z-index: 10;
+    background-color: white;
+    width: 100%;
+    top: 0;
+  }
+
+  /* Custom editor button */
+  .ql-test {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }

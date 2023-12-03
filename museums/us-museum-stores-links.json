@@ -1,0 +1,1878 @@
+{
+    "alabama": {
+      "museums": [
+        {
+          "name": "Jule Collins Smith Museum of Fine Art at Auburn University",
+          "link": "http://www.julecollinssmithmuseum.com/",
+          "store_links": [
+            "https://secure.touchnet.net/C20021_ustores/web/store_main.jsp?STOREID=49&#038;SINGLESTORE=true"
+          ]
+        },
+        {
+          "name": "Birmingham Museum of Art",
+          "link": "http://www.ARTSbma.org/",
+          "store_links": [
+            "https://shop.artsbma.org"
+          ]
+        },
+        {
+          "name": "American Sport Art Museum and Archives",
+          "link": "http://www.asama.org/",
+          "store_links": [
+            "http://bookstore.ussa.edu/"
+          ]
+        },
+        {
+          "name": "Huntsville Museum of Art",
+          "link": "http://www.hsvmuseum.org/",
+          "store_links": [
+            "https://hsvmuseum.org/visit/museum-store/"
+          ]
+        }
+      ]
+    },
+    "indiana": {
+      "museums": [
+        {
+          "name": "Indiana University Art Museum",
+          "link": "http://www.indiana.edu/~iuam/",
+          "store_links": [
+            "https://www.indianauniversitystore.com/"
+          ]
+        },
+        {
+          "name": "Midwest Museum of American Art",
+          "link": "http://midwestmuseum.us/",
+          "store_links": [
+            "https://www.midwestmuseum.org/gift-shop/"
+          ]
+        },
+        {
+          "name": "Indianapolis Museum of Art",
+          "link": "http://www.imamuseum.org/",
+          "store_links": [
+            "http://shop.discovernewfields.org"
+          ]
+        },
+        {
+          "name": "Richmond Art Museum",
+          "link": "http://www.richmondartmuseum.org/",
+          "store_links": [
+            "https://richmondartmuseum.org/gift-shop/"
+          ]
+        },
+        {
+          "name": "Purdue University Galleries",
+          "link": "http://www.purdue.edu/galleries/",
+          "store_links": [
+            "https://www.purdueteamstore.com/"
+          ]
+        }
+      ]
+    },
+    "nebraska": {
+      "museums": [
+        {
+          "name": "Museum of Nebraska Art at the University of Nebraska",
+          "link": "http://monet.unk.edu/mona/",
+          "store_links": [
+            "https://play.google.com/store/apps/details?id=com.acoustiguidemobile.am_nebraska&amp;hl=en"
+          ]
+        }
+      ]
+    },
+    "south-carolina": {
+      "museums": [
+        {
+          "name": "Gibbes Museum of Art",
+          "link": "http://www.gibbesmuseum.org/",
+          "store_links": [
+            "https://store.gibbesmuseum.org/"
+          ]
+        },
+        {
+          "name": "McKissick Museum at the University of South Carolina",
+          "link": "http://www.cas.sc.edu/mcks/",
+          "store_links": []
+        },
+        {
+          "name": "Greenville County Museum of Art",
+          "link": "http://www.greenvillemuseum.org/",
+          "store_links": [
+            "https://the-museum-shop.square.site/"
+          ]
+        },
+        {
+          "name": "Spartanburg County Museum of Art",
+          "link": "http://www.spartanburgartmuseum.org/",
+          "store_links": [
+            "https://www.spartanburgartmuseum.org/shop"
+          ]
+        }
+      ]
+    },
+    "alaska": {
+      "museums": [
+        {
+          "name": "University of Alaska Museum",
+          "link": "http://www.uaf.edu/museum/",
+          "store_links": [
+            "https://epay.alaska.edu/C21563_ustores/web/classic/store_main.jsp?STOREID=77",
+            "https://shop.museum.uaf.edu/"
+          ]
+        }
+      ]
+    },
+    "iowa": {
+      "museums": [
+        {
+          "name": "Cedar Rapids Museum of Art",
+          "link": "http://www.crma.org/",
+          "store_links": [
+            "https://www.crma.org/museum-store"
+          ]
+        }
+      ]
+    },
+    "nevada": {
+      "museums": [
+        {
+          "name": "Bellagio Gallery of Fine Art",
+          "link": "http://www.bellagio.com/amenities/gallery-of-fine-art.aspx",
+          "store_links": [
+            "https://bellagio.mgmresorts.com/en/amenities/shopping.html"
+          ]
+        }
+      ]
+    },
+    "south-dakota": {
+      "museums": [
+        {
+          "name": "South Dakota Art Museum",
+          "link": "http://www.southdakotaartmuseum.com/",
+          "store_links": [
+            "http://www.southdakotaartmuseumstore.com"
+          ]
+        }
+      ]
+    },
+    "arizona": {
+      "museums": [
+        {
+          "name": "Museum of Northern Arizona",
+          "link": "http://www.musnaz.org/",
+          "store_links": [
+            "https://shopmusnaz.org/"
+          ]
+        },
+        {
+          "name": "Heard Museum",
+          "link": "http://www.heard.org/",
+          "store_links": [
+            "https://www.heardmuseumshop.com/",
+            "https://heard.org/visit/shop/"
+          ]
+        },
+        {
+          "name": "Phippen Art Museum",
+          "link": "http://www.phippenartmuseum.org/",
+          "store_links": [
+            "http://phippenartmuseum.org/workshops/",
+            "https://shopphippen.org/"
+          ]
+        },
+        {
+          "name": "Scottsdale Museum of Contemporary Art",
+          "link": "http://www.smoca.org/",
+          "store_links": [
+            "https://the-stores-scottsdale-arts.myshopify.com/collections/smoca-shop-all",
+            "https://smoca.org/shop/"
+          ]
+        },
+        {
+          "name": "Tucson Museum of Art",
+          "link": "http://www.tucsonmuseumofart.org/",
+          "store_links": [
+            "https://www.tucsonmuseumofart.org/store/"
+          ]
+        },
+        {
+          "name": "University of Arizona Museum of Art",
+          "link": "http://artmuseum.arizona.edu/",
+          "store_links": [
+            "https://artmuseum.arizona.edu/events/event/fernando-gallego-and-his-workshop"
+          ]
+        },
+        {
+          "name": "Desert Caballeros Western Museum",
+          "link": "http://westernmuseum.org/",
+          "store_links": [
+            "https://westernmuseum.org/museum-online-store/"
+          ]
+        }
+      ]
+    },
+    "kansas": {
+      "museums": [
+        {
+          "name": "Spencer Museum of Art at the University of Kansas",
+          "link": "http://www.spencerart.ku.edu/",
+          "store_links": [
+            "https://play.google.com/store/apps/details?id=edu.ku.spencer.spencertourapp"
+          ]
+        },
+        {
+          "name": "Dane G. Hansen Museum",
+          "link": "http://www.hansenmuseum.org/",
+          "store_links": [
+            "http://hansenmuseum.org/albin-oil-painting-workshop/"
+          ]
+        },
+        {
+          "name": "Ulrich Museum of Art at Wichita State University",
+          "link": "http://webs.wichita.edu/?view=ulrich",
+          "store_links": [
+            "https://shockerstore.com/store1/home"
+          ]
+        }
+      ]
+    },
+    "new-hampshire": {
+      "museums": [
+        {
+          "name": "Saint-Gaudens National Historic Site",
+          "link": "http://sgnhs.org/",
+          "store_links": [
+            "https://saint-gaudens.org/promoting-the-arts/workshops/"
+          ]
+        }
+      ]
+    },
+    "tennessee": {
+      "museums": [
+        {
+          "name": "Carroll Reece Museum at East Tennessee State University",
+          "link": "http://www.etsu.edu/reece/",
+          "store_links": [
+            "https://epay.goldlink.etsu.edu/C20071_ustores/web/store_main.jsp?STOREID=21&amp;SINGLESTORE=true"
+          ]
+        },
+        {
+          "name": "Knoxville Museum of Art",
+          "link": "http://www.knoxart.org/",
+          "store_links": [
+            "https://knoxart.org/gift-shop/"
+          ]
+        },
+        {
+          "name": "Art Museum of the University of Memphis",
+          "link": "http://www.memphis.edu/amum/",
+          "store_links": [
+            "https://gotigersgo.evenue.net/cgi-bin/ncommerce3/SEGetGroupList?groupCode=M&amp;linkID=memphis&amp;shopperContext=&amp;caller=&amp;appCode="
+          ]
+        },
+        {
+          "name": "University of Memphis Institute of Egyptian Art and Archaeology",
+          "link": "http://www.memphis.edu/egypt/",
+          "store_links": [
+            "https://gotigersgo.evenue.net/cgi-bin/ncommerce3/SEGetGroupList?groupCode=M&amp;linkID=memphis&amp;shopperContext=&amp;caller=&amp;appCode="
+          ]
+        }
+      ]
+    },
+    "arkansas": {
+      "museums": [
+        {
+          "name": "Crystal Bridges Museum of American Art",
+          "link": "http://crystalbridges.org/",
+          "store_links": [
+            "https://crystalbridges.org/museum-store/"
+          ]
+        }
+      ]
+    },
+    "kentucky": {
+      "museums": [
+        {
+          "name": "Doris Ulmann Galleries at Berea College",
+          "link": "http://www.berea.edu/Art/dug/default.asp",
+          "store_links": [
+            "http://bereacollegefarmstore.com/"
+          ]
+        },
+        {
+          "name": "Janice Mason Art Museum",
+          "link": "http://www.jmam.org/",
+          "store_links": [
+            "http://jmam.org/gift-shop/"
+          ]
+        }
+      ]
+    },
+    "new-jersey": {
+      "museums": [
+        {
+          "name": "Hunterdon Museum of Art",
+          "link": "http://www.hunterdonartmuseum.org/",
+          "store_links": [
+            "https://www.hunterdonartmuseum.org/learn-create/classes-workshops/",
+            "https://ham-online-store.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Jersey City Museum",
+          "link": "http://www.jerseycitymuseum.org/",
+          "store_links": [
+            "http://www.jerseycitymuseum.org/shop/"
+          ]
+        },
+        {
+          "name": "Morris Museum",
+          "link": "http://morrismuseum.org/",
+          "store_links": [
+            "https://morrismuseum.org/museum-shop/",
+            "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmorrismuseum.org%2Fevents%2Fshadow-puppet-workshop-with-sam-jay-gold%2F",
+            "https://twitter.com/share?url=https%3A%2F%2Fmorrismuseum.org%2Fevents%2Fshadow-puppet-workshop-with-sam-jay-gold%2F"
+          ]
+        },
+        {
+          "name": "Newark Museum",
+          "link": "http://www.newarkmuseum.org/",
+          "store_links": [
+            "https://newarkmuseumart.org/visit/museum-guide/#cafe-shop",
+            "https://shopnewarkmuseumart.org/"
+          ]
+        }
+      ]
+    },
+    "texas": {
+      "museums": [
+        {
+          "name": "Ransom Humanities Research Center at the University of Texas",
+          "link": "http://www.hrc.utexas.edu/",
+          "store_links": [
+            "https://shop.hrc.utexas.edu/"
+          ]
+        },
+        {
+          "name": "Panhandle Plains Historical Museum",
+          "link": "http://www.panhandleplains.org/",
+          "store_links": [
+            "https://panhandle-plains-historical-museum-store.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Meadows Museum at Southern Methodist University",
+          "link": "http://smu.edu/meadowsmuseum/",
+          "store_links": [
+            "https://meadowsmuseumdallas.org/visit-us/gift-shop/"
+          ]
+        },
+        {
+          "name": "Nasher Sculpture Center",
+          "link": "http://www.nashersculpturecenter.org/",
+          "store_links": [
+            "https://www.nashersculpturecenter.org/visit/store"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.kimbellart.org/",
+          "store_links": [
+            "https://shop.kimbellart.org"
+          ]
+        },
+        {
+          "name": "Rice University Art Gallery",
+          "link": "http://www.ricegallery.org/",
+          "store_links": [
+            "https://ebank.rice.edu/C21279_ustores/web/product_detail.jsp?PRODUCTID=1735"
+          ]
+        },
+        {
+          "name": "Museum of Western Art",
+          "link": "http://www.caamuseum.com/",
+          "store_links": [
+            "https://cowboyartistsofamerica.com/workshops"
+          ]
+        },
+        {
+          "name": "San Angelo Museum of Fine Arts",
+          "link": "http://www.samfa.org/",
+          "store_links": []
+        },
+        {
+          "name": "Tyler Museum of Art",
+          "link": "http://www.tylermuseum.org/",
+          "store_links": [
+            "https://tylermuseum.org/visit/gift-shop/"
+          ]
+        },
+        {
+          "name": "Martin Museum of Art at Baylor University",
+          "link": "http://www.baylor.edu/martinmuseum/",
+          "store_links": [
+            "http://www.bkstr.com/baylorstore/home"
+          ]
+        }
+      ]
+    },
+    "california": {
+      "museums": [
+        {
+          "name": "Fresno Art Museum",
+          "link": "http://www.fresnoartmuseum.org/",
+          "store_links": [
+            "https://fammuseumstore.shopsettings.com/"
+          ]
+        },
+        {
+          "name": "Forest Lawn Museum",
+          "link": "http://www.forestlawn.com/Special-Events-And-Facilities/Museum-Exhibits-And-Educational-Series.asp",
+          "store_links": [
+            "http://forestlawnflowershop.com/"
+          ]
+        },
+        {
+          "name": "California State University Art Museum",
+          "link": "http://www.csulb.edu/org/uam/",
+          "store_links": [
+            "https://www.csulb.edu/49er-shops-at-the-beach"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.getty.edu/museum/",
+          "store_links": [
+            "https://shop.getty.edu/"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.lacma.org/",
+          "store_links": [
+            "https://www.thelacmastore.org/"
+          ]
+        },
+        {
+          "name": "Craft and Folk Art Museum",
+          "link": "http://www.cafam.org/",
+          "store_links": [
+            "http://www.craftcontemporaryshop.org",
+            "https://craft-contemporary-shop.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Hammer Museum",
+          "link": "http://hammer.ucla.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Korean American Museum",
+          "link": "http://www.kamuseum.org/",
+          "store_links": [
+            "https://www.kanmuseum.org/shop-coming-soon"
+          ]
+        },
+        {
+          "name": "Museum of Contemporary Art",
+          "link": "http://moca.org/",
+          "store_links": [
+            "https://www.mocastore.org/",
+            "https://mocastore.org/collections/moca-masks"
+          ]
+        },
+        {
+          "name": "Museum of the American West",
+          "link": "http://theautry.org/",
+          "store_links": [
+            "https://shop.theautry.org/"
+          ]
+        },
+        {
+          "name": "Skirball Cultural Center",
+          "link": "http://www.skirball.org/",
+          "store_links": [
+            "http://shop.skirball.org/"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.nortonsimon.org/",
+          "store_links": [
+            "https://store.nortonsimon.org/"
+          ]
+        },
+        {
+          "name": "Historical Glass Museum",
+          "link": "http://historicalglassmuseum.com/",
+          "store_links": []
+        },
+        {
+          "name": "Crocker Art Museum",
+          "link": "http://www.crockerartmuseum.org/",
+          "store_links": [
+            "https://www.crockerart.org/shop"
+          ]
+        },
+        {
+          "name": "Museum of Photographic Arts",
+          "link": "http://www.mopa.org/",
+          "store_links": [
+            "https://mopa.org/events/category/workshops/",
+            "http://shop.mopa.org"
+          ]
+        },
+        {
+          "name": "San Diego Museum Of Art",
+          "link": "http://www.sdmart.org/",
+          "store_links": [
+            "https://www.sdmart.org/store/"
+          ]
+        },
+        {
+          "name": "Asian Art Museum of San Francisco",
+          "link": "http://www.asianart.org/",
+          "store_links": [
+            "https://store.asianart.org/",
+            "https://www.asianart.org/workshops/"
+          ]
+        },
+        {
+          "name": "Rosicrucian Egyptian Museum",
+          "link": "http://www.egyptianmuseum.org/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.huntington.org/",
+          "store_links": [
+            "https://www.thehuntingtonstore.org/products/flowering-fuchsia-ceramic-vase"
+          ]
+        },
+        {
+          "name": "Bowers Museum of Cultural Art",
+          "link": "http://www.bowers.org/",
+          "store_links": [
+            "https://shop.bowers.org/"
+          ]
+        },
+        {
+          "name": "Haggin Museum",
+          "link": "http://www.hagginmuseum.org/",
+          "store_links": [
+            "https://hagginmuseum.org/store/"
+          ]
+        }
+      ]
+    },
+    "louisiana": {
+      "museums": [
+        {
+          "name": "Louisiana Art and Science Museum",
+          "link": "http://www.lasm.org/",
+          "store_links": [
+            "https://www.lasm.org/visit/museum-store/"
+          ]
+        },
+        {
+          "name": "University of Louisiana Art Museum",
+          "link": "http://www.louisiana.edu/uam",
+          "store_links": [
+            "https://bookstore.louisiana.edu/",
+            "http://www.RaginCajunsStore.com"
+          ]
+        }
+      ]
+    },
+    "new-mexico": {
+      "museums": [
+        {
+          "name": "Roswell Museum and Art Center",
+          "link": "http://www.roswellmuseum.org/",
+          "store_links": [
+            "https://roswell-nm.gov/923/Classes-and-Workshops"
+          ]
+        },
+        {
+          "name": "Institute of American Indian Arts Museum",
+          "link": "http://www.iaia.edu/museum/",
+          "store_links": [
+            "https://iaia.edu/store/"
+          ]
+        },
+        {
+          "name": "Harwood Museum at the University of New Mexico",
+          "link": "http://harwoodmuseum.org/",
+          "store_links": [
+            "https://harwoodmuseum.org/shop/account/"
+          ]
+        }
+      ]
+    },
+    "colorado": {
+      "museums": [
+        {
+          "name": "Colorado Springs Fine Arts Center",
+          "link": "http://www.csfineartscenter.org/",
+          "store_links": [
+            "https://fac.coloradocollege.edu/visit/dining-and-shopping/ladyfingers-at-the-fac-shop/"
+          ]
+        },
+        {
+          "name": "Denver Art Museum",
+          "link": "http://www.denverartmuseum.org/",
+          "store_links": [
+            "https://shop.denverartmuseum.org"
+          ]
+        },
+        {
+          "name": "Kirkland Museum",
+          "link": "http://www.kirklandmuseum.org/",
+          "store_links": [
+            "https://www.kirklandmuseum.org/museum-store/"
+          ]
+        }
+      ]
+    },
+    "maine": {
+      "museums": [
+        {
+          "name": "Bowdoin College Museum of Art",
+          "link": "http://www.bowdoin.edu/art-museum/",
+          "store_links": []
+        },
+        {
+          "name": "Bates Museum of Art",
+          "link": "http://www.bates.edu/museum.xml",
+          "store_links": [
+            "https://store.bates.edu/"
+          ]
+        },
+        {
+          "name": "Davistown Museum",
+          "link": "http://www.davistownmuseum.org/",
+          "store_links": [
+            "http://stores.ebay.com/libertytoolco"
+          ]
+        },
+        {
+          "name": "Farnsworth Art Museum",
+          "link": "http://www.farnsworthmuseum.org/",
+          "store_links": [
+            "https://www.farnsworthmuseum.org/museum-store/"
+          ]
+        },
+        {
+          "name": "Center for Maine Contemporary Art",
+          "link": "http://www.cmcanow.org/",
+          "store_links": [
+            "https://cmcanow.org/shop/"
+          ]
+        }
+      ]
+    },
+    "new-york": {
+      "museums": [
+        {
+          "name": "New York State Museum",
+          "link": "http://www.nysm.nysed.gov/",
+          "store_links": []
+        },
+        {
+          "name": "Dia: Beacon",
+          "link": "http://www.diabeacon.org/",
+          "store_links": [
+            "https://www.diaart.org/shop/books"
+          ]
+        },
+        {
+          "name": "The Adirondack Museum",
+          "link": "http://www.adkmuseum.org/",
+          "store_links": [
+            "https://theadkxstore.com/"
+          ]
+        },
+        {
+          "name": "Arkell Museum at Canajoharie",
+          "link": "http://www.arkellmuseum.org/",
+          "store_links": []
+        },
+        {
+          "name": "Cedar Grove | Thomas Cole National Historic Site",
+          "link": "http://www.thomascole.org/",
+          "store_links": [
+            "http://store.thomascole.org"
+          ]
+        },
+        {
+          "name": "Fenimore Art Museum",
+          "link": "http://www.fenimoreartmuseum.org/",
+          "store_links": [
+            "https://www.fenimoreartmuseum.org/shop"
+          ]
+        },
+        {
+          "name": "Corning Museum of Glass",
+          "link": "http://www.cmog.org/",
+          "store_links": [
+            "https://visit.cmog.org/shop",
+            "https://shops.cmog.org"
+          ]
+        },
+        {
+          "name": "Hillwood Art Museum",
+          "link": "http://www.liu.edu/cwis/cwp/but06/hillwood/",
+          "store_links": [
+            "https://canteen.shop/"
+          ]
+        },
+        {
+          "name": "Isamu Noguchi Garden Museum",
+          "link": "http://www.noguchi.org/",
+          "store_links": [
+            "https://shop.noguchi.org",
+            "https://www.noguchi.org/museum/visit/shop/"
+          ]
+        },
+        {
+          "name": "P.S. 1 Museum",
+          "link": "http://www.ps1.org/",
+          "store_links": [
+            "https://store.moma.org"
+          ]
+        },
+        {
+          "name": "Sculpture Center",
+          "link": "http://www.sculpture-center.org/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.thejewishmuseum.org/",
+          "store_links": [
+            "https://shop.thejewishmuseum.org/"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://moma.org/",
+          "store_links": [
+            "https://store.moma.org"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.nmai.si.edu/",
+          "store_links": []
+        },
+        {
+          "name": "American Museum of Natural History",
+          "link": "http://www.amnh.org/",
+          "store_links": [
+            "https://shop.amnh.org",
+            "https://itunes.apple.com/app/apple-store/id381227123?pt=293150&ct=amnh.org%2Ffooter&mt=8",
+            "https://play.google.com/store/apps/details?id=org.amnh.explorer&referrer=utm_source%3Dfooter%26utm_medium%3Damnh.org"
+          ]
+        },
+        {
+          "name": "Brooklyn Museum of Art",
+          "link": "http://www.brooklynmuseum.org/",
+          "store_links": [
+            "https://shop.brooklynmuseum.org"
+          ]
+        },
+        {
+          "name": "Cooper-Hewitt, National Design Museum",
+          "link": "http://www.cooperhewitt.org/",
+          "store_links": [
+            "https://shop.cooperhewitt.org"
+          ]
+        },
+        {
+          "name": "Dahesh Museum",
+          "link": "http://www.daheshmuseum.org/",
+          "store_links": [
+            "http://www.daheshmuseum.org/wp-content/themes/dejavu-jigoshop/style.css",
+            "http://dahesh-museum-of-art.myshopify.com/collections/publications"
+          ]
+        },
+        {
+          "name": "Dia Center for the Arts",
+          "link": "http://www.diacenter.org/",
+          "store_links": [
+            "https://www.diaart.org/shop/books"
+          ]
+        },
+        {
+          "name": "Dia: at the Hispanic Society of America",
+          "link": "http://www.diaart.org/sites/main/hsa",
+          "store_links": [
+            "https://www.diaart.org/shop/books"
+          ]
+        },
+        {
+          "name": "Hispanic Society of America",
+          "link": "http://hispanicsociety.org/",
+          "store_links": [
+            "https://hispanicsociety.org/shop/",
+            "https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn"
+          ]
+        },
+        {
+          "name": "Morgan Library",
+          "link": "http://www.themorgan.org/",
+          "store_links": [
+            "https://www.themorgan.org/shop"
+          ]
+        },
+        {
+          "name": "Museum of Arts and Design",
+          "link": "http://www.madmuseum.org/",
+          "store_links": [
+            "https://thestore.madmuseum.org/"
+          ]
+        },
+        {
+          "name": "Neue Galerie Museum for German and Austrian Art",
+          "link": "http://www.neuegalerie.org/",
+          "store_links": [
+            "http://shop.neuegalerie.org/collections/bookstore-exhibition-catalogues"
+          ]
+        },
+        {
+          "name": "New Museum of Contemporary Art",
+          "link": "http://www.newmuseum.org/",
+          "store_links": [
+            "https://www.newmuseumstore.org/"
+          ]
+        },
+        {
+          "name": "Queens Museum of Art",
+          "link": "http://www.queensmuseum.org/",
+          "store_links": [
+            "https://queensmuseum.org/2021/08/new-new-yorkers-senior-oral-history-workshop"
+          ]
+        },
+        {
+          "name": "Society of Illustrators Museum of American Illustration",
+          "link": "http://www.societyillustrators.org/At-the-Museum/Overview.aspx",
+          "store_links": [
+            "https://societyillustrators.org/shop/tickets/admission-tickets/"
+          ]
+        },
+        {
+          "name": "Staten Island Museum",
+          "link": "http://www.statenislandmuseum.org/",
+          "store_links": [
+            "https://www.statenislandmuseum.org/shop/"
+          ]
+        },
+        {
+          "name": "Studio Museum in Harlem",
+          "link": "http://www.studiomuseum.org/",
+          "store_links": [
+            "https://store.studiomuseum.org/"
+          ]
+        },
+        {
+          "name": "Castellani Art Museum of Niagara University",
+          "link": "http://www.castellaniartmuseum.org/",
+          "store_links": [
+            "https://castellaniartmuseum.org/events/art-express-virtual-workshop-museum-mail"
+          ]
+        },
+        {
+          "name": "Hammond Museum and Japanese Stroll Garden",
+          "link": "http://www.hammondmuseum.org/",
+          "store_links": [
+            "https://www.hammondmuseum.org/ikebana-workshop"
+          ]
+        },
+        {
+          "name": "Frederic Remington Art Museum",
+          "link": "http://www.fredericremington.org/",
+          "store_links": [
+            "http://shop.fredericremington.org/"
+          ]
+        },
+        {
+          "name": "Loeb Art Center at Vassar College",
+          "link": "http://fllac.vassar.edu/",
+          "store_links": [
+            "http://collegestore.vassar.edu"
+          ]
+        },
+        {
+          "name": "Memorial Art Gallery at the University of Rochester",
+          "link": "http://mag.rochester.edu/",
+          "store_links": [
+            "https://mag.rochester.edu/creativeworkshop/"
+          ]
+        },
+        {
+          "name": "Rochester Contemporary Art Center",
+          "link": "http://www.rochestercontemporary.org/",
+          "store_links": [
+            "http://www.rochestercontemporary.org/shop/"
+          ]
+        },
+        {
+          "name": "Nassau County Museum of Art",
+          "link": "http://www.nassaumuseum.com/",
+          "store_links": [
+            "https://nassaumuseum.org/project/shibori-indigo-dyeing-workshop-saturday-may-14-10am-1pm/"
+          ]
+        },
+        {
+          "name": "Parrish Art Museum",
+          "link": "http://www.parrishart.org/",
+          "store_links": [
+            "https://parrishart.org/visit/museum-shop/"
+          ]
+        }
+      ]
+    },
+    "vermont": {
+      "museums": [
+        {
+          "name": "Brattleboro Museum and Art Center",
+          "link": "http://www.brattleboromuseum.org/",
+          "store_links": [
+            "https://www.artlovescompany.org/bmacgiftshop",
+            "https://www.brattleboromuseum.org/2022/02/07/workshop-mask-making/"
+          ]
+        },
+        {
+          "name": "Southern Vermont Arts Center",
+          "link": "http://www.svac.org/",
+          "store_links": [
+            "https://www.svac.org/workshops-classes/"
+          ]
+        },
+        {
+          "name": "Middlebury College Museum of Art",
+          "link": "http://museum.middlebury.edu/",
+          "store_links": []
+        }
+      ]
+    },
+    "connecticut": {
+      "museums": [
+        {
+          "name": "Bruce Museum of Arts and Science",
+          "link": "http://brucemuseum.org/",
+          "store_links": [
+            "https://brucemuseum.org/site/education_detail/teacher-workshops-professional-development"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.nbmaa.org/",
+          "store_links": [
+            "https://nbmaashop.com/"
+          ]
+        },
+        {
+          "name": "Aldrich Contemporary Art Museum",
+          "link": "http://www.aldrichart.org/",
+          "store_links": [
+            "https://shop.aldrichart.org",
+            "https://thealdrich.org/events/teen-art-making-workshop-trans-power-and-the-artists-voice"
+          ]
+        },
+        {
+          "name": "William Benton Museum of Art",
+          "link": "http://www.thebenton.org/",
+          "store_links": [
+            "https://benton.uconn.edu/education/scout-workshops/",
+            "https://secure.touchnet.com/C21646_ustores/web/store_main.jsp?STOREID=160"
+          ]
+        },
+        {
+          "name": "Mattatuck Museum",
+          "link": "http://www.mattatuckmuseum.org/",
+          "store_links": []
+        }
+      ]
+    },
+    "maryland": {
+      "museums": [
+        {
+          "name": "",
+          "link": "http://www.artbma.org/",
+          "store_links": [
+            "https://shop.artbma.org/"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://thewalters.org/",
+          "store_links": [
+            "https://store.thewalters.org",
+            "https://thewalters.org/visit/shop/"
+          ]
+        },
+        {
+          "name": "American Visionary Art Museum",
+          "link": "http://www.avam.org/",
+          "store_links": [
+            "https://www.avam.org/museum-store-sideshow"
+          ]
+        }
+      ]
+    },
+    "north-carolina": {
+      "museums": [
+        {
+          "name": "Nasher Museum of Art at Duke University",
+          "link": "http://www.nasher.duke.edu/",
+          "store_links": [
+            "https://nasher.duke.edu/store-hours/"
+          ]
+        },
+        {
+          "name": "Old Salem Museum of Early Southern Decorative Arts",
+          "link": "http://www.oldsalem.org/index.php?id=55",
+          "store_links": [
+            "https://www.oldsalem.org/places-to-shop/"
+          ]
+        },
+        {
+          "name": "Reynolda House Museum of American Art",
+          "link": "http://www.reynoldahouse.org/",
+          "store_links": [
+            "https://reynolda.org/village/museum-store/"
+          ]
+        }
+      ]
+    },
+    "virginia": {
+      "museums": [
+        {
+          "name": "Hampton University Museum",
+          "link": "http://www.hamptonu.edu/museum/",
+          "store_links": [
+            "https://home.hamptonu.edu/msm/2021/09/13/the-laurel-tucker-duplessis-gift-shop-is-online/"
+          ]
+        },
+        {
+          "name": "University of Richmond Museums",
+          "link": "http://museums.richmond.edu/",
+          "store_links": [
+            "http://www.urspidershop.com/"
+          ]
+        },
+        {
+          "name": "Colonial Williamsburg Museums",
+          "link": "http://www.history.org/history/museums/",
+          "store_links": [
+            "https://shop.colonialwilliamsburg.com/"
+          ]
+        }
+      ]
+    },
+    "delaware": {
+      "museums": [
+        {
+          "name": "Delaware Art Museum",
+          "link": "http://www.delart.org/",
+          "store_links": [
+            "https://delart.org/eat-and-shop/"
+          ]
+        }
+      ]
+    },
+    "massachusetts": {
+      "museums": [
+        {
+          "name": "Mead Art Museum at Amherst College",
+          "link": "http://www.amherst.edu/museums/mead/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.addisongallery.org/",
+          "store_links": []
+        },
+        {
+          "name": "Cyrus E. Dallin Art Museum",
+          "link": "http://dallin.org/",
+          "store_links": [
+            "http://dallin.org/shop/"
+          ]
+        },
+        {
+          "name": "Attleboro Arts Museum",
+          "link": "http://www.attleboroartsmuseum.org/",
+          "store_links": [
+            "https://attleboroartsmuseum.org/museum-gift-shop/"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.mfa.org/",
+          "store_links": [
+            "https://mfashop.com/"
+          ]
+        },
+        {
+          "name": "Boston Athenaeum",
+          "link": "http://www.bostonathenaeum.org/",
+          "store_links": []
+        },
+        {
+          "name": "Fitchburg Art Museum",
+          "link": "http://www.fitchburgartmuseum.org/",
+          "store_links": [
+            "https://fitchburgartmuseum.org/classes-and-workshops/"
+          ]
+        },
+        {
+          "name": "Massachusetts Museum of Contemporary Art",
+          "link": "http://www.massmoca.org/",
+          "store_links": [
+            "http://shop.massmoca.org/",
+            "https://massmoca.org/a-history-of-north-adams-through-food-walk-and-shop/"
+          ]
+        },
+        {
+          "name": "Pilgrim Hall Museum",
+          "link": "http://www.pilgrimhall.org/",
+          "store_links": [
+            "https://pilgrim-society-shop.square.site/"
+          ]
+        },
+        {
+          "name": "Peabody Essex Museum",
+          "link": "http://www.pem.org/index.php",
+          "store_links": [
+            "https://shop.pem.org/"
+          ]
+        },
+        {
+          "name": "Norman Rockwell Museum",
+          "link": "http://www.nrm.org/",
+          "store_links": [
+            "http://store.nrm.org/#new_tab",
+            "https://play.google.com/store/apps/details?id=com.cuseum.normanrockwell&amp;hl=en_US"
+          ]
+        },
+        {
+          "name": "Rose Art Museum at Brandeis University",
+          "link": "http://www.brandeis.edu/rose/",
+          "store_links": [
+            "https://www.brandeis.edu/rose/_files/svg/svgstore.svg#rose-art-logo"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.clarkart.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Griffin Museum of Photography",
+          "link": "http://www.griffinmuseum.org/",
+          "store_links": [
+            "https://griffinmuseum.org/shop/the-griffin-museum-of-photography-john-chervinsky-emerging-photographer-scholarship/"
+          ]
+        },
+        {
+          "name": "Worcester Art Museum",
+          "link": "http://www.worcesterart.org/",
+          "store_links": []
+        }
+      ]
+    },
+    "washington": {
+      "museums": [
+        {
+          "name": "Maryhill Museum of Art",
+          "link": "http://www.maryhillmuseum.org/",
+          "store_links": [
+            "https://maryhillmuseumstore.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Kirkland Arts Center",
+          "link": "http://www.kirklandartscenter.org/",
+          "store_links": [
+            "http://www.kirklandartscenter.org/edu/workshops/"
+          ]
+        },
+        {
+          "name": "Seattle Art Museum",
+          "link": "http://www.seattleartmuseum.org/",
+          "store_links": [
+            "https://shop.seattleartmuseum.org/"
+          ]
+        },
+        {
+          "name": "Northwest Museum of Arts and Culture",
+          "link": "http://www.northwestmuseum.org/",
+          "store_links": [
+            "https://sales.northwestmuseum.org/giftshop.aspx"
+          ]
+        }
+      ]
+    },
+    "florida": {
+      "museums": [
+        {
+          "name": "Morikami Museum and Japanese Gardens",
+          "link": "http://www.morikami.org/",
+          "store_links": [
+            "https://morikami.org/upcoming-events/workshops/"
+          ]
+        },
+        {
+          "name": "Dunedin Fine Art Center",
+          "link": "http://www.dfac.org/",
+          "store_links": [
+            "https://www.dfac.org/visit/gallery-shop/"
+          ]
+        },
+        {
+          "name": "Museum of Art at Nova Southeastern University",
+          "link": "http://moaflnsu.org/",
+          "store_links": [
+            "http://moaflnsu.org/category/shopping/"
+          ]
+        },
+        {
+          "name": "Harn Museum at the University of Florida",
+          "link": "http://www.harn.ufl.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Bass Museum of Art",
+          "link": "http://www.bassmuseum.org/",
+          "store_links": [
+            "https://thebass.org/education/talks-workshops-2/"
+          ]
+        },
+        {
+          "name": "Naples Museum of Art",
+          "link": "http://www.thephil.org/",
+          "store_links": []
+        },
+        {
+          "name": "Orlando Museum of Art",
+          "link": "http://www.omart.org/",
+          "store_links": []
+        },
+        {
+          "name": "Mary Brogan Museum of Art and Science",
+          "link": "http://www.thebrogan.org/",
+          "store_links": [
+            "http://www.thebrogan.org/category/shopping/"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.norton.org/",
+          "store_links": [
+            "https://shop.norton.org/"
+          ]
+        },
+        {
+          "name": "Cornell Fine Arts Museum at Rollins College",
+          "link": "http://www.rollins.edu/cfam/",
+          "store_links": []
+        },
+        {
+          "name": "Morse Museum of American Art",
+          "link": "http://www.morsemuseum.org/",
+          "store_links": [
+            "https://shop.morsemuseum.org"
+          ]
+        }
+      ]
+    },
+    "michigan": {
+      "museums": [
+        {
+          "name": "Besser Museum for Northeast Michigan",
+          "link": "http://www.bessermuseum.org/",
+          "store_links": [
+            "https://www.bessermuseum.org/shop-1"
+          ]
+        },
+        {
+          "name": "University of Michigan Museum of Art",
+          "link": "http://www.umma.umich.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Museum of Contemporary Art",
+          "link": "http://www.mocadetroit.org/",
+          "store_links": [
+            "http://mocad.myshopify.com"
+          ]
+        },
+        {
+          "name": "Flint Institute of Arts",
+          "link": "http://www.flintarts.org/",
+          "store_links": [
+            "https://flintarts.org/visit/museum-shop"
+          ]
+        },
+        {
+          "name": "Krasl Art Center",
+          "link": "http://www.krasl.org/",
+          "store_links": [
+            "https://krasl.org/education/workshops/"
+          ]
+        },
+        {
+          "name": "Michigan Legacy Art Park",
+          "link": "http://www.michlegacyartpark.org/",
+          "store_links": [
+            "https://michlegacyartpark.org/tours-workshops/"
+          ]
+        },
+        {
+          "name": "Dennos Museum Center",
+          "link": "http://www.dennosmuseum.org/",
+          "store_links": [
+            "https://shop.dennosmuseum.org/"
+          ]
+        }
+      ]
+    },
+    "ohio": {
+      "museums": [
+        {
+          "name": "Canton Museum of Art",
+          "link": "http://www.cantonart.org/",
+          "store_links": [
+            "https://www.cantonart.org/workshops/84"
+          ]
+        },
+        {
+          "name": "Cincinnati Art Museum",
+          "link": "http://www.cincinnatiartmuseum.org/",
+          "store_links": [
+            "https://shop.cincinnatiartmuseum.org/"
+          ]
+        },
+        {
+          "name": "Taft Museum",
+          "link": "http://www.taftmuseum.org/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.clevelandart.org/",
+          "store_links": [
+            "https://shop.clevelandart.org/"
+          ]
+        },
+        {
+          "name": "Museum of Contemporary Art",
+          "link": "http://www.mocacleveland.org/",
+          "store_links": [
+            "https://www.themocastore.com/collections/moca-general-associate-memberships"
+          ]
+        },
+        {
+          "name": "Columbus Museum of Art",
+          "link": "http://www.columbusmuseum.org/",
+          "store_links": [
+            "http://museumstore.columbusmuseum.org"
+          ]
+        },
+        {
+          "name": "Wexner Center for the Arts at Ohio State University",
+          "link": "http://www.wexarts.org/",
+          "store_links": [
+            "https://store.wexarts.org",
+            "https://wexarts.org/plan-your-visit/wexstore"
+          ]
+        },
+        {
+          "name": "Dayton Art Institute",
+          "link": "http://www.daytonartinstitute.org/",
+          "store_links": [
+            "https://www.daytonartinstitute.org/visit/shopping/"
+          ]
+        },
+        {
+          "name": "Pyramid Hill Sculpture Park and Museum",
+          "link": "http://www.pyramidhill.org/",
+          "store_links": [
+            "https://www.pyramidhill.org/shop"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.butlerart.com/",
+          "store_links": [
+            "https://butlerart.com/shop/"
+          ]
+        }
+      ]
+    },
+    "west-virginia": {
+      "museums": [
+        {
+          "name": "Huntington Museum of Art",
+          "link": "http://www.hmoa.org/",
+          "store_links": [
+            "https://www.hmoa.org/education/classes-workshops/",
+            "https://huntington-museum-store.myshopify.com/"
+          ]
+        }
+      ]
+    },
+    "georgia": {
+      "museums": [
+        {
+          "name": "Georgia Museum of Art at the University of Georgia",
+          "link": "http://www.uga.edu/gamuseum/",
+          "store_links": [
+            "https://georgiamuseum.org/visit/shop/"
+          ]
+        },
+        {
+          "name": "Atlanta Contemporary Art Center | The Contemporary",
+          "link": "http://thecontemporary.org/",
+          "store_links": [
+            "https://the-contemporary.square.site/s/shop"
+          ]
+        },
+        {
+          "name": "Carlos Museum at Emory University",
+          "link": "http://carlos.emory.edu/",
+          "store_links": []
+        },
+        {
+          "name": "High Museum of Art",
+          "link": "http://www.high.org/",
+          "store_links": [
+            "https://museumshop.high.org/",
+            "https://high.org/shop/"
+          ]
+        },
+        {
+          "name": "Spelman College Museum of Fine Art",
+          "link": "http://www.spelman.edu/museum/",
+          "store_links": []
+        },
+        {
+          "name": "Gertrude Herbert Institute of Art",
+          "link": "http://www.ghia.org/",
+          "store_links": [
+            "https://ghia.org/events/student-work-portrait-workshop-joseph-kameen"
+          ]
+        },
+        {
+          "name": "Museum of Arts and Sciences",
+          "link": "http://www.masmacon.com/",
+          "store_links": [
+            "https://www.masmacon.org/shopmas/"
+          ]
+        },
+        {
+          "name": "Telfair Museum of Art",
+          "link": "http://telfair.org/",
+          "store_links": [
+            "https://www.telfair.org/shop/"
+          ]
+        }
+      ]
+    },
+    "minnesota": {
+      "museums": [
+        {
+          "name": "Tweed Museum of Art at the University of Minnesota",
+          "link": "http://www.d.umn.edu/tma/",
+          "store_links": []
+        },
+        {
+          "name": "Walker Art Center",
+          "link": "http://www.walkerart.org/",
+          "store_links": [
+            "https://shop.walkerart.org/"
+          ]
+        },
+        {
+          "name": "Weisman Art Museum at the University of Minnesota",
+          "link": "http://www.weisman.umn.edu/",
+          "store_links": [
+            "https://wamshop.umn.edu/",
+            "https://wam.umn.edu/visit/workshops/"
+          ]
+        }
+      ]
+    },
+    "oklahoma": {
+      "museums": [
+        {
+          "name": "Mabee-Gerrer Museum of Art",
+          "link": "http://www.mgmoa.org/",
+          "store_links": [
+            "https://www.mgmoa.org/gift-shop/"
+          ]
+        },
+        {
+          "name": "Philbrook Museum of Art",
+          "link": "http://www.philbrook.org/",
+          "store_links": [
+            "https://shop.philbrook.org"
+          ]
+        }
+      ]
+    },
+    "wisconsin": {
+      "museums": [
+        {
+          "name": "Milwaukee Art Museum",
+          "link": "http://www.mam.org/",
+          "store_links": []
+        },
+        {
+          "name": "Bergstrom-Mahler Paperweight Museum",
+          "link": "http://www.paperweightmuseum.com/",
+          "store_links": [
+            "https://bmmglass.com/online-shop/",
+            "https://bergstrom-mahler-museum-of-glass.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Racine Art Museum",
+          "link": "http://www.ramart.org/",
+          "store_links": [
+            "https://racineartmuseumstore.org/",
+            "https://www.ramart.org/class/doodle-art-workshop/"
+          ]
+        },
+        {
+          "name": "Leigh Yawkey Woodson Art Museum",
+          "link": "http://www.lywam.org/",
+          "store_links": [
+            "https://shop.lywam.org/catalogues",
+            "https://www.lywam.org/learn-do/guest-artists/corning-museum-of-glass-mobile-hot-shop/"
+          ]
+        }
+      ]
+    },
+    "hawaii": {
+      "museums": [
+        {
+          "name": "Honolulu Academy of Arts",
+          "link": "http://www.honoluluacademy.org/",
+          "store_links": [
+            "https://shop.honolulumuseum.org/"
+          ]
+        }
+      ]
+    },
+    "mississippi": {
+      "museums": [
+        {
+          "name": "Walter Anderson Museum of Art",
+          "link": "http://www.walterandersonmuseum.org/",
+          "store_links": [
+            "https://www.walterandersonmuseum.org/shop"
+          ]
+        }
+      ]
+    },
+    "oregon": {
+      "museums": [
+        {
+          "name": "Coos Art Museum",
+          "link": "http://www.coosart.org/",
+          "store_links": [
+            "https://squareup.com/store/coos-art-museum"
+          ]
+        },
+        {
+          "name": "Jordan Schnitzer Museum of Art at the University of Oregon",
+          "link": "http://jsma.uoregon.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Portland Art Museum",
+          "link": "http://www.portlandartmuseum.org/",
+          "store_links": [
+            "https://portlandartmuseum.org/plan-your-visit/museum-grounds-coffee-shop/",
+            "https://store.pam.org"
+          ]
+        }
+      ]
+    },
+    "wyoming": {
+      "museums": [
+        {
+          "name": "Buffalo Bill Historical Center",
+          "link": "http://www.bbhc.org/",
+          "store_links": [
+            "https://store.centerofthewest.org",
+            "https://centerofthewest.org/event/dutch-oven-workshop/"
+          ]
+        },
+        {
+          "name": "University of Wyoming Art Museum",
+          "link": "http://www.uwyo.edu/artmuseum/",
+          "store_links": [
+            "//www.uwyostore.com/",
+            "https://secure.touchnet.net/C27222_ustores/web/store_main.jsp?STOREID=104&amp;SINGLESTORE=true"
+          ]
+        }
+      ]
+    },
+    "idaho": {
+      "museums": [
+        {
+          "name": "Boise Art Museum",
+          "link": "http://www.boiseartmuseum.org/",
+          "store_links": [
+            "http://www.boiseartmuseum.org/bam-store/"
+          ]
+        }
+      ]
+    },
+    "missouri": {
+      "museums": [
+        {
+          "name": "",
+          "link": "http://www.nelson-atkins.org/",
+          "store_links": [
+            "https://nelson-atkins.org/museum-store/",
+            "https://www.nelson-atkins.org/museum-store/"
+          ]
+        },
+        {
+          "name": "Kemper Museum of Contemporary Art",
+          "link": "http://www.kemperart.org/",
+          "store_links": [
+            "http://shop.kemperart.org"
+          ]
+        },
+        {
+          "name": "Margaret Harwell Art Museum",
+          "link": "http://www.mham.org/",
+          "store_links": [
+            "https://www.mham.org/friends-gift-shoppe"
+          ]
+        },
+        {
+          "name": "Saint Louis University Museum of Art",
+          "link": "http://sluma.slu.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Mildred Lane Kemper Art Museum at Washington University",
+          "link": "http://kemperartmuseum.wustl.edu/",
+          "store_links": [
+            "http://www.kemperartmuseum.wustl.edu/calendar/events/workshops"
+          ]
+        }
+      ]
+    },
+    "pennsylvania": {
+      "museums": [
+        {
+          "name": "State Museum of Pennsylvania",
+          "link": "http://www.statemuseumpa.org/",
+          "store_links": [
+            "http://statemuseumpa.org/visit/store/"
+          ]
+        },
+        {
+          "name": "Abington Art Center",
+          "link": "http://abingtonartcenter.org/",
+          "store_links": [
+            "https://abingtonartcenter.org/workshops/"
+          ]
+        },
+        {
+          "name": "Southern Alleghenies Museum of Art",
+          "link": "http://www.sama-art.org/",
+          "store_links": [
+            "https://www.sama-art.org/shop"
+          ]
+        },
+        {
+          "name": "Barnes Foundation",
+          "link": "http://www.barnesfoundation.org/",
+          "store_links": [
+            "https://shop.barnesfoundation.org"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.philamuseum.org/",
+          "store_links": [
+            "https://store.philamuseum.org/"
+          ]
+        },
+        {
+          "name": "Fabric Workshop and Museum",
+          "link": "http://www.fabricworkshopandmuseum.org/",
+          "store_links": [
+            "https://fabricworkshopandmuseum.org/",
+            "https://store.fabricworkshopandmuseum.org/",
+            "https://beta.fabricworkshopandmuseum.org/visit/plan-your-trip-to-fwm#group-tours",
+            "https://www.instagram.com/fabricworkshop/?hl=en",
+            "https://www.facebook.com/pages/The-Fabric-Workshop-and-Museum/156153505570",
+            "https://twitter.com/#!/fabricworkshop"
+          ]
+        },
+        {
+          "name": "Moore College of Art and Design Galleries",
+          "link": "http://www.thegalleriesatmoore.org/",
+          "store_links": [
+            "https://moore.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Rodin Museum at the Philadelphia Museum of Art",
+          "link": "http://www.rodinmuseum.org/",
+          "store_links": [
+            "https://store.philamuseum.org/rodin-museum-catalog/"
+          ]
+        },
+        {
+          "name": "University of Pennsylvania Museum of Archaeology and Anthropology",
+          "link": "http://www.penn.museum/",
+          "store_links": [
+            "https://penn-museum-shop.myshopify.com/"
+          ]
+        },
+        {
+          "name": "Frick Art and Historical Center",
+          "link": "http://www.frickart.org/index.php",
+          "store_links": []
+        }
+      ]
+    },
+    "illinois": {
+      "museums": [
+        {
+          "name": "Krannert Art Museum",
+          "link": "http://www.kam.uiuc.edu/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.artic.edu/aic/",
+          "store_links": [
+            "https://shop.artic.edu/"
+          ]
+        },
+        {
+          "name": "DuSable Museum of African American History",
+          "link": "http://www.dusablemuseum.org/",
+          "store_links": [
+            "https://www.dusablemuseum.org/shop/"
+          ]
+        },
+        {
+          "name": "Museum of Contemporary Art",
+          "link": "http://www.mcachicago.org/",
+          "store_links": [
+            "https://www.mcachicagostore.org/",
+            "https://mcachicagostore.org/"
+          ]
+        },
+        {
+          "name": "Museum of Contemporary Photography at Columbia College",
+          "link": "http://www.mocp.org/",
+          "store_links": [
+            "https://shop.mocp.org"
+          ]
+        },
+        {
+          "name": "Oriental Institute Museum at the University of Chicago",
+          "link": "http://oi.uchicago.edu/museum/",
+          "store_links": []
+        },
+        {
+          "name": "Lakeview Museum of Arts and Sciences",
+          "link": "http://www.lakeview-museum.org/",
+          "store_links": [
+            "https://cart.peoriariverfrontmuseum.org/GiftShop.aspx"
+          ]
+        },
+        {
+          "name": "Nathan Manilow Sculpture Park",
+          "link": "http://www.govst.edu/sculpture/",
+          "store_links": [
+            "https://www.govst.edu/Campus_Life/Bookstore_-_GSU_Follett/"
+          ]
+        }
+      ]
+    },
+    "montana": {
+      "museums": [
+        {
+          "name": "Montana Museum of Art and Culture",
+          "link": "http://www.umt.edu/montanamuseum/",
+          "store_links": [
+            "https://www.umt.edu/montanamuseum/shopping/default.php"
+          ]
+        }
+      ]
+    },
+    "rhode-island": {
+      "museums": [
+        {
+          "name": "National Museum of American Illustration",
+          "link": "http://www.americanillustration.org/",
+          "store_links": [
+            "https://play.google.com/store/apps/details?id=com.actioncharts.smartmansions.nmai.paid&#038;hl=en_US&#038;gl=US"
+          ]
+        }
+      ]
+    },
+    "washington-dc": {
+      "museums": [
+        {
+          "name": "",
+          "link": "http://www.nga.gov/home.htm",
+          "store_links": [
+            "//shop.nga.gov"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://americanart.si.edu/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.si.edu/",
+          "store_links": [
+            "https://www.smithsonianstore.com/home.do?code=N2IBBANN&amp;utm_source=si.edu&amp;utm_medium=referral&amp;utm_content=visitblrb&amp;utm_campaign=shoplink"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://africa.si.edu/",
+          "store_links": [
+            "https://www.smithsonianstore.com/category/museums/african-art.do"
+          ]
+        },
+        {
+          "name": "",
+          "link": "http://www.nmai.si.edu/",
+          "store_links": []
+        },
+        {
+          "name": "",
+          "link": "http://www.npg.si.edu/",
+          "store_links": []
+        },
+        {
+          "name": "Kreeger Museum",
+          "link": "http://www.kreegermuseum.org/",
+          "store_links": [
+            "https://www.kreegermuseum.org/programs/paddledollworkshop"
+          ]
+        }
+      ]
+    }
+  }

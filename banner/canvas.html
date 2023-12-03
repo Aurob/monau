@@ -1,0 +1,29 @@
+<style>
+</style>
+<canvas id="scrolling-canvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('scrolling-canvas');
+    const ctx = canvas.getContext('2d');
+    const text = 'Your scrolling text goes here';
+    const textSize = 20; // Adjust the font size as needed
+    const scrollSpeed = 2; // Adjust the scroll speed as needed
+
+    let xPosition = canvas.width;
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = `${textSize}px Arial`;
+        ctx.fillText(text, xPosition, textSize);
+        xPosition -= scrollSpeed;
+
+        if (xPosition < -ctx.measureText(text).width) {
+            xPosition = canvas.width;
+        }
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+
+</script>

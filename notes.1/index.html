@@ -1,0 +1,15 @@
+<script>
+    fetch('https://api.rau.lol/notes/listall')
+    .then(response => response.json())
+    .then(data => {
+        var notes = data.result
+        var notesHTML = "";
+        for (var i = 0; i < notes.length; i++) {
+            // replace any links with a clickable link
+            notes[i].content = notes[i].content.replace(/(\bhttps?:\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, "<a href='$1' target='_blank'>$1</a>");
+
+            notesHTML += "<div class='note'><h3>" + notes[i].title + "</h3><p>" + notes[i].content + "</p></div>";
+        }
+        document.write( notesHTML );
+    });
+</script>

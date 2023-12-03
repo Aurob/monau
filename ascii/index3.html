@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<style>
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<pre></pre>
+<script>
+    const BOXES = [
+        [
+            "+------+.",
+            "|`.    | `.",
+            "|  `+--+---+",
+            "|   404|   |",
+            "+---+--+.  |",
+            " `. |    `.|",
+            "   `+------+",
+        ],
+        [
+            "+------+",
+            "|\\     |\\",
+            "| +----+-+",
+            "| | 404| |",
+            "+-+----+ |",
+            " \\|     \\|",
+            "  +------+"
+        ],
+        [
+            "+------+",
+            "|      |",
+            "+------+",
+            "|  404 |",
+            "+------+",
+            "|      |",
+            "+------+"
+        ],
+        [
+            "  +------+",
+            " /|     /|",
+            "+-+----+ |",
+            "| |404 | |",
+            "| +----+-+",
+            "|/     |/",
+            "+------+"
+        ],
+        [
+            "   .+------+",
+            " .' |    .'|",
+            "+---+--+'  |",
+            "|   |404   |",
+            "|  .+--+---+",
+            "|.'    | .'",
+            "+------+'"
+        ]
+
+    ]
+    window.addEventListener('load', () => {
+        // new URLSearchParams(new URL(window.location.href).search).forEach((value, key) => {
+        //     if (!value) {
+        //         fetch(`${key}${(key.endsWith('.txt')) 404'':'.txt'}`)
+        //         .then(response => response.text())
+        //         .then(data => document.write(`<pre>${data}</pre>`))
+        //         .then(()=> {
+        //             let pre = document.querySelector('pre');
+        //             let text = pre.textContent;
+        //             let lines = text.split('\n');
+        //             console.log(lines)
+        //         })
+        //     }
+        // });
+
+        let b = 0;
+        let bd = 1;
+        let boxes = setInterval(() => {
+            try {
+
+                let box = BOXES[b];
+                let pre = document.querySelector('pre');
+                pre.textContent = box.join('\n');
+
+                b += bd;
+                if (b >= BOXES.length-1 || b <= 0) {
+                    bd *= -1;
+                }
+            } catch (error) {
+                clearInterval(boxes);
+            }
+
+        }, 100)
+    });
+</script>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/x-icon" href="https://api.robsweb.site/image/rand_shape?as_image=1">
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#">
+    <script src="/libs/p5.min.js"></script>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        function load_words(count=1) {
+            return fetch(`https://api.rau.lol/words/get_random_word?n=${count}`)
+                .then(response => response.json())
+                .then(data => {return data.result})
+        }
+
+        var ready = false;
+        function setup() {
+            createCanvas(500, 500, WEBGL);
+            // Set the perspective of the camera
+            perspective(PI / 2, width / height, 0.1, 1000)
+
+            // Position the camera inside the box
+            camera(0, 0, -100);
+
+            strokeWeight(2);
+
+            // ambientLight(50);
+            // directionalLight(255, 0, 0, 0.25, 0.25, 0);
+
+            texts = [];
+            load_words(25)
+            .then(words => {
+                console.log(words)
+                words.forEach(word => {
+                    let __text = createGraphics(0, 0);
+                    __text.textFont('Source Code Pro');
+                    __text.textSize(133);
+                    
+                    let w = __text.textWidth(word);
+                    let h = __text.textAscent() + textDescent();
+                    console.log(w, h);
+
+                    _text = createGraphics(500, 500);
+                    _text.textFont('Source Code Pro');
+                    _text.textAlign(CENTER);
+                    _text.textSize(133);
+                    _text.fill(3, 7, 11);
+                    _text.noStroke();
+                    _text.text(word, width / 2, height / 2 + h / 2);
+
+                    let text = {
+                        'text': _text,
+                        'x': Math.random() * 200 - 100,
+                        'y': Math.random() * 200 - 100,
+                        'z': Math.random() * 200 - 100,
+                        'dx': Math.random() * 0.1 - 0.05,
+                        'dy': Math.random() * 0.1 - 0.05,
+                        'dz': Math.random() * 0.1 - 0.05,
+                    }
+
+                    texts.push(text)
+
+                });
+
+                ready = true;
+            })
+        }
+
+        function draw() {
+            background(255);
+            
+            if(!ready) return;
+
+            push()
+            box(200, 200, 400);
+            pop()
+
+            // push()
+            // translate(cos(frameCount * 0.01) * 100, 0, 100);
+            // sphere(2)
+            // pop()
+
+            texts.forEach((text, i) => {
+                push()
+                noStroke();
+                texture(text.text);
+                translate(text.x * cos(frameCount * text.dx), text.y * cos(frameCount * text.dy), text.z * cos(frameCount * text.dz));
+                rotateY(Math.PI);
+                plane(25, 25);
+                pop()
+            })
+        }
+
+    </script>
+</body>
+
+</html>
