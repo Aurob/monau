@@ -7,11 +7,18 @@ if len(args) == 0:
     print("Usage: python sitemap.py <web root>")
     exit(1)
 
-domain = args[0].split('/')[-1]
+#domain = args[0].split('/')[-1]
+domain = args[0]
+isweb = args[1] if len(args) > 1 else None
 
 BASE_URL = f'https://{domain}/'  # Base URL of your website
-WEB_ROOT = f'/var/www/{domain}/'   # Path to your web root directory
+ROOT = f'{domain}/'   # Path to your web root directory
+if isweb:
+    ROOT = '/var/www/'+ROOT
+else:
+    ROOT = './'
 
+print(domain, BASE_URL)
 def find_valid_endpoints(directory):
     """
     Recursively finds and returns a list of valid web endpoints based on presence of index.html in a directory.
@@ -39,10 +46,10 @@ def find_valid_endpoints(directory):
 
 # Replace '/path/to/webroot' with your actual web server's root directory's full path
 
-endpoints = find_valid_endpoints(WEB_ROOT)
+endpoints = find_valid_endpoints(ROOT)
 
-# Create sitemap.txt in WEB_ROOT
-with open(os.path.join(WEB_ROOT, 'sitemap.txt'), 'w') as sitemap:
+# Create sitemap.txt in ROOT
+with open(os.path.join(ROOT, 'sitemap.txt'), 'w') as sitemap:
     for endpoint in endpoints:
         sitemap.write(BASE_URL + endpoint + '\n')
 
