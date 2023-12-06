@@ -33,6 +33,7 @@ if [ "$choice" == "Select" ]; then
         dir_name=$(basename "$dir")
         dir_options+=("$dir_name" "" OFF)
     done
+    
     # Prompt the user to select a directory
     target_directory=$(whiptail --title "Directory Selection" --radiolist \
     "Choose a target directory:" 15 60 ${#dir_options[@]} \
@@ -86,7 +87,6 @@ case $action in
         "Choose directories to create symlinks in $target_directory:" 20 70 10 \
         "${checklist_options[@]}" 3>&1 1>&2 2>&3)
 
-        echo $selected_dirs
         # Check if the user pressed Cancel
         if [ $? -ne 0 ]; then
             exit 1
@@ -97,10 +97,15 @@ case $action in
 
         # Iterate over the selected directories and create symlinks
         for dir in "${dirs_to_link[@]}"; do
-            # Remove potential trailing slash from SOURCE_PATH if present
-            SOURCE_PATH_CLEANED="${SOURCE_PATH%/}"
             # Use parameter expansion to ensure the directory name is unquoted
             dir_unquoted=${dir//\"}
+            # Skip if the directory already exists in the target directory
+            if [ -d "$target_directory/$dir_unquoted" ]; then
+                echo "Directory $dir_unquoted already exists in the target directory. Skipping..."
+                continue
+            fi
+            # Remove potential trailing slash from SOURCE_PATH if present
+            SOURCE_PATH_CLEANED="${SOURCE_PATH%/}"
             echo "Creating symlink for $dir_unquoted"
             echo "ln -s $SOURCE_PATH_CLEANED/$dir_unquoted $target_directory/$dir_unquoted"
             ln -s $SOURCE_PATH_CLEANED/$dir_unquoted $target_directory/$dir_unquoted

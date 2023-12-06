@@ -2,60 +2,134 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sitemap Visualization</title>
+    <title>Sitemap Hierarchy Visualization</title>
     <style>
-        ul {
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 20px;
+        }
+        .tree ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
         }
-        li {
-            margin-left: 20px;
-            border-left: 1px dashed #ccc;
-            padding-left: 10px;
+        .tree li {
+            margin: 5px 0;
             position: relative;
         }
-        li:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 6px;
-            width: 8px;
-            height: 1px;
-            background: #ccc;
+        .tree li ul {
+
+            margin-left: 20px; /* Indent nested lists */
+        }
+        .tree li:hover {
+            background-color: #e1e1e1;
+        }
+        .tree a {
+            text-decoration: none;
+            color: #555;
+        }
+        .expander {
+            cursor: pointer;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            transition: transform 200ms linear;
+        }
+        .tree li > span {
+            margin-left: 5px;
+            font-weight: bold;
+            width: 100%;
+            display: inline-block;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 50ms ease-in-out;
+        }
+        .tree li > span:hover {
+            background-color: #e9ecef;
+        }
+        .collapsed > .expander {
+            transform: rotate(0deg); /* Plus sign */
+        }
+        .expanded > .expander {
+            transform: rotate(90deg); /* Minus sign when expanded */
         }
     </style>
 </head>
 <body>
-
-    <div id="sitemap-container"></div>
+    <div id="sitemap-container" class="tree"></div>
 
     <script>
-       
-        // Fetch the sitemap, then visualize it
+        function createTree(paths) {
+            const root = {};
+
+            // Create the nested tree structure
+            paths.forEach(path => {
+                const parts = path.split('/').filter(Boolean);
+                let current = root;
+                for (const part of parts) {
+                    current[part] = current[part] || {};
+                    current = current[part];
+                }
+            });
+
+            // Function to recursively generate HTML
+            function generateHTML(tree, depth = 0) {
+                if (Object.keys(tree).length === 0) return null;
+                const ul = document.createElement('ul');
+                ul.className = 'ul-' + depth; // Add class to indicate level of nestedness
+                for ( branch in tree) {
+                    const li = document.createElement('li');
+                    li.className = `li-${depth}`; // Add class to indicate level of nestedness
+                    const span = document.createElement('span');
+
+                    let _branch = branch;
+                    if(branch == window.location.hostname){
+                        console.log('branch', branch);
+                        _branch = '/';
+                    }
+                    span.innerHTML = `${branch} <a href="${_branch}" target="_blank">→ Visit</a>`;
+                    const childrenUL = generateHTML(tree[branch], depth + 1);
+                    if (childrenUL) {
+                        const icon = document.createElement('div');
+                        icon.textContent = '+';
+                        icon.className = 'expander';
+                        span.prepend(icon);
+                        li.appendChild(span);
+                        li.appendChild(childrenUL);
+                        span.onclick = function () {
+                            childrenUL.style.display = childrenUL.style.display === 'none' ? 'block' : 'none';
+                            li.classList.toggle('expanded', childrenUL.style.display === 'block');
+                            li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
+                        };
+                        if (depth === 1) {
+                            li.classList.add('collapsed'); // Start in collapsed state if level is 1
+                            childrenUL.style.display = 'none';
+                        }
+                    } else {
+                        li.appendChild(span);
+                    }
+                    ul.appendChild(li);
+                }
+                return ul;
+            }
+
+            return generateHTML(root);
+        }
+
+        // Fetch the sitemap and visualize it
         fetch('sitemap.txt')
             .then(response => response.text())
-            .then(data =>{
-
-                let current_domain = window.location.origin;
-
-                let paths = data.split('\n');
-                // sort alphabetically
+            .then(data => {
+                data = data.replaceAll('https://', '')
+                const sitemap = document.getElementById('sitemap-container');
+                const paths = data.split('\n').filter(line => line.trim().length > 0);
+                console.log(paths);
                 paths.sort();
+                const tree = createTree(paths);
+                sitemap.appendChild(tree);
 
-                let sitemap = document.getElementById('sitemap-container');
-                let ul = document.createElement('ul');
-                sitemap.appendChild(ul);
-                paths.forEach(path => {
-                    path = path.replace(current_domain, '');
-
-                    let li = document.createElement('li');
-                    let a = document.createElement('a');
-                    a.href = path;
-                    a.innerHTML = path;
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                });
             })
             .catch(error => console.error('Error fetching sitemap:', error));
     </script>

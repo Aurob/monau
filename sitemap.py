@@ -53,4 +53,4 @@ with open(os.path.join(ROOT, 'sitemap.txt'), 'w') as sitemap:
     for endpoint in endpoints:
         sitemap.write(BASE_URL + endpoint + '\n')
 
-print(f'Wrote {len(endpoints)} endpoints to sitemap.txt')
+print(f'Wrote {len(endpoints)} endpoints to {ROOT}sitemap.txt')
