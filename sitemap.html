@@ -75,22 +75,31 @@
             });
 
             // Function to recursively generate HTML
-            function generateHTML(tree, depth = 0) {
+            function generateHTML(tree, depth = 0, path = '') {
                 if (Object.keys(tree).length === 0) return null;
                 const ul = document.createElement('ul');
                 ul.className = 'ul-' + depth; // Add class to indicate level of nestedness
-                for ( branch in tree) {
+                let b1 = false;
+                for (const branch in tree) {
+                    let displayBranch = branch;
                     const li = document.createElement('li');
                     li.className = `li-${depth}`; // Add class to indicate level of nestedness
                     const span = document.createElement('span');
+                    let fullPath = path + "/" + branch;
+                    let _fullPath = fullPath;
 
-                    let _branch = branch;
-                    if(branch == window.location.hostname){
+                    if(branch === window.location.hostname && !b1){
                         console.log('branch', branch);
-                        _branch = '/';
+                        displayBranch = window.location.hostname;
+                        _fullPath = '/';
+                        fullPath = '';
+                        b1 = true;
                     }
-                    span.innerHTML = `${branch} <a href="${_branch}" target="_blank">→ Visit</a>`;
-                    const childrenUL = generateHTML(tree[branch], depth + 1);
+                    console.log(path, branch, fullPath, displayBranch);
+                    
+                    span.innerHTML = `${displayBranch} <a href="${_fullPath}" target="_blank">→ Visit</a>`;
+                    const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
+
                     if (childrenUL) {
                         const icon = document.createElement('div');
                         icon.textContent = '+';
