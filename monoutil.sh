@@ -30,19 +30,21 @@ if [ "$choice" == "Select" ]; then
     # Create an array to hold the directory names
     dir_options=()
     for dir in "${dirs_in_www[@]}"; do
-        dir_name=$(basename "$dir")
-        dir_options+=("$dir_name" "" OFF)
+        dir_basename=$(basename "$dir")
+        if [[ -d "$dir" && ! -L "$target_directory/$dir_basename" && ! -e "$target_directory/$dir_basename" ]]; then
+            dir_options+=("$dir_basename" "" OFF)
+        fi
     done
     
-    # Prompt the user to select a directory
+    # Prompt the user to select a directory or index.html
     target_directory=$(whiptail --title "Directory Selection" --radiolist \
-    "Choose a target directory:" 15 60 ${#dir_options[@]} \
+    "Choose a target directory or index.html:" 15 60 ${#dir_options[@]} \
     "${dir_options[@]}" 3>&1 1>&2 2>&3)
     # Exit if Cancel is pressed.
     if [ $? -ne 0 ]; then
         exit 1
     fi
-    # Prepend /var/www to the selected directory name
+    # Prepend /var/www to the selected directory name unless it's index.html
     target_directory="/var/www/$target_directory"
 else
     # Use the current directory as the target directory
@@ -76,10 +78,18 @@ case $action in
         # Create an array to hold the checklist options
         checklist_options=()
 
+        # Include index.html in the list of options if it does not exist in the target
+        if [ ! -e "$target_directory/index.html" ]; then
+            checklist_options+=("index.html" "" OFF)
+        fi
+
         # Get the list of directories in the SOURCE_PATH
         for dir in "$SOURCE_PATH"/*/ ; do
             dir_name=$(basename "$dir")
-            checklist_options+=("$dir_name" "" OFF)
+            # Ignore symlinks and dirs that already exist in the target
+            if [ ! -L "$target_directory/$dir_name" ] && [ ! -d "$target_directory/$dir_name" ]; then
+                checklist_options+=("$dir_name" "" OFF)
+            fi
         done
 
         # Prompt user to select directories to link
@@ -110,7 +120,7 @@ case $action in
             echo "ln -s $SOURCE_PATH_CLEANED/$dir_unquoted $target_directory/$dir_unquoted"
             ln -s $SOURCE_PATH_CLEANED/$dir_unquoted $target_directory/$dir_unquoted
             # Check if sitemap.html exists in the target directory, if not, copy it from the source
-            if [ ! -f "$target_directory/sitemap.html" ]; then
+            if [ "$dir_unquoted" == "index.html" ] && [ ! -f "$target_directory/sitemap.html" ]; then
                 echo "sitemap.html not found in target. Creating symlink from source..."
                 ln -s "$SOURCE_PATH_CLEANED/sitemap.html" "$target_directory/sitemap.html"
             fi

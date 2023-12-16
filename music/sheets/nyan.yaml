@@ -1,0 +1,26 @@
+properties:
+  time_signature: 4/4
+  tempo: 120
+  loop: true
+measure_groups:
+  treble:
+    key_signature: 
+      - a♭
+      - b♭
+      - d♭
+      - e♭
+    notes:
+      # 16.c.8 16.d.8 8.e.8 8.a.8 16.c.8 
+      # 16.d.8 16.e.8 16.a.8 16.b.16 
+      # 16.c.16 16.b.16 16.g.8 8.a.8
+      # 8.e.8 16.c.8 16.d.8 8.e.8 8.a.8 
+      # 16.b.16 16.g.8 16.a.8 16.b.8 
+      # 16.d.16 16.c.16 16.d.16 16.b.16
+      8.e.8 8.f.8 16.c.8 8.c.8 16.a.4 16.c.8 16.b.8 8.a.8 8.a.8 8.b.8
+  base:
+    key_signature:
+      - e♭
+      - b♭
+    notes:
+      8.e.4 8.e.8 8.f.4 8.f.8 8.d.4 8.d.8 8.g.4 8.g.8
+      

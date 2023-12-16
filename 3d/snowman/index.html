@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blender Scene in THREE.js</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@latest/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@latest/examples/jsm/"
+          }
+        }
+      </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { FlyControls } from 'three/addons/controls/FlyControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        // Initialization
+        const scene = new THREE.Scene();
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Camera setup
+        const aspectRatio = window.innerWidth / window.innerHeight;
+        const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+
+        // Fly controls
+        const controls = new FlyControls(camera, renderer.domElement);
+        controls.movementSpeed = .25;
+        controls.domElement = renderer.domElement;
+        controls.rollSpeed = Math.PI / 240;
+        controls.autoForward = false;
+        controls.dragToLook = true;
+        
+        // Set initial camera position
+        camera.position.set(0, 0, 0);
+
+        // Light setup
+        const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(0, 10, 0);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+
+        // ------Objects-----------
+
+        // Plane
+        const planeGeometry = new THREE.PlaneGeometry(100, 100, 100, 100);
+        const planeMaterial = new THREE.MeshLambertMaterial({
+            color: 0x00ff00,
+            side: THREE.DoubleSide
+        });
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = Math.PI / 2;
+        plane.position.y = -1;
+        plane.receiveShadow = true;
+        scene.add(plane);
+
+
+        // Snowman
+        // - 3 spheres, intersecting
+        // - 2 cylinders, intersecting
+        // - 1 cone, intersecting
+        // - 1 sphere, intersecting
+        // - 1 cylinder, intersecting
+
+        // Sphere
+        const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const sphereMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            metalness: 0,   // Glass is non-metallic
+            roughness: 0,   // Smooth glass surface has no roughness
+            transmission: 1, // Transmission controls the transparency - 1 for full glass effect
+            transparent: true,
+            reflectivity: 1, // This can also affect the glass-like appearance
+            ior: 1.5, // Index of refraction for glass-like materials, around 1.5 for glass
+            // side: THREE.DoubleSide, // Render both sides of the material
+            envMapIntensity: 5, // Intensity of the environment map
+            clearcoat: 1, // Use clearcoat for a glossy finish
+            clearcoatRoughness: 0 // Smooth clearcoat surface
+        });
+
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.y = 0;
+        sphere.castShadow = true;
+        scene.add(sphere);
+
+        // Sphere2
+        const sphere2 = sphere.clone();
+        sphere2.position.y += sphere2.geometry.parameters.radius * 1;
+        sphere2.castShadow = true;
+        sphere2.scale.set(0.70, 0.70, 0.70);
+        scene.add(sphere2);
+
+        // Sphere3
+        const sphere3 = sphere.clone();
+        sphere3.position.y = sphere3.geometry.parameters.radius * 1.9;
+        sphere3.castShadow = true;
+        sphere3.scale.set(0.5, 0.5, 0.5);
+        scene.add(sphere3);        
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(1);
+            renderer.render(scene, camera);
+        }
+
+        // Start the animation loop
+        animate();
+    </script>
+</body>
+
+</html>

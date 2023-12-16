@@ -86,7 +86,7 @@
                     li.className = `li-${depth}`; // Add class to indicate level of nestedness
                     const span = document.createElement('span');
                     let fullPath = path + "/" + branch;
-                    let _fullPath = fullPath;
+                    let _fullPath = fullPath.startsWith('/') ? fullPath.substring(1) : fullPath;
 
                     if(branch === window.location.hostname && !b1){
                         console.log('branch', branch);
