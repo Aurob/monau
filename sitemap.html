@@ -131,7 +131,7 @@
         fetch('sitemap.txt')
             .then(response => response.text())
             .then(data => {
-                data = data.replaceAll('https://', '')
+                data = data.replaceAll('https://', '').split('/')[1]
                 const sitemap = document.getElementById('sitemap-container');
                 const paths = data.split('\n').filter(line => line.trim().length > 0);
                 console.log(paths);
