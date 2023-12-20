@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAU</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@latest/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@latest/examples/jsm/"
+          }
+        }
+      </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { FlyControls } from 'three/addons/controls/FlyControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        let scene, camera, renderer, controls;
+        let terrain, light, stars;
+        let keys = {};
+        let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, rotateLeft = false, rotateRight = false;
+        const terrainWidth = 250;
+        const terrainHeight = 250;
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function addTerrain() {
+            // Add a terrain to represent a grassy plain with smooth rolling hills
+            const terrainGeometry = new THREE.PlaneGeometry(terrainWidth, terrainHeight, 32, 32);
+            // Create rolling hills by adjusting the vertices of the plane
+            // Three.js r125+ uses .attributes.position.array instead of .vertices
+            const vertices = terrainGeometry.attributes.position.array;
+            for (let i = 0, l = vertices.length; i < l; i += 3) {
+                // Access every vertex's z component and modify it
+                // Simplex noise or Perlin noise can be used for smooth terrain generation
+                // For example purposes, we'll use Math.sin and Math.cos to create the hills
+                vertices[i + 2] = Math.sin(vertices[i] / 50) * Math.cos(vertices[i + 1] / 50) * 5;
+            }
+            terrainGeometry.attributes.position.needsUpdate = true; // Required after changing the vertices
+            terrainGeometry.computeVertexNormals(); // Ensure the lighting is recalculated
+            const terrainMaterial = new THREE.MeshPhongMaterial({ color: 0x228B22 }); // dark green
+            // terrainMaterial.shadowSide = THREE.DoubleSide;
+            // Create color attribute for vertices to simulate snow patches
+            const terrainColors = [];
+            for (let i = 0, l = vertices.length / 3; i < l; i++) {
+                // Use height of the vertex to determine if it should be snow or grass
+                const height = vertices[i * 3 + 2];
+                const color = new THREE.Color(0x007700); // default to green
+                terrainColors.push(color.r, color.g, color.b);
+            }
+            const colorAttribute = new THREE.BufferAttribute(new Float32Array(terrainColors), 3);
+            terrainGeometry.setAttribute('color', colorAttribute);
+            terrain = new THREE.Mesh(terrainGeometry, terrainMaterial);
+            terrain.rotation.x = -Math.PI / 2; // rotate the terrain to lie flat
+            terrain.receiveShadow = true; // enable shadows on the terrain
+            
+            scene.add(terrain);
+
+        }
+
+        function addTrees() {
+            const numTrees = 200;
+            const treePositions = new Float32Array(numTrees * 3);
+            const treeColors = new Float32Array(numTrees * 3);
+            const darkGreenShades = [0x006400, 0x008000, 0x228B22];
+            
+            // Simple cylinder for trunk
+            const treeGeometry = new THREE.CylinderGeometry(.5, .5, 5, 32);
+            const treeMaterial = new THREE.MeshPhongMaterial({ color: 0x8B4513 }); // dark brown
+            treeMaterial.shadowSide = THREE.DoubleSide; // Enable shadows for the material
+            const trunkMesh = new THREE.InstancedMesh(treeGeometry, treeMaterial, numTrees);
+            trunkMesh.castShadow = true; // Enable casting shadows
+            trunkMesh.receiveShadow = true; // Enable receiving shadows
+            
+            // 3 spheres for leaves with slightly different shades of dark green
+            const leavesGeometry = new THREE.SphereGeometry(2, 32, 32);
+            const leavesMaterial = new THREE.MeshPhongMaterial({ color: 0x006400 }); // placeholder color
+            // leavesMaterial.shadowSide = THREE.DoubleSide; // Enable shadows for the material
+            const leavesMesh = new THREE.InstancedMesh(leavesGeometry, leavesMaterial, numTrees * 3);
+            leavesMesh.castShadow = true; // Enable casting shadows
+            leavesMesh.receiveShadow = true; // Enable receiving shadows
+            
+            for (let i = 0; i < numTrees; i++) {
+                // Random position for each tree
+                const x = Math.random() * (terrainWidth/2) - (terrainWidth/2)/2;
+                const y = Math.random() * (terrainHeight/2) - (terrainHeight/2)/2;
+                // const x = Math.random() * terrainWidth - terrainWidth / 2;
+                // const y = Math.random() * terrainHeight - terrainHeight / 2;
+                const z = getTerrainHeightAt(x, y);
+                treePositions[i * 3] = x;
+                treePositions[i * 3 + 1] = z;
+                treePositions[i * 3 + 2] = y;
+                
+                // Set trunk position
+                trunkMesh.setMatrixAt(i, new THREE.Matrix4().makeTranslation(x, z + 2.5, y));
+                
+                // Set leaves positions and colors with slight variations
+                for (let j = 0; j < 3; j++) {
+                    // Slight variation in color
+                    const shadeVariation = Math.random() * 0.1 - 0.05;
+                    const color = new THREE.Color(darkGreenShades[j]).multiplyScalar(1 + shadeVariation);
+                    treeColors[i * 9 + j * 3] = color.r;
+                    treeColors[i * 9 + j * 3 + 1] = color.g;
+                    treeColors[i * 9 + j * 3 + 2] = color.b;
+                    
+                    // Slight variation in position
+                    const dx = (Math.random() - 0.5) * 2;
+                    const dy = (Math.random() - 0.5) * 2;
+                    const dz = (Math.random() - 0.5) * 2;
+                    
+                    // Slight variation in shape
+                    const scale = 1 + (Math.random() - 0.5) * 0.2;
+                    const matrix = new THREE.Matrix4().makeTranslation(x + dx, z + 5 + j * 2 + dz, y + dy);
+                    matrix.scale(new THREE.Vector3(scale, scale, scale));
+                    leavesMesh.setMatrixAt(i * 3 + j, matrix);
+                }
+            }
+            
+            // Update instance matrices
+            trunkMesh.instanceMatrix.needsUpdate = true;
+            leavesMesh.instanceMatrix.needsUpdate = true;
+            
+            // Create color attribute for leaves
+            const colorAttribute = new THREE.InstancedBufferAttribute(treeColors, 3);
+            leavesMesh.geometry.setAttribute('color', colorAttribute);
+            
+            // Add meshes to the scene
+            scene.add(trunkMesh);
+            scene.add(leavesMesh);
+        }
+
+
+        function addTerrainAlt() {
+            // Simple plane for terrain
+            const terrainGeometry = new THREE.PlaneGeometry(100, 100, 32, 32);
+            const terrainMaterial = new THREE.MeshPhongMaterial({ color: 0x228B22 }); // dark green
+            // terrainMaterial.shadowSide = THREE.DoubleSide; // Enable shadows for the material
+            terrain = new THREE.Mesh(terrainGeometry, terrainMaterial);
+            terrain.rotation.x = -Math.PI / 2; // rotate the terrain to lie flat
+            terrain.receiveShadow = true; // Enable receiving shadows
+            terrain.shadowMapHeight = 2048;
+            terrain.shadowMapWidth = 2048;
+            scene.add(terrain);
+
+        }
+
+        function getTerrainHeightAt(x, y) {
+            // Assuming terrain is centered at the origin and spans from -500 to 500 in x and y
+            const vertices = terrain.geometry.attributes.position.array;
+            const widthSegments = terrain.geometry.parameters.widthSegments;
+            const heightSegments = terrain.geometry.parameters.heightSegments;
+            const segmentWidth = terrainWidth / widthSegments;
+            const segmentHeight = terrainHeight / heightSegments;
+            
+            // Calculate vertex indices for the four vertices around the point
+            const xi = Math.floor((x + terrainWidth / 2) / segmentWidth);
+            const yi = Math.floor((y + terrainHeight / 2) / segmentHeight);
+            const index1 = (yi * (widthSegments + 1) + xi) * 3;
+            const index2 = (yi * (widthSegments + 1) + xi + 1) * 3;
+            const index3 = ((yi + 1) * (widthSegments + 1) + xi) * 3;
+            const index4 = ((yi + 1) * (widthSegments + 1) + xi + 1) * 3;
+            
+            // Interpolate height using the four surrounding vertices
+            const percentX = (x + terrainWidth / 2) % segmentWidth / segmentWidth;
+            const percentY = (y + terrainHeight / 2) % segmentHeight / segmentHeight;
+            const height1 = vertices[index1 + 2];
+            const height2 = vertices[index2 + 2];
+            const height3 = vertices[index3 + 2];
+            const height4 = vertices[index4 + 2];
+            const heightX1 = THREE.MathUtils.lerp(height1, height2, percentX);
+            const heightX2 = THREE.MathUtils.lerp(height3, height4, percentX);
+            const finalHeight = THREE.MathUtils.lerp(heightX1, heightX2, percentY);
+            
+            return finalHeight;
+        }
+
+        function addLighting() {
+            // Add ambient light
+            // const ambientLight = new THREE.AmbientLight(0x404040, 2);
+            // scene.add(ambientLight);
+
+            // Add directional light
+            // const light = new THREE.DirectionalLight(0xffffff, 100);
+            // light.position.set(0, 10, 0);
+            // light.castShadow = true; // default false
+            // light.shadow.camera.left = -80; // Increase shadow camera width (left boundary)
+            // light.shadow.camera.right = 80; // Increase shadow camera width (right boundary)
+            // light.shadow.camera.top = 80; // Increase shadow camera height (top boundary)
+            // light.shadow.camera.bottom = -80; // Increase shadow camera height (bottom boundary)
+
+            // Point light
+            light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(0, 20, 0);
+            light.castShadow = true; // default false
+            light.shadow.camera.left = -250; // Increase shadow camera width (left boundary)
+            light.shadow.camera.right = 250; // Increase shadow camera width (right boundary)
+            light.shadow.camera.top = 250; // Increase shadow camera height (top boundary)
+            light.shadow.camera.bottom = -250; // Increase shadow camera height (bottom boundary)
+            light.shadow.mapSize.width = 2096; // default 512
+            light.shadow.mapSize.height = 2096; // default 512
+
+            scene.add(light);
+
+            // const helper = new THREE.CameraHelper(light.shadow.camera);
+            // scene.add(helper);
+        }
+
+        function createStars() {
+            const starsGeometry = new THREE.BufferGeometry();
+            const starsMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 1,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0
+            });
+
+            const starPositions = [];
+            for (let i = 0; i < 1000; i++) { // Adjust the number of stars here
+                const x = THREE.MathUtils.randFloatSpread(2000); // Random position within a 2000 unit spread
+                const y = THREE.MathUtils.randFloatSpread(2000);
+                const z = THREE.MathUtils.randFloatSpread(2000);
+
+                starPositions.push(x, y, z);
+            }
+
+            starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+            stars = new THREE.Points(starsGeometry, starsMaterial);
+            scene.add(stars);
+        }
+
+        function adjustStarsIntensity(lightPosY) {
+            if (lightPosY < 0 && stars.material.opacity < 1) {
+                // Fade in stars slowly
+                stars.material.opacity += 0.01;
+                stars.material.opacity = Math.min(1, stars.material.opacity);
+            } else if (lightPosY > 0 && stars.material.opacity > 0) {
+                // Fade out stars slowly
+                stars.material.opacity -= 0.01;
+                stars.material.opacity = Math.max(0, stars.material.opacity);
+            }
+        }
+
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+
+        // Set up keyboard controls
+        window.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+        });
+        window.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+
+        // ------------------ 
+        // Set up the scene
+        scene = new THREE.Scene();
+        
+        // Create WebGL Renderer
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Optional: for softer shadows
+        renderer.shadowMap.renderReverseSided = false;
+        
+        // renderer.setClearColor(0x87ceeb); // skyblue color
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        // Camera setup
+        const aspectRatio = window.innerWidth / window.innerHeight;
+        camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+
+        // Fly controls
+        controls = new FlyControls(camera, renderer.domElement);
+        controls.movementSpeed = .25;
+        controls.domElement = renderer.domElement;
+        controls.rollSpeed = Math.PI / 240;
+        controls.autoForward = false;
+        controls.dragToLook = true;
+        
+        // Set initial camera position
+        camera.position.set(0, 1.5, terrainWidth / 4);
+        
+        document.body.appendChild(renderer.domElement);
+        
+        addTerrain();
+        // addTerrainAlt();
+        addTrees();
+        // addGroundFoliage();
+        // addBugs();
+        // addSounds();
+        addLighting();
+        createStars();
+        // addSkybox();
+
+        // Add skybox skyblue color
+        // scene.background = new THREE.Color(0x87ceeb);
+
+
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+            controls.update(1);
+
+            if(keys['l']) light.target = camera;
+            if(keys['k']) light.target = terrain;
+
+            // Make the light move like the sun, over 1.2 minutes, every .6 minutes = 12 hours
+            const timeOfDay = Date.now() / 1000 / 60 / 1.2 * Math.PI * 2;
+            // light.position.x = Math.sin(timeOfDay) * 100;
+            // light.position.y = Math.cos(timeOfDay) * 100;
+            // If the light is below the horizon, turn it off
+            if (light.position.y < 0) {
+                light.intensity = 0;
+            } else {
+                light.intensity = 1; // Restore light intensity if above the horizon
+            }        // Inside your render loop or animation function
+
+
+            adjustStarsIntensity(light.position.y);
+
+
+            // Change the clear color based on the time of day to simulate daylight changes
+            const skyColor = new THREE.Color();
+            // Interpolate between dawn, noon, dusk, and night colors
+            if (light.position.y > 0) { // daylight
+                // Simple interpolation between skyblue and white (noon)
+                skyColor.lerpColors(new THREE.Color(0x87ceeb), new THREE.Color(0xffffff), light.position.y / 100);
+            } else { // night
+                // Simple interpolation between dark blue and black (midnight)
+                skyColor.lerpColors(new THREE.Color(0x000080), new THREE.Color(0x000000), -light.position.y / 100);
+            }
+            renderer.setClearColor(skyColor);
+
+
+            renderer.render(scene, camera);
+        };
+
+        // Start the animation loop
+        animate();
+    </script>
+</body>
+</html>

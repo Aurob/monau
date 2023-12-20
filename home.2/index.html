@@ -43,39 +43,39 @@
         // Create a camera
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
 
-        // Skybox gradient from black to light blue
-        const skyColor = new THREE.Color(0x000000);  // black
-        const groundColor = new THREE.Color(0x87CEEB);  // light blue
-        const intensity = 1;
-        const skyGeometry = new THREE.SphereGeometry(1000, 32, 32);
-        const skyMaterial = new THREE.ShaderMaterial({
-            uniforms: {
-                skyColor: { value: groundColor },
-                groundColor: { value: skyColor },
-                intensity: { value: intensity }
-            },
-            vertexShader: `
-                varying vec3 vWorldPosition;
-                void main() {
-                    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
-                    vWorldPosition = worldPosition.xyz;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-            fragmentShader: `
-                uniform vec3 skyColor;
-                uniform vec3 groundColor;
-                uniform float intensity;
-                varying vec3 vWorldPosition;
-                void main() {
-                    float h = normalize(vWorldPosition + vec3(0, 1, 0)).y;
-                    gl_FragColor = vec4(mix(groundColor, skyColor, max(pow(max(h, 0.0), intensity), 0.0)), 1.0);
-                }
-            `,
-            side: THREE.BackSide
-        });
-        const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-        scene.add(sky);
+        // // Skybox gradient from black to light blue
+        // const skyColor = new THREE.Color(0x000000);  // black
+        // const groundColor = new THREE.Color(0x87CEEB);  // light blue
+        // const intensity = 1;
+        // const skyGeometry = new THREE.SphereGeometry(1000, 32, 32);
+        // const skyMaterial = new THREE.ShaderMaterial({
+        //     uniforms: {
+        //         skyColor: { value: groundColor },
+        //         groundColor: { value: skyColor },
+        //         intensity: { value: intensity }
+        //     },
+        //     vertexShader: `
+        //         varying vec3 vWorldPosition;
+        //         void main() {
+        //             vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+        //             vWorldPosition = worldPosition.xyz;
+        //             gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        //         }
+        //     `,
+        //     fragmentShader: `
+        //         uniform vec3 skyColor;
+        //         uniform vec3 groundColor;
+        //         uniform float intensity;
+        //         varying vec3 vWorldPosition;
+        //         void main() {
+        //             float h = normalize(vWorldPosition + vec3(0, 1, 0)).y;
+        //             gl_FragColor = vec4(mix(groundColor, skyColor, max(pow(max(h, 0.0), intensity), 0.0)), 1.0);
+        //         }
+        //     `,
+        //     side: THREE.BackSide
+        // });
+        // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+        // scene.add(sky);
 
         renderer.shadowMap.enabled = true;
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -117,44 +117,54 @@
         var sunMaterial = new THREE.MeshBasicMaterial({ color: 0xffd65b, fog: false });
         var sun = new THREE.Mesh(sunGeometry, sunMaterial);
         sun.position.x = 0;
-        sun.position.y = -500
+        sun.position.y = 500;
         sun.position.z = 400;
         // sun.receiveShadow = true;
         // sun.castShadow = true;
         scene.add(sun);
 
         // Create the light source
-        // var light = new THREE.PointLight(0xffffff, 2, 3000, .001);
-        var light = new THREE.SpotLight(0xffffff, 1, 2000, 1, 0, 0);
-        light.target.position.set(0, 0, 0);
-        light.position.set(0, 15, -200);
+        var light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(0, 500, 400);
         light.castShadow = true;
-        light.shadow.camera.near = 0.1;
-        light.shadow.camera.far = 4000;
-        light.shadow.camera.fov = 10;
-        light.shadow.mapSize.width = 20024;
-        light.shadow.mapSize.height = 20024;
+        light.shadow.camera.left = -200;
+        light.shadow.camera.right = 200;
+        light.shadow.camera.top = 200;
+        light.shadow.camera.bottom = -200;
+        light.shadow.camera.near = 0.5;
+        light.shadow.camera.far = 1500;
+        light.shadow.mapSize.width = 14096; // Increased map size for better shadow resolution
+        light.shadow.mapSize.height = 14096; // Increased map size for better shadow resolution
 
         scene.add(light);
+
+        // put a soft point light near the camera
+        var light2 = new THREE.PointLight(0xffffff, 1, 1000, .001); // list params: color, intensity, distance, decay
+        light2.position.set(0, 4, 0);
+        light2.castShadow = true;
+        light2.intensity = 0;
+        scene.add(light2);
 
         // Adjust fog settings to prevent seeing through it
         scene.fog = new THREE.FogExp2(0x000000, 0.0005);
 
-        // var hlight = new THREE.HemisphereLight(new THREE.Color(78 / 255, 140 / 255, 255 / 255), new THREE.Color(0, 0, 0), 1);
-        // scene.add(hlight);
 
-
-        // Create a test object in front of the camera to cast shadow
-        // var testGeometry = new THREE.BoxGeometry(10, 10, 10);
-        // var testMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-        // var test = new THREE.Mesh(testGeometry, testMaterial);
-        // test.position.x = 0;
-        // test.position.y = 5;
-        // test.position.z = -30;
-        // test.castShadow = true;
-        // test.receiveShadow = true;
-        // scene.add(test);
-
+        // Create 100 randomly sized/positioned boxes within a 10x10x10 area around 0x0x0
+        for (let i = 0; i < 100; i++) {
+            let boxGeometry = new THREE.BoxGeometry(
+                Math.random(),
+                Math.random(),
+                Math.random()
+            );
+            let boxMaterial = new THREE.MeshPhongMaterial({ color: Math.random() * 0xffffff });
+            let box = new THREE.Mesh(boxGeometry, boxMaterial);
+            box.position.x = (Math.random() - 0.5) * 20;
+            box.position.y = (Math.random() - 0.5) * 20;
+            box.position.z = (Math.random() - 0.5) * 20;
+            box.castShadow = true;
+            box.receiveShadow = true;
+            scene.add(box);
+        }
 
 
         // font loader
@@ -162,17 +172,22 @@
         
         // Retrieve the JSON font file
         loader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-            start(font);
+            
+            addText(font);
+            start();
         });
 
         function randomColor() {
             return Math.floor(Math.random() * 16777215);
         }
 
-        function start(font) {
-
+        function addText(font) {
+            
+            let content = `
+             RAU
+            `;
             // Add text to the front of the box
-            var textGeometry = new TextGeometry('Hello World!', {
+            var textGeometry = new TextGeometry(content, {
                 font: font,
                 size: 10,
                 height: 1,
@@ -192,14 +207,17 @@
             });
 
             var text = new THREE.Mesh(textGeometry, textMaterial);
-            // Scale the text down based on the computed width
+            // Scale the text down and set position a little right of center of the screen
             textGeometry.computeBoundingBox();
-            text.position.x = -textGeometry.boundingBox.max.x / 2;
+            text.position.x = -textGeometry.boundingBox.max.x / 2 + 5; // Adjusted to be slightly right of center
             text.position.z = -50;
             text.position.y = 10;
             // text.receiveShadow = true;
             text.castShadow = true;
             scene.add(text);
+        }
+
+        function start() {
             animate();
         }
 
@@ -258,14 +276,6 @@
             requestAnimationFrame(animate);
             moveCamera();
 
-            // Map the sun position to the mouse position
-            document.addEventListener('mousemove', function (event) {
-                var mouseX = (event.clientX / window.innerWidth);
-                var mouseY = -(event.clientY / window.innerHeight);
-                sun.position.x = mouseX * 700;
-                sun.position.y = mouseY * 700;
-            });
-
             if (!pausesun) {
                 light.position.x = sun.position.x;
                 light.position.y = sun.position.y;
@@ -275,6 +285,24 @@
                 light.position.x += 100;
                 light.position.y += 100;
                 light.position.z += 100;
+
+                // turn off the light if its under the ground
+                if (light.position.y < 0) {
+                    light.intensity = 0;
+                    light2.intensity = 1;
+                } else {
+                    light.intensity = 1;
+                    light2.intensity = 0;
+                }
+
+                // set light color to reflect the sun's position
+                light.color = new THREE.Color(255 / 255 * (sun.position.y / 700), 214 / 255 * (sun.position.y / 700), 91 / 255 * (sun.position.y / 700));
+
+                // update sun position in a circular path using sine and cosine
+                var angle = performance.now() * -0.0001;
+                sun.position.x = 500 * Math.sin(angle);
+                sun.position.y = 500 * Math.cos(angle);
+                sun.position.z = 400;
 
                 // set the hemisphere sky color to reflect the sun's position
                 scene.background = new THREE.Color(78 / 255 * (sun.position.y / 700), 140 / 255 * (sun.position.y / 700), 255 / 255 * (sun.position.y / 700));
