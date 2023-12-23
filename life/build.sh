@@ -8,7 +8,7 @@ start_time=$(date +%s)
   -s STB_IMAGE=1\
   -s SDL2_IMAGE_FORMATS="['png']"\
   -s EXPORTED_RUNTIME_METHODS="['ccall', 'cwrap']"\
-  -s EXPORTED_FUNCTIONS="['_main']"\
+  -s EXPORTED_FUNCTIONS="['_main', '_load_json', _malloc, UTF8ToString, stringToUTF8]"\
   --use-preload-plugins\
   -s ALLOW_MEMORY_GROWTH=1 \
   -o $1.js\
