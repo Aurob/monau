@@ -1,4 +1,5 @@
 # project-dump
-All my web-adjacent projects
+This is a monorepo where I store just about all of my web-based projects. 
+Note: Most are simple and many may not even work.
 
-[List of links for all paths](https://aurob.github.io/project-dump/sitemap.html)
+[Links for all projects](https://aurob.github.io/project-dump/sitemap.html)
