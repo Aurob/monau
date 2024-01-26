@@ -18,7 +18,7 @@ var Module = {
           'width': lines[0].length,
           'height': lines.length,
           'cells': cells,
-          'cell_size': 10,
+          'cell_size': 1,
           'cell_count': cells.length,
         }
         console.log(cells);

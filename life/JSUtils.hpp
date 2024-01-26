@@ -68,6 +68,11 @@ extern "C"
             cellCountX = width;
             
         }
+        // if 'gs' (GameState) in json
+        if (js_json.contains("gs") && js_json["gs"].is_number())
+        {
+            GameState = js_json["gs"].get<int>();
+        }
         
     }
 }

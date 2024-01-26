@@ -198,55 +198,57 @@ function clear_oscillators() {
     $('#oscillators').empty();
 }
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     var sounds = get_query_frequencies();
     if (!sounds) {
         sounds = default_frequencies;
     }
 
     for (var i = 0; i < sounds.length; i++) {
-        $('#new_freq').click();
+        document.getElementById('new_freq').click();
         var id = Object.keys(oscillators)[i];
-        $('#freq_' + id).val(sounds[i]);
-        $('#freq_' + id).trigger('input');
+        document.getElementById('freq_' + id).value = sounds[i];
+        var event = new Event('input');
+        document.getElementById('freq_' + id).dispatchEvent(event);
     }
 
-    $('#play_all').on('click', function () {
+    document.getElementById('play_all').addEventListener('click', function () {
 
-        $('#rand').css('display', 'inline-block')
+        document.getElementById('rand').style.display = 'inline-block';
 
-        if (Object.keys(oscillators) == 0) return;
+        if (Object.keys(oscillators).length == 0) return;
         for (var id in oscillators) {
-            $('#play_' + id).click();
+            document.getElementById('play_' + id).click();
         }
-        $(this).text(($(this).text() == 'Play All') ? 'Stop All' : 'Play All');
+        this.textContent = (this.textContent == 'Play All') ? 'Stop All' : 'Play All';
     });
 
-    $('#rand').on('click', function () {
+    document.getElementById('rand').addEventListener('click', function () {
         // add_random_frequency();
         clear_oscillators();
         add_harmonic_oscillators();
     });
 
-    $('body').prepend('<div id="paths_header" style="scrollbar-width: thin; display: flex; overflow-x: auto; width: 100% !important; height: min-content;"></div>');
+    var pathsHeader = document.createElement('div');
+    pathsHeader.id = 'paths_header';
+    pathsHeader.style.cssText = 'scrollbar-width: thin; display: flex; overflow-x: auto; width: 100% !important; height: min-content;';
+    document.body.insertBefore(pathsHeader, document.body.firstChild);
     // fetch(`/all/allpaths.php`)
     //     .then(res => res.json())
     //     .then(data => {
-    //         let path_header = $('#paths_header');
-    //         path_header.css({
-    //             'display': 'flex',
-    //             'padding-bottom': '1em',
-    //         });
     //         data.paths.forEach(link => {
-    //             $('#paths_header').append(`
-    //                 <div class='all-header flex-item'>
-    //                     <a class='all-link link' href='/${link}'>${link}</a>
-    //                 </div>
-    //             `);
+    //             var linkDiv = document.createElement('div');
+    //             linkDiv.className = 'all-header flex-item';
+    //             var linkA = document.createElement('a');
+    //             linkA.className = 'all-link link';
+    //             linkA.href = '/' + link;
+    //             linkA.textContent = link;
+    //             linkDiv.appendChild(linkA);
+    //             pathsHeader.appendChild(linkDiv);
     //         });
-
-    //         $('.all-header').css({
-    //             'padding-right': '.4em'
+    //         var allHeaders = document.querySelectorAll('.all-header');
+    //         allHeaders.forEach(function(header) {
+    //             header.style.paddingRight = '.4em';
     //         });
     //     })
 });

@@ -16,7 +16,7 @@ extern int cellSize;
 extern int cellCount;
 extern int cellCountX;
 
-int width = 1024;
+int width = 2048;
 int height = 1024;
 
 int GameState = -1;
@@ -113,7 +113,7 @@ void mainloop(void *arg)
 
     ctx->iteration++;
     
-    // usleep(50000);
+    usleep(50000);
 }
 
 
@@ -154,9 +154,10 @@ void animations(context *ctx)
 
     SDL_SetRenderDrawColor(ctx->renderer, 255, 255, 255, 255);
 
+    int _cellSize = 10;
     for (int i = 0; i < cellCount; i++)
     {
-        SDL_Rect cellRect{(i % cellCountX) * cellSize, (i / cellCountX) * cellSize, cellSize, cellSize};
+        SDL_Rect cellRect{(i % cellCountX) * _cellSize, (i / cellCountX) * _cellSize, _cellSize, _cellSize};
         bool cellIsAlive = cells[i];
         int neighbors = cellNeighbors(i % cellCount, i / cellCount);
         // bool shouldRender = (cellIsAlive && defaultRender) || (!cellIsAlive && !defaultRender && (neighbors < 1));

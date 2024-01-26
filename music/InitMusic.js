@@ -6,13 +6,14 @@ var c1;
 
 //Load Songs in header
 //populate the subjects array
-fetch(`allsongs.php`)
-.then(res => res.json())
+fetch(`songs.txt?${Math.random()}`)
+.then(res => res.text())
 .then(data => {
-    data.paths.forEach(link => {
+    console.log(data);
+    data.split('\n').forEach(link => {
         $('#song-list').append(`
             <div class='flex-item'>
-                <a class='link' href='/' music_title='${link}'>${link.replace('.yaml', '')}</a>
+                <a class='link' href='/' music_title='${link}'>${link.split('.')[0]}</a>
             </div>
         `);
     });
@@ -29,8 +30,11 @@ fetch(`allsongs.php`)
         window.location.href = url;
     });
 });
+
 if (song) {
-    fetch(`sheets/${song}`, {
+    let url = `sheets/${song}.yml?${Math.random()}`;
+    console.log(url)
+    fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'text/yaml',
@@ -39,7 +43,7 @@ if (song) {
         .then(res => res.text())
         .then(yaml => jsyaml.load(yaml))
         .then(data => {
-            console.log(data)
+            // console.log(data)
             let mgroups = [];
             let notations = [];
             let measure_groups = data.measure_groups;
@@ -53,6 +57,7 @@ if (song) {
                     'time_signature': properties.time_signature,
                     'tempo': properties.tempo,
                     'key_signature': measure_groups[instrument].key_signature || [],
+                    'sound_type': measure_groups[instrument].sound_type || '',
                 }
 
                 notations.push(notation);
@@ -82,6 +87,8 @@ if (song) {
                             let type = notation[0];
                             let note = notation[1];
                             let octave = notation[2] || 1;
+                            let sound_type = notations[mg].sound_type;
+                            console.log(sound_type)
                             let force_natural = false;
                             if(note.includes('♮')) {
                                 note = note.split('♮')[0];
@@ -89,14 +96,14 @@ if (song) {
                             }
                             if (notes[note] == undefined) continue;
                             //console.log(notation, note, notes[note]);
-                            let N = new Note(type, note, octave, force_natural);
+                            let N = new Note(type, note, octave, force_natural, sound_type);
                             Notes.push(N);
 
                             note_elements.push(`<div id='_${mg}-${nn}' class='note'>${n}</div>`);
                         }
 
                         //console.log(Notes)
-                        m = new MeasureGroup(Notes, notations[mg])
+                        m = new MeasureGroup(Notes, notations[mg], properties);
                         Measure_Groups.push(m);
                         let measure_group_notes = document.createElement('div');
                         measure_group_notes.classList.add('measure_group_notes');
@@ -132,7 +139,7 @@ if (song) {
                             let measure_group = mgroups[i];
                             let Notes = [];
                             for (let n of measure_group.split(' ')) {
-                                console.log(n);
+                                // console.log(n);
                                 let nn = n.split('.');
                                 let type = nn[0];
                                 let note = nn[1];
@@ -144,14 +151,14 @@ if (song) {
                                 }
                                 if (notes[note] == undefined) continue;
                                 //console.log(notation, note, notes[note]);
-                                console.log(octave)
-                                let N = new Note(type, note, octave, force_natural);
+                                // console.log(octave)
+                                let N = new Note(type, note, octave, force_natural, notations[i].sound_type);
                                 Notes.push(N);
 
                                 //TODO store each note in its own element
                                 // reference the note by measure index and note index
                             }
-                            let m = new MeasureGroup(Notes, notations[i]);
+                            let m = new MeasureGroup(Notes, notations[i], properties);
                             MeasureGroups.push(m);
                         }
 

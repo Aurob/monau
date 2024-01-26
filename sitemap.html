@@ -89,13 +89,11 @@
                     let _fullPath = fullPath.startsWith('/') ? fullPath.substring(1) : fullPath;
 
                     if(branch === window.location.hostname && !b1){
-                        console.log('branch', branch);
                         displayBranch = window.location.hostname;
                         _fullPath = '/';
                         fullPath = '';
                         b1 = true;
                     }
-                    console.log(path, branch, fullPath, displayBranch);
                     
                     span.innerHTML = `${displayBranch} <a href="${_fullPath}" target="_blank">→ Visit</a>`;
                     const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
@@ -131,10 +129,10 @@
         fetch('sitemap.txt')
             .then(response => response.text())
             .then(data => {
-                data = data.replaceAll('https://', '').split('/')[1]
                 const sitemap = document.getElementById('sitemap-container');
-                const paths = data.split('\n').filter(line => line.trim().length > 0);
-                console.log(paths);
+                let paths = data.split('\n').filter(line => line.trim().length > 0);
+                // const paths = data.split('\n').filter(line => line.trim().length > 0);
+                paths = paths.map(path => path.replace(window.location.origin, ''));
                 paths.sort();
                 const tree = createTree(paths);
                 sitemap.appendChild(tree);

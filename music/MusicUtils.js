@@ -115,9 +115,9 @@ class MusicUtils {
         return oscillator;
     }
 
-    async play_oscillator(audioCtx, frequency, duration = 0) {
-        console.log(duration, frequency);
-        return beep(audioCtx, duration, frequency, 5);
+    async play_oscillator(audioCtx, frequency, duration = 0, sound_type) {
+        // console.log(duration, frequency);
+        return beep(audioCtx, duration, frequency, 5, sound_type);
     }
 
     delete_oscillator(oscillator) {

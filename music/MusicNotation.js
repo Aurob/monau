@@ -73,7 +73,7 @@ class Composition {
 
 class MeasureGroup {
 
-    constructor(notes, notation) {
+    constructor(notes, notation, properties) {
 
         //TODO
         // notes shouldn't have to be required. 
@@ -92,6 +92,7 @@ class MeasureGroup {
         }
 
         this.notation = notation;
+        this.properties = properties;
 
     }
 
@@ -101,21 +102,25 @@ class MeasureGroup {
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             this.audioCtx.tempo = this.notation.tempo;
             this.audioCtx.delay = delay;
-            for (let i = 0; i < this.notes.length; i++) {
-                let note = this.notes[i];
-                let note_element = $(`#_${m}-${i}`);
-                note_element.css('background-color', 'red');
-                if(Object.keys(this.notation).includes('key_signature')) {
-                    note.transpose(this.notation.key_signature);
+            
+            let loop = 1;
+            while(loop < 2) {
+                for (let i = 0; i < this.notes.length; i++) {
+                    let note = this.notes[i];
+                    let note_element = $(`#_${m}-${i}`);
+                    note_element.css('background-color', 'red');
+                    if(Object.keys(this.notation).includes('key_signature')) {
+                        note.transpose(this.notation.key_signature);
+                    }
+
+                    await note.play(this.audioCtx)
+                    .then(()=> {
+                        note_element.css('background-color', 'white');
+                    })
                 }
-
-                await note.play(this.audioCtx)
-                .then(()=> {
-                    note_element.css('background-color', 'white');
-                })
+                loop += (this.properties.loop) ? 0 : 1;
+                // console.log(this.properties.loop, loop, 1234)
             }
-
-            res();
         });
     
     }
@@ -123,13 +128,15 @@ class MeasureGroup {
     stop(oscillator_id) {
         this.notes.forEach(note => {
             note.stop(oscillator_id);
+            let note_element = $(`#_${oscillator_id}`);
+            note_element.css('background-color', 'white');
         });
         this.audioCtx.close();
     }
 }
 
 class Note {
-    constructor(type, note, octave, force_natural) {
+    constructor(type, note, octave, force_natural, sound_type) {
         if(!type) throw new Error('No type provided');
         if(note == undefined) throw new Error('No pitch provided');
         if(!octave) throw new Error('No octave provided');
@@ -139,10 +146,16 @@ class Note {
         this.key_note = note;
         this.octave = octave;
         this.force_natural = force_natural;
+        this.sound_type = sound_type;
     }
 
     async play(audioCtx) {
-        return music_utils.play_oscillator(audioCtx, notes[this.note] * this.octave,  parseInt(audioCtx.delay + ((60000/audioCtx.tempo) * note_types[this.type] * 4)));
+        // console.log(audioCtx.delay, ((60000/audioCtx.tempo) * note_types[this.type] * 4));
+        return music_utils.play_oscillator(audioCtx, 
+            notes[this.note] * this.octave,  
+            audioCtx.delay + ((60000/audioCtx.tempo) * note_types[this.type] * 4), 
+            this.sound_type
+        );
 
     }
 

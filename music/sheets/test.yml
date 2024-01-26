@@ -1,0 +1,17 @@
+properties:
+  time_signature: 4/4
+  tempo: 90
+  loop: true
+measure_groups:
+  chorus1:
+    sound_type: percussion
+    key_signature: 
+    notes:
+      4.d.4 4.f.4 4.a.8 4.d.8
+      4.d.2 4.f.2 4.a.4 4.d.4
+  chorus2:
+    sound_type: piano
+    key_signature: 
+    notes:
+      4.d.8 4.a.8 4.f.4 4.d.4
+      4.d.2 4.a.2 4.f.4 4.d.4
