@@ -1,4 +1,4 @@
-import Objects from 'https://0b.lol/scenes/libs/Objects.js';
+import Objects from 'https://0b.lol/scenes/scenes/libs/Objects.js';
 
 (function () {
 

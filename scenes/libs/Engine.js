@@ -1,4 +1,7 @@
-import * as THREE from '/zlibs/three.module.js';
+import * as THREE from '/scenes/libs/three.module.js';
+import { MTLLoader } from '/scenes/libs/MTLLoader.js';
+import { OBJLoader } from '/scenes/libs/OBJLoader.js';
+import { GLTFLoader } from '/scenes/libs/GLTFLoader.js';
 
 THREE.PerspectiveCamera.prototype.setRotateX = function (deg) {
     // if ( typeof( deg ) == 'number' && parseInt( deg ) == deg ){
@@ -25,12 +28,13 @@ THREE.PerspectiveCamera.prototype.getRotateZ = function () {
     return Math.round(this.rotation.z * (180 / Math.PI));
 };
 
-
 // Immediately Invoked Function Expression (IIFE) to encapsulate the library
 (function () {
     var Engine = {};
     Engine.THREE = THREE;
-
+    Engine.MTLLoader = MTLLoader;
+    Engine.OBJLoader = OBJLoader;
+    Engine.GLTFLoader = GLTFLoader;
     var keyboard = {};
     Engine.keyboard = keyboard;
     Engine.scrollDelta = 0;
@@ -134,17 +138,23 @@ THREE.PerspectiveCamera.prototype.getRotateZ = function () {
         Engine.initialized = true;
     }
 
+    Engine.animator = null;
+
     function animate() {
 
-        Engine.preAnimation();
-        requestAnimationFrame(animate);
+        if(!Engine.started) {
+            return;
+        }
 
-        
+        Engine.preAnimation();
+        Engine.animator = requestAnimationFrame(animate);
+
+        console.log(123)
         Engine.preEvents();
         actionEvents();
         Engine.postEvents();
  
-        if (!paused) {
+        if (!Engine.paused) {
 
             Engine.preMovement();
 
@@ -167,7 +177,12 @@ THREE.PerspectiveCamera.prototype.getRotateZ = function () {
         preRender: []
     };
 
-    Engine.preAnimation = function () {};
+    Engine.preAnimation = function () {
+        Engine.customFunctions.preAnimation.forEach(f => {
+            let args = f.args || [];
+            f.func(...args);
+        });
+    };
     Engine.preEvents = function () {};
     Engine.postEvents = function () {
         Engine.customFunctions.postEvents.forEach(f => {
@@ -189,7 +204,15 @@ THREE.PerspectiveCamera.prototype.getRotateZ = function () {
 
 
     Engine.run = function () {
-        animate();
+        
+        Engine.started = true;
+        Engine.paused = false;
+        Engine.animator = requestAnimationFrame(animate);
+    };
+
+    Engine.stop = function () {
+        cancelAnimationFrame(Engine.animator);
+        Engine.started = false;
     };
 
 

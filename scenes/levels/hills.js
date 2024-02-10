@@ -1,4 +1,4 @@
-import Objects from '/libs/Objects.js';
+import Objects from '/scenes/libs/Objects.js';
 
 (function () {
 

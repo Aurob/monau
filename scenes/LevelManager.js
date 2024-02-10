@@ -5,7 +5,7 @@ const loadModule = async () => {
     
     let modulePath = '';
     if (paramValue) {
-        modulePath = `./levels/${paramValue}.js`;
+        modulePath = `./levels/${paramValue}.js?${Date.now()}`;
         
         try {
             const module = await import(modulePath);
