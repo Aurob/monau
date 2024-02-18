@@ -1,13 +1,21 @@
 (function () {
 
     var Level = {};
-    
+
     // Attach your library to the global scope
     if (typeof window !== 'undefined') {
         window.Level = Level;
     }
     else if (typeof global !== 'undefined') {
         global.Level = Level;
+    }
+
+    if (!Engine) {
+        console.error('Engine not loaded');
+        return;
+    }
+    else {
+        var THREE = Engine.THREE;
     }
 
     Level.load = function () {

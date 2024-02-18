@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAU</title>
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -27,14 +29,17 @@
         }
     </style>
 </head>
+
 <body>
     <div id="main">
         <h1>3D Projects using <a href="https://threejs.org/">THREE.js</a></h1>
     </div>
     <script>
         const projects = [
-            "ads","default","model","nado","spin","tree"
-        ];
+            "ads", "default", "model", "nado", "spin", "tree", "serene", "snowman", "template", "home", "gui"
+        ].sort();
+
+        fetch()
         const main = document.getElementById("main");
         projects.forEach(project => {
             const a = document.createElement("a");
@@ -44,4 +49,5 @@
         });
     </script>
 </body>
+
 </html>

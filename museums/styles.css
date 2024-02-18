@@ -1,8 +1,0 @@
-.state {
-    text-transform: capitalize;
-}
-
-.state-list {
-    display: grid;
-    width: max-content;
-}
