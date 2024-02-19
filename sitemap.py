@@ -11,7 +11,7 @@ if len(args) == 0:
 domain = args[0]
 isweb = args[1] if len(args) > 1 else None
 
-BASE_URL = f''  # Base URL of your website
+BASE_URL = f'/'  # Base URL of your website
 ROOT = f'{domain}/'   # Path to your web root directory
 if isweb:
     ROOT = '/var/www/'+ROOT
