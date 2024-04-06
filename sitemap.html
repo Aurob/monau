@@ -55,6 +55,10 @@
         .expanded > .expander {
             transform: rotate(90deg); /* Minus sign when expanded */
         }
+
+        span > p {
+            display: inline;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +99,7 @@
                         b1 = true;
                     }
                     
-                    span.innerHTML = `${displayBranch}`;
+                    span.innerHTML = `<p class="text">${displayBranch}</p>`;
                     const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
 
                     if (childrenUL) {
@@ -149,9 +153,12 @@
                 let spans = document.querySelectorAll('span');
                 spans.forEach(span => {
                     if(!span.nextSibling) {
-                        span.innerHTML = `${span.innerHTML} <a href="${span.innerHTML}" target="_blank">→ Visit</a>`;
+                        let li0 = span.closest('.li-0');
+                        let basePath = li0 ? li0.querySelector('span').querySelector('.text').textContent : '';
+                        span.innerHTML = `${span.innerHTML} <a href="${basePath}/${span.textContent}" target="_blank">→ Visit</a>`;
                     }
                 });
+
 
             })
             .catch(error => console.error('Error fetching sitemap:', error));
