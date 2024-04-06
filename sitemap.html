@@ -95,11 +95,7 @@
                         b1 = true;
                     }
                     
-                    if (depth !== 1) {
-                        span.innerHTML = `${displayBranch} <a href="${_fullPath}" target="_blank">→ Visit</a>`;
-                    } else {
-                        span.innerHTML = `${displayBranch}`;
-                    }
+                    span.innerHTML = `${displayBranch}`;
                     const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
 
                     if (childrenUL) {
@@ -145,7 +141,17 @@
                 paths = paths.map(path => path.replace(window.location.origin, ''));
                 paths.sort();
                 const tree = createTree(paths);
+
+
                 sitemap.appendChild(tree);
+
+                // add "Visit links" to <span> in <.li> if not root
+                let spans = document.querySelectorAll('span');
+                spans.forEach(span => {
+                    if(!span.nextSibling) {
+                        span.innerHTML = `${span.innerHTML} <a href="${span.innerHTML}" target="_blank">→ Visit</a>`;
+                    }
+                });
 
             })
             .catch(error => console.error('Error fetching sitemap:', error));
