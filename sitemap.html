@@ -95,7 +95,11 @@
                         b1 = true;
                     }
                     
-                    span.innerHTML = `${displayBranch} <a href="${_fullPath}" target="_blank">→ Visit</a>`;
+                    if (depth !== 1) {
+                        span.innerHTML = `${displayBranch} <a href="${_fullPath}" target="_blank">→ Visit</a>`;
+                    } else {
+                        span.innerHTML = `${displayBranch}`;
+                    }
                     const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
 
                     if (childrenUL) {
