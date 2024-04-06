@@ -111,8 +111,8 @@
                             li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
                         };
                         if (depth === 1) {
-                            li.classList.add('collapsed'); // Start in collapsed state if level is 1
-                            childrenUL.style.display = 'none';
+                            li.classList.add('expanded'); // Start in collapsed state if level is 1
+                            childrenUL.style.display = 'block';
                         }
                     } else {
                         li.appendChild(span);
