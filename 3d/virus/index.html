@@ -1,0 +1,247 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta property="og:description" content="Simple virus propogation simulation written in pure JS">
+        <meta property="og:image" content="https://www.cdc.gov/coronavirus/2019-ncov/images/2019-coronavirus.png">
+        <title>Virus?</title>
+        <style>
+            html, body{
+                background-color: #b8968b;
+            }
+            #content{
+                width: 50%;
+                height: 90%;
+                margin: auto;
+                border: solid;
+                border-radius: 10px;
+                background-color: #87a99e;
+            }
+            #info{ 
+                position: absolute;  
+                color: ivory;
+                padding: 1em;
+                float:left;
+            }
+        </style>
+    </head>
+
+    <body>
+        <img hidden id="anime" src="https://discordemoji.com/assets/emoji/ChinoThink.png">
+        <img hidden id="regular" src="https://hotemoji.com/images/dl/n/1-man-emoji-by-google.png">
+        <div>
+            <!--<input id="speed" type="number" min=1 value=1 onchange="new_speed(this.value)">-->
+        </div>
+        <div id="content">
+            <span id="info">
+                <span id="nodes"></span><br>
+                <span id="infected"></span><br>
+                <span id="time"></span>
+            </span>
+            <canvas id="c"></canvas>
+            Nodes Collide <input id="collide" type="checkbox">
+            Weeb Sim <input id="weebs" type="checkbox">
+            <br>
+            <a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">Inspired by the Washington Post</a>
+        </div>
+    </body>
+    
+    <script>
+    
+        var node_count = document.getElementById('nodes');
+        var infected_count = document.getElementById('infected');
+        var sim_time = document.getElementById('time');
+        var sim_speed = document.getElementById('speed');
+        var collide = document.getElementById('collide');
+        var weebs = document.getElementById('weebs');
+        var anime = document.getElementById("anime");
+        var regular = document.getElementById("regular");
+
+        var content = document.getElementById('content');
+        var canvas = document.getElementById('c');
+        var ctx = canvas.getContext('2d');
+
+        //set the canvas size to match the content element
+        var width, height;
+        resize_canvas();
+
+        //initialize variables and start simulation
+        var sim_active, nodes, count, size, speed, variation, recovery;
+        var colors = { 0 : "green", 1 : "red", 2 : "blue" }; //0:uninfected, 1:infected, 2:recovered
+        var ims = { 0 : regular, 1: anime};
+        var main_render;
+        start_sim();
+
+        function start_sim(){
+            
+            var start = new Date().getTime(); //used for timing each sim
+            sim_active = true; //set to false to restart the sim
+            
+            nodes = {}; //holds each node's position, direction, and infection state
+            size = 10;
+            count = parseInt((width/size + height/size)/2);
+            speed = 3;
+            variation = .3; //used to generate random directions
+            recover = 5; //time in seconds to recover
+            patient_0 = Math.floor(Math.random() * count); //pick random node to infect
+            //player = Math.floor(Math.random() * count); //pick random node to be player
+            node_count.innerHTML = count + " total nodes"; 
+
+            var rX, rY, rV;
+            for(var newnode = 0; newnode < count; newnode++){
+                
+                //make each node start a random position
+                rX = Math.floor(Math.random() * width-size);
+                rY = Math.floor(Math.random() * height-size);
+                if(rX < 0) rX = 0;
+                if(rY < 0) rY = 0;
+
+                //velocity will be positive or negative speed + a random decimal between 0 and the variation
+                //i.e. if speed is 2 and variation is .2, a possible value could be 2.19823 or 1.9922
+                velocityX = [-speed , speed][Math.floor(Math.random() * 2)] + (Math.random() * variation);
+                velocityY = [-speed , speed][Math.floor(Math.random() * 2)] + (Math.random() * variation);
+                //set the nodes values
+                nodes[newnode] = { x:rX, y:rY, xV: velocityX, yV: velocityY, infected: 0 };   
+
+                //infect Patient Zero
+                if(newnode == patient_0) infect(nodes[newnode]);
+                //if(newnode == player) nodes[newnode].infected = 2;
+                
+            }
+            // for(node in nodes){
+            //     for(nnode in nodes){
+            //         console.log( node.x >= nnode.x+size && node.x+size <= nnode.x && node.y >= nnode.y+size && node.y+size <= nnode.y );
+            //     }
+            // }
+            function render(){
+                ctx.clearRect(0, 0, width, height); //clear the canvas
+                sim_time.innerHTML = (new Date().getTime() - start) / 1000; //update timer
+                
+                for(node in nodes){
+                    this_node = nodes[node]; 
+
+                    //check each node to see if it collides with another node
+                    check_collisions(this_node);
+                    //draw the node
+                    draw(this_node);
+
+                    //update node values for the next render
+                    update_node(this_node);                    
+                }
+
+                //when all nodes are infected, sim_active becomes false and the sim restarts
+                if(sim_active){
+                    main_render = requestAnimationFrame(render); 
+                }else{
+                    window.cancelAnimationFrame(main_render);
+                    start_sim();
+                }
+            }
+            //begin the animation
+            var main_render = requestAnimationFrame(render);
+        }
+
+        function draw(node){
+            if(weebs.checked) ctx.drawImage(ims[node.infected], node.x, node.y, size, size);
+            else{
+                ctx.fillStyle = colors[node.infected];
+                ctx.fillRect(node.x,node.y, size, size);
+            }
+            
+        }
+
+        function infect(node){
+            node.infected = 1; //update the nodes infected value
+
+            nodes_values = Object.values(nodes); //get each nodes values as an array
+            infected_values = nodes_values.map(a=>a.infected); //get only the infected values 
+            infected_sum = infected_values.reduce((a,b)=>a+b,0); //sum the infected values
+            infected_count.innerHTML = infected_sum+" total infected"; //update infected count
+
+            //if the infected count is equal to the node count, restart sim
+            if(infected_sum == count) sim_active = false;
+
+            //TODO
+            //infection recovery?
+        }
+
+        function check_collisions(node1, update){
+            for(n in nodes){
+                if(n != node1){ //exclude the currrent node
+                    node2 = nodes[n];
+
+                    //checks if two nodes collide from any direction
+                    if((node1.x <= node2.x + size && node2.x <= node1.x + size)
+                        && (node1.y <= node2.y + size && node2.y <= node1.y)){
+                        
+                        //if collisions are enabled, swap two colliding node's velocities
+                        if(collide.checked){
+                            oldxV = node1.xV;
+                            oldyV = node1.yV;
+
+                            node1.xV = node2.xV;
+                            node1.yV = node2.yV;
+                            node2.xV = oldxV;
+                            node2.yV = oldyV;
+                        }
+                        
+                        if(node1.infected==1) infect(node2);
+                        else if(node2.infected==1) infect(node1);
+                    }
+                }
+            }
+        }
+        
+        function update_node(this_node){
+
+            //inverts a node's velocity when it hits an edge
+            if(this_node.x <= 0) this_node.xV = speed + (Math.random() * .1);
+            if(this_node.x+size >= width) this_node.xV = -speed + (Math.random() * variation);
+            if(this_node.y <= 0) this_node.yV = speed + (Math.random() * .1);
+            if(this_node.y+size >= height) this_node.yV = -speed + (Math.random() * variation); 
+
+            //update the node's position with it's velocity values
+            this_node.x += this_node.xV;
+            this_node.y += this_node.yV;
+
+            //TODO 
+            //update this function to detect specific edge collision
+        }
+
+        //used for updating the canvas width and height values
+        function resize_canvas(){
+            console.log('123');
+            canvas.setAttribute('width', content.clientWidth);
+            canvas.setAttribute('height', content.clientHeight);
+            width = canvas.clientWidth;
+            height = canvas.clientHeight;
+        }
+        
+        // window.addEventListener('keypress', (e)=>{
+        //     switch(e.key){
+        //         case "w":
+        //             nodes[player].y -=10;
+        //             break;
+        //         case "s":
+        //             nodes[player].y +=10;
+        //             break;
+        //         case "a":
+        //             nodes[player].x -=10;
+        //             break;
+        //         case "d":
+        //             nodes[player].x +=10;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // });
+        // canvas.addEventListener('mousemove', (e)=>{
+        //     //nodes[player].x = e.X;
+        //     //nodes[player].y = e.Y;
+        // })
+        window.addEventListener('resize',()=>{
+            resize_canvas();
+        });
+
+    </script>
+</html>

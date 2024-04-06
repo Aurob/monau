@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js Heightmap Example</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+<script src="https://unpkg.com/three@0.130.1/build/three.min.js"></script>
+<script>
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    
+    // Plane geometry
+    const geometry = new THREE.PlaneGeometry(1182, 1393, 1181/4, 1392/4);
+    const material = new THREE.MeshBasicMaterial({color: 0x888888, wireframe: true});
+    const plane = new THREE.Mesh(geometry, material);
+    scene.add(plane);
+    
+    // Camera position
+    camera.position.z = 150;
+
+    // Load heightmap
+    new THREE.TextureLoader().load('cbossier_hm.png', function(texture) {
+        const img = texture.image;
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);
+        const data = context.getImageData(0, 0, img.width, img.height).data;
+        
+        // Access vertices through geometry.attributes.position.array
+        const vertices = geometry.attributes.position.array;
+        // for (let i = 0, l = vertices.length / 3; i < l; i++) {
+        //     // Adjust multiplier to control height
+        //     const height = data[i * 4] * 0.07;
+        //     vertices[i * 3 + 2] = height; // Update Z component of each vertex
+        // }
+        for (let i = 0, l = vertices.length / 3; i < l; i++) {
+            // Calculate the exact pixel index
+            const x = (i % (1024 + 1)); // Adjust 1024 based on your heightmap/geometry resolution
+            const y = Math.floor(i / (1024 + 1));
+            const pixelIndex = (y * img.width + x) * 4; // 4 components per pixel (RGBA)
+
+            // Use the correct pixel for each vertex
+            const height = data[pixelIndex] * 0.07; // Adjust scaling factor as needed
+            vertices[i * 3 + 2] = height;
+        }
+
+        geometry.attributes.position.needsUpdate = true; // Required to update the geometry
+        geometry.computeVertexNormals(); // Ensure lighting appears correctly based on heightmap
+    });
+
+    document.addEventListener('keydown', function(event) {
+        switch (event.key) {
+            case 'ArrowUp':
+                plane.rotation.x += 0.1;
+                break;
+            case 'ArrowDown':
+                plane.rotation.x -= 0.1;
+                break;
+            case 'ArrowLeft':
+                plane.rotation.y += 0.1;
+                break;
+            case 'ArrowRight':
+                plane.rotation.y -= 0.1;
+                break;
+        }
+    });
+
+    // Render loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+
+    animate();
+</script>
+</body>
+</html>

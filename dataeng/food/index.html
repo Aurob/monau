@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie Chart with Hover Info & Side Table</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-left: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .tooltip {
+            opacity: 0;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+<div id="title"></div>
+<div id="container" style="display: flex;"></div>
+<div id="tooltip" class="tooltip"></div>
+<script type="module">
+    // Setup SVG canvas
+    const svg = d3.select("#container").append("svg")
+        .attr("width", 600)
+        .attr("height", 600)
+        .append("g")
+        .attr("transform", "translate(300, 300)");
+
+    const tooltip = d3.select("#tooltip");
+
+    let query = 'pepita';
+    let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('query')) {
+        query = urlParams.get('query');
+    }
+
+    fetch(`https://rau.dev/api/food/search?query=${query}`)
+        .then(response => response.json())
+        .then(apiData => {
+            const nutrients = apiData.result.foods[0].foodNutrients;
+            const data = nutrients.map(nutrient => ({
+                name: nutrient.nutrientName,
+                value: nutrient.value
+            }));
+
+            const pie = d3.pie()
+                .value(d => d.value)(data);
+
+            const arc = d3.arc()
+                .innerRadius(0)
+                .outerRadius(200);
+
+            const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            document.getElementById('title').innerHTML = `Nutrients in ${apiData.result.foods[0].description}`;
+            const table = d3.select("#container").append("table");
+            const thead = table.append("thead");
+            const tbody = table.append("tbody");
+
+            // Header
+            thead.append("tr").selectAll("th")
+                .data(["Nutrient", "Value"])
+                .enter().append("th")
+                .text(d => d);
+
+            // Table rows
+            const rows = tbody.selectAll("tr")
+                .data(data)
+                .enter().append("tr");
+
+            rows.append("td").text(d => d.name);
+            rows.append("td").text(d => d.value.toFixed(2));
+
+            // Pie chart segments
+            svg.selectAll("path")
+                .data(pie)
+                .enter().append("path")
+                .attr("d", arc)
+                .attr("fill", (d, i) => color(i))
+                .on("mouseover", (event, d) => {
+                    tooltip.transition().style("opacity", 1);
+                    tooltip.html(`${d.data.name}: ${d.data.value.toFixed(2)}`)
+                        .style("left", `${event.pageX + 10}px`)
+                        .style("top", `${event.pageY + 10}px`);
+                })
+                .on("mouseout", () => {
+                    tooltip.transition().style("opacity", 0);
+                });
+        });
+</script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+    <div id="food"></div>
+    <div id="container"></div>
+    <script type="module">
+        // Setup SVG canvas dynamically
+        const svg = d3.select("#container").append("svg")
+            .attr("width", window.innerWidth * 0.8)
+            .attr("height", window.innerHeight * 0.8)
+            .append("g")
+            .attr("transform", `translate(${window.innerWidth * 0.4}, ${window.innerHeight * 0.4})`); // Center the pie chart
+    
+        fetch('https://rau.dev/api/food/search?query=pepita')
+            .then(response => response.json())
+            .then(apiData => {
+                const nutrients = apiData.result.foods[0].foodNutrients;
+                const data = nutrients.map(nutrient => ({
+                    name: nutrient.nutrientName,
+                    value: nutrient.value
+                }));
+    
+                // Pie chart setup
+                const pie = d3.pie()
+                    .value(d => d.value)(data);
+    
+                const arc = d3.arc()
+                    .innerRadius(0)
+                    .outerRadius(Math.min(window.innerWidth, window.innerHeight) / 4); // Dynamic radius size
+    
+                const color = d3.scaleOrdinal(d3.schemeCategory10); // Color scheme
+    
+                // Build the pie chart
+                svg.selectAll("path")
+                    .data(pie)
+                    .enter().append("path")
+                    .attr("d", arc)
+                    .attr("fill", (d, i) => color(i));
+    
+                // Labels
+                svg.selectAll("text")
+                    .data(pie)
+                    .enter().append("text")
+                    .text(d => `${d.data.name}: ${d.data.value.toFixed(2)}`)
+                    .attr("transform", d => `translate(${arc.centroid(d)})`)
+                    .style("text-anchor", "middle")
+                    .style("font-size", "12px")
+                    .attr("fill", "white");
+            });
+    </script>
+</body>
+</html> -->

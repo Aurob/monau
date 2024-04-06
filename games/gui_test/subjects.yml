@@ -1,0 +1,25 @@
+---
+header:
+  title: SDL 2 WebAssembly Template
+  nav_logo: https://4.bp.blogspot.com/-h_NjR_vNLQI/XDG00QSYerI/AAAAAAABQ8A/5jqs8mFNZEU-rcSmEuDykk2LstHaDpwLQCLcBGAs/s400/game_kyoutai_man.png
+  media_path: ""
+  width: 100%
+data:
+
+  _global:
+    script_global_example: console.log("Global Example Script loaded"); 
+  window:
+    subject: Window
+    id: window
+    title: SDL Window
+    sub_title: Template for drawing to HTML Canvas using SDL 2 and Emscripten
+    default: true
+    width: 100%
+    content: <canvas id="canvas"></canvas>
+    script_load_modules: >
+      var Module = {
+        onRuntimeInitialized: function(){
+        },
+        canvas: (function() { return document.getElementById('canvas'); })()
+      };
+    script: main.js
