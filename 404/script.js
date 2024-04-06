@@ -18,11 +18,17 @@ pnf_translations = {
     "Ukrainian": "Сторінку не знайдено",
     "Chinese": "页面未找到"
 } 
+var pause = false;
 function create_language_switcher() {
     let l_step = 0;
     setInterval(function(){
+
+        if(pause) return;
         let translation = Object.keys(pnf_translations)[l_step];
         document.getElementById('pnf').innerHTML = pnf_translations[translation];
+        // set element title
+        let title_text = `Page Not Found (${translation})`;
+        document.getElementById('pnf').setAttribute('title', title_text);
 
         l_step++;
         if (l_step >= Object.keys(pnf_translations).length) l_step = 0;
@@ -37,3 +43,13 @@ pathsHeaderDiv.style.cssText = 'scrollbar-width: thin; display: flex; overflow-x
 document.body.insertBefore(pathsHeaderDiv, document.body.firstChild);
 
 create_language_switcher();
+
+
+window.addEventListener('load', function() {   
+    document.getElementById('pnf').onmouseover = function() {
+        pause = true;
+    }
+    document.getElementById('pnf').onmouseout = function() {
+        pause = false;
+    }
+});
