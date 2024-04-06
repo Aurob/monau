@@ -84,8 +84,6 @@
                     let displayBranch = branch;
                     const li = document.createElement('li');
                     li.className = `li-${depth}`; // Add class to indicate level of nestedness
-                    li.classList.add('collapsed');
-
                     const span = document.createElement('span');
                     let fullPath = path + "/" + branch;
                     let _fullPath = fullPath.startsWith('/') ? fullPath.substring(1) : fullPath;
@@ -112,10 +110,16 @@
                             li.classList.toggle('expanded', childrenUL.style.display === 'block');
                             li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
                         };
-                        // if (depth === 1) {
-                        //     li.classList.add('collapsed'); // Start in collapsed state if level is 1
-                        //     childrenUL.style.display = 'none';
-                        // }
+
+                        
+                        childrenUL.style.display = childrenUL.style.display === 'none' ? 'block' : 'none';
+                        li.classList.toggle('expanded', childrenUL.style.display === 'block');
+                        li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
+                        
+                        if (depth === 1) {
+                            li.classList.add('collapsed'); // Start in collapsed state if level is 1
+                            childrenUL.style.display = 'none';
+                        }
                     } else {
                         li.appendChild(span);
                     }
