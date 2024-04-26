@@ -21,11 +21,6 @@
 
 <body>
     <canvas id="canvas"></canvas>
-    <div id="control-panel"
-        style="position: absolute; top: 10px; left: 10px; background: rgba(255, 255, 255, 0.5); padding: 10px; border-radius: 8px;">
-        <label for="symmetry">Symmetry:</label>
-        <input type="number" id="symmetry" name="symmetry" value=0>
-    </div>
     <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
@@ -33,77 +28,151 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let size = 150;
         let width = canvas.width;
         let height = canvas.height;
-        let rows = 1, cols = 1;
-        let cellPolys = [];
-        let centerOffsetStart = false;
-        let coffX = width / 2 - size / 2;
-        let coffY = height / 2 - size / 2;
-        
 
-        let tileinfo = {
-            'symmetry': document.getElementById('symmetry').value,
+        let gcs = 8;
+
+        let tcell = {
+            points: [
+                [0, 0], [1, 0], [2, 0],
+                [0, 1], [1, 1], [2, 1],
+                [0, 2], [1, 2], [2, 2]
+            ],
+            colors: [
+                'yellow', 'yellow', 'yellow',
+                'yellow', 'blue', 'yellow',
+                'yello', 'blue', 'blue'
+            ]
+        };
+
+        // Test - 4x4
+        let pcell = {
+            points: [
+                [0, 0], [1, 0], [2, 0], [3, 0],
+                [0, 1], [1, 1], [2, 1], [3, 1],
+                [0, 2], [1, 2], [2, 2], [3, 2],
+                [0, 3], [1, 3], [2, 3], [3, 3]
+            ],
+            colors: [
+                'blue', 'yellow', 'red', 'green',
+                'yellow', 'yellow', 'blue', 'red',
+                'green', 'red', 'yellow', 'blue',
+                'yellow', 'green', 'yellow', 'yellow'
+            ]
+        };
+
+        // Test - 5x5
+        let p2cell = {
+            points: [
+                [0, 0], [1, 0], [2, 0], [3, 0], [4, 0],
+                [0, 1], [1, 1], [2, 1], [3, 1], [4, 1],
+                [0, 2], [1, 2], [2, 2], [3, 2], [4, 2],
+                [0, 3], [1, 3], [2, 3], [3, 3], [4, 3],
+                [0, 4], [1, 4], [2, 4], [3, 4], [4, 4]
+            ],
+            colors: [
+                'blue', 'yellow', 'red', 'green', 'blue',
+                'yellow', 'yellow', 'blue', 'red', 'green',
+                'green', 'red', 'yellow', 'blue', 'yellow',
+                'yellow', 'green', 'yellow', 'yellow', 'red',
+                'blue', 'yellow', 'red', 'green', 'blue'
+            ]
+        };
+
+        // Test - 6x6
+        let p3cell = {
+            points: [
+                [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0],
+                [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1],
+                [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [5, 2],
+                [0, 3], [1, 3], [2, 3], [3, 3], [4, 3], [5, 3],
+                [0, 4], [1, 4], [2, 4], [3, 4], [4, 4], [5, 4],
+                [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]
+            ],
+            colors: [
+                'blue', 'yellow', 'red', 'green', 'blue', 'yellow',
+                'yellow', 'yellow', 'blue', 'red', 'green', 'blue',
+                'green', 'red', 'yellow', 'blue', 'yellow', 'red',
+                'yellow', 'green', 'yellow', 'yellow', 'red', 'green',
+                'blue', 'yellow', 'red', 'green', 'blue', 'yellow',
+                'yellow', 'yellow', 'blue', 'red', 'green', 'blue'
+            ]
+        };
+
+        let cell = p3cell;
+        let randrgb = true;
+
+        if (randrgb) {
+            cell.colors = cell.colors.map(() => getRandomColor());
         }
-        let startx = 0;
-        let starty = 0;
 
-        function makeCell() {
+        let cellsize = Math.sqrt(cell.points.length);
 
-            rows = Math.floor(width / size);
-            cols = Math.floor(height / size);
+        const p2_trans = [
+            { translate: [0, 0], rotate: 0 },
+            { translate: [cellsize * gcs * 2, 0], rotate: Math.PI / 2 }
+        ];
 
-            cellPolys = [{
-                poly: [
-                    { x: 0, y: 0 },
-                    { x: size / 2, y: 0 },
-                    { x: size / 2, y: size / 2 },
-                    { x: 0, y: 0 }
-                ],
-                color: getRandomColor()
-            },
-            {
-                poly: [
-                    { x: size / 2, y: 0 },
-                    { x: size / 2, y: size / 2 },
-                    { x: size, y: size },
-                    { x: size, y: 0 },
-                    { x: size / 2, y: 0 }
-                ],
-                color: getRandomColor()
-            },
-            {
-                poly: [
-                    { x: 0, y: 0 },
-                    { x: size, y: size },
-                    { x: size / 2, y: size },
-                    { x: 0, y: size / 2 },
-                ],
-                color: getRandomColor()
-            },
-            {
-                poly: [
-                    { x: 0, y: size / 2 },
-                    { x: size / 2, y: size },
-                    { x: 0, y: size },
-                    { x: 0, y: size / 2 },
-                ],
-                color: getRandomColor()
-            },
-            {
-                poly: [{ x: size / 2.85, y: size / 8 }],
-                color: getRandomColor(),
-                type: 'dot',
-                size: size / 42
-            },
-            {
-                poly: [{ x: size / 2.85, y: size / 8 }],
-                color: 'black',
-                type: 'text',
-                text: 'R'
-            }];
-        }
+        const p4_trans = [
+            { translate: [0, 0], rotate: 0 },
+            { translate: [cellsize * gcs * 2, 0], rotate: Math.PI / 2 },
+            { translate: [0, cellsize * gcs * 2], rotate: -Math.PI / 2 },
+            { translate: [cellsize * gcs * 2, cellsize * gcs * 2], rotate: Math.PI }
+        ];
+
+        const pg_trans = [
+            { translate: [0, 0], scale: [1, 1] }, // Original position
+            { translate: [cellsize * gcs, cellsize * gcs], scale: [1, -1] }
+        ];
+
+        const pgg_trans = [
+            { translate: [0, 0], scale: [1, 1] }, // Original position
+            { translate: [cellsize * gcs, cellsize * gcs], scale: [1, -1] },
+            { translate: [cellsize * gcs, cellsize * gcs], scale: [-1, 1] },
+            { translate: [cellsize * gcs * 2, cellsize * gcs * 2], scale: [-1, -1] }
+        ];
+
+        const pm_trans = [
+            { translate: [0, 0], scale: [1, 1] },
+            { translate: [0, 0], scale: [-1, 1] }
+        ]
+
+        const cm_trans = [
+            { translate: [0, 0], scale: [1, 1] },
+            { translate: [cellsize * gcs * 2, 0], scale: [-1, 1] },
+            { translate: [cellsize * gcs, cellsize * gcs], scale: [-1, 1] },
+            { translate: [cellsize * gcs, cellsize * gcs], scale: [1, 1] }
+        ];
+
+        const pmg_trans = [
+            { translate: [0, 0], scale: [1, 1] },
+            { translate: [cellsize * gcs * 2, 0], scale: [-1, 1] },
+            { translate: [cellsize * gcs, cellsize * gcs * 2], scale: [-1, -1] },
+            { translate: [cellsize * gcs, cellsize * gcs * 2], scale: [1, -1] }
+        ];
+
+        const pmm_trans = [
+            { translate: [0, 0], scale: [1, 1] },
+            { translate: [cellsize * gcs * 2, 0], scale: [-1, 1] },
+            { translate: [0, cellsize * gcs * 2], scale: [1, -1] },
+            { translate: [cellsize * gcs * 2, cellsize * gcs * 2], scale: [-1, -1] }
+        ];
+
+        const notation_data = {
+            'p1': { iterX: cellsize * gcs, iterY: cellsize * gcs, transformations: [] },
+            'p2': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs, transformations: p2_trans },
+            'p4': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs * 2, transformations: p4_trans },
+            'pg': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs, transformations: pg_trans },
+            'pgg': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs * 2, transformations: pgg_trans },
+            'pm': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs, transformations: pm_trans },
+            'cm': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs * 2, transformations: cm_trans },
+            'pmg': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs * 2, transformations: pmg_trans },
+            'pmm': { iterX: cellsize * gcs * 2, iterY: cellsize * gcs * 2, transformations: pmm_trans }
+        };
+
+
+        let defaultNotation = 'p4';
 
 
         function getRandomColor() {
@@ -115,191 +184,82 @@
             return color;
         }
 
-        function drawCell(offsetX = 0, offsetY = 0) {
-
-            ctx.strokeStyle = 'black';
-            ctx.lineWidth = size / 100;
-            ctx.lineJoin = 'round';
-
-            cellPolys.forEach(cellpoly => {
-                ctx.fillStyle = cellpoly.color;
-
-                let poly = cellpoly.poly;
-                if (cellpoly.type && cellpoly.type == 'text') {
-                    const fontSize = size / 5;
-                    ctx.font = `${fontSize}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(cellpoly.text, poly[0].x + offsetX, poly[0].y + offsetY);
-                }
-
-                if (cellpoly.type && cellpoly.type == 'dot') {
+        function grid() {
+            for (let x = 0; x < width; x += gcs) {
+                for (let y = 0; y < height; y += gcs) {
                     ctx.beginPath();
-                    ctx.arc(poly[0].x + offsetX, poly[0].y + offsetY, cellpoly.size, 0, Math.PI * 2);
-                    ctx.fill();
-                    return;
-                }
-
-                ctx.beginPath();
-                ctx.moveTo(poly[0].x + offsetX, poly[0].y + offsetY);
-                for (let i = 1; i < poly.length; i++) {
-                    ctx.lineTo(poly[i].x + offsetX, poly[i].y + offsetY);
-                }
-                ctx.closePath();
-                // ctx.stroke();
-                ctx.fill();
-            });
-        }
-
-
-        function drawTile(x = 0, y = 0, symmetry = 1) {
-            let angle = 360 / 2;
-            let xoff = 0, yoff = 0;
-            if(symmetry == 0) {
-                drawCell(x, y);
-            }
-            else if(symmetry == 1) {
-                for(let i = 0; i < 2; i++) {
-                    if(i == 0) {
-                        xoff = 0;
-                        yoff = 0;
-                    }
-                    if(i == 1) {
-                        xoff = 2;
-                        yoff = 1;
-                    }
-                    ctx.save();
-                    ctx.translate(x + size * xoff, y + size * yoff);
-                    ctx.rotate(i * angle * Math.PI / 180);
-                    ctx.translate(-x, -y);
-                    drawCell(x, y);
-                    ctx.restore();
-                }
-            }
-            else if(symmetry == 2) {
-                for(let i = 0; i < 2; i++) {
-                    if(i == 0) {
-                        xoff = 0;
-                        yoff = 0;
-                    }
-                    if(i == 1) {
-                        xoff = 1;
-                        yoff = 2;
-                    }
-                    ctx.save();
-                    ctx.translate(x + size * xoff, y + size * yoff);
-                    ctx.rotate(i * angle * Math.PI / 180);
-                    ctx.translate(-x, -y);
-                    drawCell(x, y);
-                    ctx.restore();
-                }
-            }
-            else if(symmetry == 3) {
-                for(let i = 0; i < 4; i++) {
-                    if(i == 1) {
-                        xoff = 2;
-                        yoff = 1;
-                    }
-                    if(i == 2) {
-                        xoff = 1;
-                        yoff = 1;
-                    }
-                    if(i == 3) {
-                        xoff = 1;
-                        yoff = 2;
-                    }
-                    ctx.save();
-                    ctx.translate(x + size * xoff, y + size * yoff);
-                    ctx.rotate(i * angle * Math.PI / 180);
-                    ctx.translate(-x, -y);
-                    drawCell(x, y);
-                    ctx.restore();
-                }
-            }
-            else if(symmetry == 4) {
-                angle=90;
-                for(let i = 0; i < 4; i++) {
-
-                    ctx.save();
-                    ctx.translate(x + size * xoff, y + size * yoff);
-                    ctx.rotate(i * angle * Math.PI / 180);
-                    ctx.translate(-x, -y);
-                    drawCell(x, y);
-                    ctx.restore();
-                }
-            }
-            else if(symmetry == 5) {
-                angle = 90; // Start with -90 degrees as per instructions
-                for(let i = 0; i < 4; i++) {
-
-                    ctx.save();
-                    //p1
-                    ctx.translate(x, y - size);
-                    ctx.rotate(angle * Math.PI / 180);
-
-
-                    ctx.translate(x + size * xoff, y + size * yoff)
-                    ctx.rotate(i * angle * Math.PI / 180);
-
-                    ctx.translate(-x, -y);
-                    drawCell(x, y);
-                    ctx.restore();
-
-                    angle += 90; // Rotate 90 degrees from the current angle
+                    ctx.rect(x, y, gcs, gcs);
+                    ctx.stroke();
+                    ctx.closePath();
                 }
             }
         }
 
-        function wallpaper(x = 0, y = 0, tileinfo = {}) {
-            // if tilesides is 1, tile the plain
-            // if tilesides is 2, the tile will be 2width 1height
-            // if tilesides is 4, the tile will be 2width 2height
-            // no other values are allowed
-
-            let tilesXCount = 1;
-            let tilesYCount = 1;
-            if (tileinfo.symmetry == 1) tilesXCount = 2;
-            if (tileinfo.symmetry == 2) {
-                tilesYCount = 2;
+        function primaryCell(x = 0, y = 0) {
+            for (let p = 0; p < cell.points.length; p++) {
+                let point = cell.points[p];
+                ctx.fillStyle = cell.colors[p];
+                ctx.fillRect(x + (point[0] * gcs), y + (point[1] * gcs), gcs, gcs);
             }
-            if (tileinfo.symmetry == 3 || tileinfo.symmetry == 4 || tileinfo.symmetry == 5) {
-                tilesXCount = 2;
-                tilesYCount = 2;
-            }
-            console.log(tileinfo.symmetry, tilesXCount, tilesYCount);
-            for (let i = 0; i < rows; i += tilesXCount) {
-                for (let j = 0; j < cols; j += tilesYCount) {
-                    drawTile(i * size, j * size, tileinfo.symmetry);
+        }
 
+        function wallpaper(notation = 'p1') {
+
+            const { iterX, iterY, transformations } = notation_data[notation];
+
+            for (let x = 0; x < width; x += iterX) {
+                for (let y = 0; y < height; y += iterY) {
+                    if (transformations.length === 0) {
+                        primaryCell(x, y);
+                    } else {
+                        transformations.forEach(({ translate = [0, 0], rotate = 0, scale = [1, 1] }) => {
+                            ctx.save();
+                            ctx.translate(x + translate[0], y + translate[1]);
+                            if (rotate) ctx.rotate(rotate);
+                            ctx.scale(scale[0], scale[1]);
+                            primaryCell();
+                            ctx.restore();
+                        });
+                    }
+
+                    // return;
                 }
             }
         }
 
         function draw() {
             ctx.clearRect(0, 0, width, height);
-
-            wallpaper(startx, starty, tileinfo);
+            wallpaper(defaultNotation);
+            // grid();
         }
 
-        makeCell();
-        requestAnimationFrame(draw);
 
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             width = canvas.width;
             height = canvas.height;
-            makeCell();
             draw();
         });
 
-        document.getElementById('symmetry').addEventListener('input', (e) => {
-            // regex match p\d
-            let _val = parseInt(e.target.value);
-            tileinfo.symmetry = _val;
-            makeCell();
-            draw();
+        window.addEventListener('keydown', (e) => {
+            let _dn = defaultNotation;
+            if (e.key == '1') defaultNotation = 'p1';
+            if (e.key == '2') defaultNotation = 'p2';
+            if (e.key == '3') defaultNotation = 'p4';
+            if (e.key == '4') defaultNotation = 'pg';
+            if (e.key == '5') defaultNotation = 'pgg';
+            if (e.key == '6') defaultNotation = 'pm';
+            if (e.key == '7') defaultNotation = 'cm';
+            if (e.key == '8') defaultNotation = 'pmg';
+            if (e.key == '9') defaultNotation = 'pmm';
+
+
+            if (_dn != defaultNotation) draw();
         });
+
+        draw();
+
 
     </script>
 </body>

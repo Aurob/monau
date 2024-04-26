@@ -47,5 +47,5 @@
         color: 'black', 
         type: 'text', 
         text: 'R'
-    },
+    }
 ]

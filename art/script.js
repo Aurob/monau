@@ -94,7 +94,7 @@ function run(paths) {
         .attr("font-size", "2vw")
         .html((d, i) => `<a href="${links[titles[i]].link}">${titles[i]}</a>`)
         // shift text half of the font size to the left
-        .attr("dx", function (d) { return -this.getBBox().width / 2; })
+        // .attr("dx", function (d) { return -this.getBBox().width / 2; })
         .on("click", function (d, i) {
             console.log(d);
         });

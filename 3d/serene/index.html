@@ -10,6 +10,7 @@
     </style>
 </head>
 <body>
+    <script src="https://data.rau.dev/code/noise.js"></script>
     <script type="importmap">
         {
           "imports": {
@@ -67,6 +68,41 @@
             terrain.receiveShadow = true; // enable shadows on the terrain
             
             scene.add(terrain);
+
+        }
+
+        function addTrail(x, y, z, N = 40) {
+            
+            x = 0, y = 0, z = 0;
+            
+            const trailGeometry = new THREE.BufferGeometry();
+            const trailMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
+            const gridSize = Math.sqrt(N); // Assuming N is a perfect square for NxN grid
+            const trailPositions = new Float32Array(gridSize * gridSize * 3);
+            let index = 0;
+
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    // Calculate the x, z position on the grid
+                    let gridX = (i / gridSize) * terrainWidth - (terrainWidth / 2);
+                    // Alternate between going 'up' and 'down' the column based on the column index
+                    let gridZ = ((gridSize - 1 - j) / gridSize) * terrainHeight - (terrainHeight / 2);
+
+                    gridX += noise.simplex2(gridX / 100, gridZ / 100) * 10;
+                    gridZ += noise.simplex2(gridX / 100, gridZ / 100) * 10;
+
+                    // Get the height of the terrain at this grid position
+                    const terrainHeightAtPoint = getTerrainHeightAt(gridX, gridZ);
+                    // Set the position in the trailPositions array
+                    trailPositions[index++] = gridX;
+                    trailPositions[index++] = terrainHeightAtPoint + 1; // Raise the trail slightly above the terrain
+                    trailPositions[index++] = gridZ;
+                }
+            }
+            trailGeometry.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+            const trail = new THREE.Line(trailGeometry, trailMaterial);
+            scene.add(trail);
+
 
         }
 
@@ -292,8 +328,10 @@
         controls.dragToLook = true;
         
         // Set initial camera position
-        camera.position.set(0, 1.5, terrainWidth / 4);
-        
+        camera.position.set(-17.75, 174.019807305128, 55.10127305485293);
+        // Set initial camera rotation
+        camera.rotation.set(-1.2514323618014715, -0.056286117179655176, -0.17915824727756657, "XYZ");
+
         document.body.appendChild(renderer.domElement);
         
         addTerrain();
@@ -306,6 +344,8 @@
         createStars();
         // addSkybox();
 
+        addTrail(camera.position.x, camera.position.y, camera.position.z);
+
         // Add skybox skyblue color
         // scene.background = new THREE.Color(0x87ceeb);
 
@@ -317,6 +357,11 @@
 
             if(keys['l']) light.target = camera;
             if(keys['k']) light.target = terrain;
+
+            // print camera position if 'p' is pressed
+            if(keys['p']) console.log(camera.position);
+            // print camera rotation if 'o' is pressed
+            if(keys['o']) console.log(camera.rotation);
 
             // Make the light move like the sun, over 1.2 minutes, every .6 minutes = 12 hours
             const timeOfDay = Date.now() / 1000 / 60 / 1.2 * Math.PI * 2;
