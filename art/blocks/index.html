@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle</title>
+    <script src="https://data.rau.dev/code/noise.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="gcs" value="8" type="range" min="1" max="20" step="1" />
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let width = canvas.width;
+        let height = canvas.height;
+
+        let gcs_in = document.getElementById('gcs');
+        let gcs = width / gcs_in.value;
+
+        function grid() {
+            ctx.strokeStyle = 'white';
+            for (let x = 0; x < width; x += gcs) {
+                for (let y = 0; y < height; y += gcs) {
+                    ctx.save();
+                    ctx.translate(x + gcs / 2, y + gcs / 2);
+                    ctx.scale(0.65, 0.65);
+                    const rotation = noise.perlin2(x * 0.01, y * 0.01) * Math.PI * 2;
+                    ctx.rotate(rotation);
+                    ctx.strokeRect(-gcs / 2 / 0.65, -gcs / 2 / 0.65, gcs, gcs);
+                    ctx.restore();
+                }
+            }
+        }
+
+        let lastTime = 0;
+        const fpsInterval = 1000 / 10;
+        let _cell = null;
+        function draw(timestamp = 0) {
+
+
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, width, height);
+            grid();
+            requestAnimationFrame(draw);
+        }
+
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            width = canvas.width;
+            height = canvas.height;
+            draw();
+        });
+
+        gcs_in.addEventListener('input', () => {
+            gcs = width / gcs_in.value;
+            draw();
+        });
+
+        draw();
+
+
+    </script>
+</body>
+
+</html>
