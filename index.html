@@ -1,129 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuRob GitHub</title>
+    <title>Sitemap Hierarchy Visualization</title>
     <style>
         body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            background: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
             color: #333;
+            margin: 20px;
+        }
+        .tree ul {
+            list-style-type: none;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
-
-        .dark-mode {
-            background: #333 !important;
-            color: #fff !important;
+        .tree li {
+            margin: 5px 0;
+            position: relative;
         }
+        .tree li ul {
 
-        .dark-mode-accent {
-            background: #474747 !important; /* Slightly lighter than #333 for contrast */
-            color: #fff !important;
+            margin-left: 20px; /* Indent nested lists */
         }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
+        .tree li:hover {
+            background-color: #e1e1e1;
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            width: 100px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .feature,
-        .repo {
-            background: #ffffff;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-        }
-
-        .feature {
-            border-left: 4px solid #4CAF50;
-        }
-
-        a {
-            color: #4CAF50;
+        .tree a {
             text-decoration: none;
-            transition: color 0.3s ease;
+            color: #555;
         }
-
-        a:hover {
-            color: #388E3C;
-            text-decoration: underline;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #aaa;
-        }
-
-        img {
-            border-radius: 50%;
-        }
-
-        .feature img {
-            width: 15%;
-            border: 1px inset #4CAF50;
-        }
-        #darkModeToggle {
-            font-size: 24px;
-            background: none;
-            border: none;
+        .expander {
             cursor: pointer;
-            margin-bottom: 20px;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            transition: transform 200ms linear;
+        }
+        .tree li > span {
+            margin-left: 5px;
+            font-weight: bold;
+            width: 100%;
+            display: inline-block;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 50ms ease-in-out;
+        }
+        .tree li > span:hover {
+            background-color: #e9ecef;
+        }
+        .collapsed > .expander {
+            transform: rotate(0deg); /* Plus sign */
+        }
+        .expanded > .expander {
+            transform: rotate(90deg); /* Minus sign when expanded */
+        }
+
+        span > p {
+            display: inline;
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <header>
-            <img src="https://avatars.githubusercontent.com/u/18496213?v=4" alt="My Logo" class="logo">
-            <button id="darkModeToggle" style="font-size: 24px;">🌓</button>
-            <h1>Aurob -- Github Pages</h1>
-        </header>
-        <div class="feature">
-            <h2>/mono - Featured Project</h2>
-            <p>Mono repo I use for a wide variety of web development projects.</p>
-            <a href="/mono/sitemap.html" target="_blank">Explore →</a>
-        </div>
-        <div class="feature">
-            <img src="https://rau.wiki/img/dg3th.png" alt="Personal Wiki Logo" style="float:left; margin-right: 10px;">
-            <h2>Personal Wiki | Digital Garden</h2>
-            <p>A curated collection of thoughts, resources, and explorations. Dive into my digital garden.</p>
-            <a href="https://rau.wiki" target="_blank">Explore →</a>
-        </div>
-        <div class="footer">
-            <p>Find me on <a href="https://github.com/aurob/mono/sitemap.html">GitHub</a>.</p>
-        </div>
-    </div>
+    <div id="sitemap-container" class="tree"></div>
+
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            document.querySelectorAll('.feature').forEach((feature) => {
-                feature.classList.toggle('dark-mode-accent');
+        function createTree(paths) {
+            const root = {};
+
+            // Create the nested tree structure
+            paths.forEach(path => {
+                const parts = path.split('/').filter(Boolean);
+                let current = root;
+                for (const part of parts) {
+                    current[part] = current[part] || {};
+                    current = current[part];
+                }
             });
-        });
+
+            // Function to recursively generate HTML
+            function generateHTML(tree, depth = 0, path = '') {
+                if (Object.keys(tree).length === 0) return null;
+                const ul = document.createElement('ul');
+                ul.className = 'ul-' + depth; // Add class to indicate level of nestedness
+                let b1 = false;
+                for (const branch in tree) {
+                    let displayBranch = branch;
+                    const li = document.createElement('li');
+                    li.className = `li-${depth}`; // Add class to indicate level of nestedness
+                    const span = document.createElement('span');
+                    let fullPath = path + "/" + branch;
+                    let _fullPath = fullPath.startsWith('/') ? fullPath.substring(1) : fullPath;
+
+                    if(branch === window.location.hostname && !b1){
+                        displayBranch = window.location.hostname;
+                        _fullPath = '/';
+                        fullPath = '';
+                        b1 = true;
+                    }
+                    
+                    span.innerHTML = `<p class="text">${displayBranch}</p>`;
+                    const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
+
+                    if (childrenUL) {
+                        const icon = document.createElement('div');
+                        icon.textContent = '+';
+                        icon.className = 'expander';
+                        span.prepend(icon);
+                        li.appendChild(span);
+                        li.appendChild(childrenUL);
+                        span.onclick = function () {
+                            childrenUL.style.display = childrenUL.style.display === 'none' ? 'block' : 'none';
+                            li.classList.toggle('expanded', childrenUL.style.display === 'block');
+                            li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
+                        };
+
+                        
+                        childrenUL.style.display = childrenUL.style.display === 'none' ? 'block' : 'none';
+                        li.classList.toggle('expanded', childrenUL.style.display === 'block');
+                        li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
+                        
+                        if (depth === 1) {
+                            li.classList.add('collapsed'); // Start in collapsed state if level is 1
+                            childrenUL.style.display = 'none';
+                        }
+                    } else {
+                        li.appendChild(span);
+                    }
+                    ul.appendChild(li);
+                }
+                return ul;
+            }
+
+            return generateHTML(root);
+        }
+
+        // Fetch the sitemap and visualize it
+        fetch('sitemap.txt')
+            .then(response => response.text())
+            .then(data => {
+                const sitemap = document.getElementById('sitemap-container');
+                let paths = data.split('\n').filter(line => line.trim().length > 0);
+                // const paths = data.split('\n').filter(line => line.trim().length > 0);
+                paths = paths.map(path => path.replace(window.location.origin, ''));
+                paths.sort();
+                const tree = createTree(paths);
 
 
+                sitemap.appendChild(tree);
+
+                // add "Visit links" to <span> in <.li> if not root
+                let spans = document.querySelectorAll('span');
+                spans.forEach(span => {
+                    if(!span.nextSibling) {
+                        let li0 = span.closest('.li-0');
+                        let basePath = li0 ? li0.querySelector('span').querySelector('.text').textContent : '';
+                        span.innerHTML = `${span.innerHTML} <a href="${basePath}/${span.textContent}" target="_blank">→ Visit</a>`;
+                    }
+                });
+
+
+            })
+            .catch(error => console.error('Error fetching sitemap:', error));
     </script>
 </body>
-
 </html>
