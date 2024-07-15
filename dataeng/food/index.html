@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pie Chart with Hover Info & Side Table</title>
+    <title>Food</title>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <style>
         table {
@@ -43,7 +43,7 @@
 
     const tooltip = d3.select("#tooltip");
 
-    let query = 'pepita';
+    let query = 'Broccoli';
     let urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('query')) {
         query = urlParams.get('query');
@@ -105,61 +105,3 @@
 </script>
 </body>
 </html>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-</head>
-<body>
-    <div id="food"></div>
-    <div id="container"></div>
-    <script type="module">
-        // Setup SVG canvas dynamically
-        const svg = d3.select("#container").append("svg")
-            .attr("width", window.innerWidth * 0.8)
-            .attr("height", window.innerHeight * 0.8)
-            .append("g")
-            .attr("transform", `translate(${window.innerWidth * 0.4}, ${window.innerHeight * 0.4})`); // Center the pie chart
-    
-        fetch('https://rau.dev/api/food/search?query=pepita')
-            .then(response => response.json())
-            .then(apiData => {
-                const nutrients = apiData.result.foods[0].foodNutrients;
-                const data = nutrients.map(nutrient => ({
-                    name: nutrient.nutrientName,
-                    value: nutrient.value
-                }));
-    
-                // Pie chart setup
-                const pie = d3.pie()
-                    .value(d => d.value)(data);
-    
-                const arc = d3.arc()
-                    .innerRadius(0)
-                    .outerRadius(Math.min(window.innerWidth, window.innerHeight) / 4); // Dynamic radius size
-    
-                const color = d3.scaleOrdinal(d3.schemeCategory10); // Color scheme
-    
-                // Build the pie chart
-                svg.selectAll("path")
-                    .data(pie)
-                    .enter().append("path")
-                    .attr("d", arc)
-                    .attr("fill", (d, i) => color(i));
-    
-                // Labels
-                svg.selectAll("text")
-                    .data(pie)
-                    .enter().append("text")
-                    .text(d => `${d.data.name}: ${d.data.value.toFixed(2)}`)
-                    .attr("transform", d => `translate(${arc.centroid(d)})`)
-                    .style("text-anchor", "middle")
-                    .style("font-size", "12px")
-                    .attr("fill", "white");
-            });
-    </script>
-</body>
-</html> -->
