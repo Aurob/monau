@@ -1,0 +1,12 @@
+properties:
+  time_signature: 4/4
+  tempo: 60
+  loop: true
+measure_groups:
+  test:    
+    key_signature: 
+      - f#
+      - a#
+    notes:
+      4.a.2
+      

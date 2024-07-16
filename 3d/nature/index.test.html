@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trail</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var trail_path = [];
+        var trail_poly = [];
+
+        function init() {
+            // N points to form a path
+            const N = 10;
+            const path = [];
+            let x = canvas.width/2;
+            let y = canvas.height;
+            for (let i = 0; i < N; i++) {
+                path.push({
+                    x: x,
+                    y: y
+                });
+
+                x += (canvas.width / N) * (Math.random() > 0.5 ? 1 : -1);
+                y -= (canvas.height / N);
+            }
+
+            // generate control points for each point in the path
+            for (let i = 0; i < path.length; i++) {
+                const p = path[i];
+                const cp1x = (p.x + path[(i + 1) % path.length].x) / 2;
+                const cp1y = (p.y + path[(i + 1) % path.length].y) / 2;
+                p.cp1 = { x: cp1x, y: cp1y };
+            }
+
+            trail_path = path;
+
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.moveTo(trail_path[0].x, trail_path[0].y);
+            for (let i = 1; i < trail_path.length - 2; i++) {
+                ctx.quadraticCurveTo(trail_path[i].x, trail_path[i].y, trail_path[i].cp1.x, trail_path[i].cp1.y);
+            }
+            // For the last two points
+            if (trail_path.length > 2) {
+                var secondLast = trail_path[trail_path.length - 2];
+                var last = trail_path[trail_path.length - 1];
+                ctx.quadraticCurveTo(secondLast.x, secondLast.y, last.x, last.y);
+            }
+            ctx.stroke();
+
+
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+    </script>
+</body>
+</html>

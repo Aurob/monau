@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAU</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://data.rau.dev/code/noise.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@latest/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@latest/examples/jsm/"
+          }
+        }
+      </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { FlyControls } from 'three/addons/controls/FlyControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        let scene, camera, renderer, controls;
+        let terrain, light, stars;
+        let keys = {};
+        let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, rotateLeft = false, rotateRight = false;
+        const terrainWidth = 25;
+        const terrainHeight = 250;
+
+        function createSlider(initialValue, min, max, onInputCallback) {
+            const slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = min;
+            slider.max = max;
+            slider.value = initialValue;
+            slider.addEventListener('input', onInputCallback);
+            document.body.appendChild(slider);
+            return slider;
+        }
+
+        let sliders = {
+            vertice1: { value: 38, min: 1, max: 100 },
+            vertice2: { value: 43, min: 1, max: 100 },
+            noise1: { value: 45, min: 1, max: 100 },
+            noise2: { value: 50, min: 1, max: 100 },
+            noise3: { value: 14, min: 1, max: 100 }
+        };
+
+        const inputs = {};
+
+        Object.keys(sliders).forEach(key => {
+            inputs[key] = createSlider(sliders[key].value, sliders[key].min, sliders[key].max, (slider) => {
+                sliders[key].value = inputs[key].value;
+                addTerrain();
+            });
+        });
+
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        function addTerrain() {
+
+            // Clear the terrain
+            if (terrain) {
+                scene.remove(terrain);
+            }
+
+            // Add a terrain to represent a grassy plain with smooth rolling hills
+            const terrainGeometry = new THREE.PlaneGeometry(terrainWidth, terrainHeight, 32, 32);
+            // Create rolling hills by adjusting the vertices of the plane
+            // Three.js r125+ uses .attributes.position.array instead of .vertices
+            const vertices = terrainGeometry.attributes.position.array;
+            for (let i = 0, l = vertices.length; i < l; i += 3) {
+                // Access every vertex's z component and modify it
+                // Simplex noise or Perlin noise can be used for smooth terrain generation
+                // For example purposes, we'll use Math.sin and Math.cos to create the hills
+                vertices[i + 2] = Math.sin(vertices[i] / sliders.vertice1.value) * Math.cos(vertices[i + 1] / sliders.vertice2.value);
+                vertices[i + 2] -= noise.perlin2(vertices[i] / sliders.noise1.value, vertices[i + 1] / sliders.noise2.value) * sliders.noise3.value;
+
+            }
+            terrainGeometry.attributes.position.needsUpdate = true; // Required after changing the vertices
+            terrainGeometry.computeVertexNormals(); // Ensure the lighting is recalculated
+            const terrainMaterial = new THREE.MeshPhongMaterial({ color: 0x007700, side: THREE.DoubleSide, vertexColors: true });
+            // terrainMaterial.shadowSide = THREE.DoubleSide;
+            // Create color attribute for vertices to simulate snow patches
+            const terrainColors = [];
+            for (let i = 0, l = vertices.length / 3; i < l; i++) {
+                // Use height of the vertex to determine if it should be snow or grass
+                const height = vertices[i * 3 + 2];
+
+                // const color = new THREE.Color(0x007700); // default to green
+
+                // use noise to make a varying dark green and brownish-black terrain
+                const color = new THREE.Color(0x007700 + Math.floor(noise.perlin2(vertices[i * 3] / 10, vertices[i * 3 + 1] / 10) * 100) * 0x000001);
+                // use height to adjust the color slightly for faux shadows
+                color.offsetHSL(0, 0, height / 100);
+
+
+
+                terrainColors.push(color.r, color.g, color.b);
+            }
+            const colorAttribute = new THREE.BufferAttribute(new Float32Array(terrainColors), 3);
+            terrainGeometry.setAttribute('color', colorAttribute);
+            terrain = new THREE.Mesh(terrainGeometry, terrainMaterial);
+            terrain.rotation.x = -Math.PI / 2; // rotate the terrain to lie flat
+            terrain.receiveShadow = true; // enable shadows on the terrain
+
+            scene.add(terrain);
+            billboardTest1();
+            addObjects();
+
+
+        }
+
+        function getHeight(x, z) {
+            // Get the height of the terrain at the given x, z coordinate
+            const vertices = terrain.geometry.attributes.position.array;
+            const widthSegments = terrain.geometry.parameters.widthSegments;
+            const heightSegments = terrain.geometry.parameters.heightSegments;
+            const column = Math.floor((x + terrainWidth / 2) / terrainWidth * widthSegments);
+            const row = Math.floor((z + terrainHeight / 2) / terrainHeight * heightSegments);
+            const index = (row * (widthSegments + 1) + column) * 3 + 2;
+            if (index >= 0 && index < vertices.length) {
+                return vertices[index];
+            } else {
+                return 0; // Return a default height if the index is out of bounds
+            }
+        }
+
+        var objects = [];
+        function addObjects() {
+
+            // Clear the objects
+            if (objects.length > 0) {
+                objects.forEach(object => {
+                    scene.remove(object);
+                });
+            }
+
+            // add test cube to test lighting
+            const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+            const cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+            const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.position.set(-10, getHeight(-10, 10) + 2, 10);
+            cube.castShadow = true;
+            cube.receiveShadow = true;
+            scene.add(cube);
+
+            objects.push(cube);
+
+
+        }
+        var billboards = [];
+
+        function addTrees() {
+
+            // Create a billboard with 'bark.jpg' and place it in a random pattern across the terrain
+            let bheight = Math.random() * 50 + 50;
+            const billboardGeometry = new THREE.PlaneGeometry(2, bheight);
+            const texture = new THREE.TextureLoader().load('bark.jpg');
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(2, 100);
+
+            const billboardMaterial = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+
+            for (let i = 0; i < 10; i++) {
+                const billboard = new THREE.Mesh(billboardGeometry, billboardMaterial);
+                const randomX = Math.random() * terrainWidth - terrainWidth / 2;
+                const randomZ = Math.random() * terrainHeight - terrainHeight / 2;
+                const randomY = getHeight(randomX, randomZ) + billboard.geometry.parameters.height / 2;
+                billboard.position.set(randomX, randomY, randomZ);
+
+                billboard.receiveShadow = true;
+                billboard.castShadow = true;
+
+                scene.add(billboard);
+
+                billboards.push(billboard);
+            }
+        }
+
+        function addShrubs() {
+
+            
+
+            const billboardGeometry = new THREE.PlaneGeometry(1, 1);
+            const textureSizes = {
+                'grass1.png': 5,
+                'shrub1.png': 7,
+                'shrub2.png': 4,
+                'flower1.png': 1,
+                'flower2.png': 1,
+                'flower3.png': 1,
+                'flower4.png': 1,
+                'flower5.png': 1,
+                'flower6.png': 1
+            };
+
+            const textures = Object.keys(textureSizes);
+            const textureLoader = new THREE.TextureLoader();
+            const loadedTextures = textures.map(tex => {
+                const texture = textureLoader.load(tex);
+                texture.filename = tex;
+                return texture;
+            });
+
+            for (let i = 0; i < 250; i++) {
+                const texture = loadedTextures[Math.floor(Math.random() * loadedTextures.length)];
+                const billboardMaterial = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.8
+                });
+
+                const billboard = new THREE.Mesh(billboardGeometry, billboardMaterial);
+                const randomX = Math.random() * terrainWidth - terrainWidth / 2;
+                const randomZ = Math.random() * terrainHeight - terrainHeight / 2;
+                const randomY = getHeight(randomX, randomZ) + 1.5; // Adjusted for half height of billboard
+                billboard.position.set(randomX, randomY, randomZ);
+
+                billboard.receiveShadow = true;
+                billboard.castShadow = true;
+
+                // scale based on texture type
+                billboard.scale.set(textureSizes[texture.filename], textureSizes[texture.filename], 1);
+
+
+                scene.add(billboard);
+                billboards.push(billboard);
+            }
+        }
+
+
+        function billboardTest1() {
+
+            // billboards.forEach(billboard => {
+            //     scene.remove(billboard);
+            // });
+
+            if (billboards.length > 0) {
+                for (let i = 0; i < billboards.length; i++) {
+                    let billboard = billboards[i];
+                    billboard.position.y = getHeight(billboard.position.x, billboard.position.z) + billboard.geometry.parameters.height / 2;
+                }
+                return;
+            }
+
+            // Add trees
+            addTrees();
+
+            // Add shrubs
+            addShrubs();
+        }
+
+
+        function addLighting() {
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0x404040, 2);
+            scene.add(ambientLight);
+
+            // Add directional light
+            const light = new THREE.DirectionalLight(0xffffff, 10);
+            light.position.set(0, 10, 0);
+            light.castShadow = true; // default false
+            light.shadow.camera.left = -80; // Increase shadow camera width (left boundary)
+            light.shadow.camera.right = 80; // Increase shadow camera width (right boundary)
+            light.shadow.camera.top = 80; // Increase shadow camera height (top boundary)
+            light.shadow.camera.bottom = -80; // Increase shadow camera height (bottom boundary)
+            scene.add(light);
+
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+
+        // Set up keyboard controls
+        window.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+        });
+        window.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+
+        // ------------------ 
+        // Set up the scene
+        scene = new THREE.Scene();
+
+        // Create WebGL Renderer
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Optional: for softer shadows
+        renderer.shadowMap.renderReverseSided = false;
+
+        // renderer.setClearColor(0x87ceeb); // skyblue color
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        // Camera setup
+        const aspectRatio = window.innerWidth / window.innerHeight;
+        camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 10000);
+
+        // Fly controls
+        controls = new FlyControls(camera, renderer.domElement);
+        controls.movementSpeed = .25;
+        controls.domElement = renderer.domElement;
+        controls.rollSpeed = Math.PI / 240;
+        controls.autoForward = false;
+        controls.dragToLook = true;
+
+        // Set initial camera position
+        camera.position.set(3.5119255328905505, 7.328198418716667, -17.23218944663377);
+        // Set initial camera rotation
+        camera.rotation.set(-2.809951903131878, 0.17981290625944893, 3.043662528944674, "XYZ");
+        document.body.appendChild(renderer.domElement);
+
+        addTerrain();
+        addLighting();
+
+
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            // Clear the scene
+            renderer.renderLists.dispose();
+
+            controls.update(1);
+
+            if (keys['l']) light.target = camera;
+            if (keys['k']) light.target = terrain;
+
+            // print camera position if 'p' is pressed
+            if (keys['p']) console.log(camera.position);
+            // print camera rotation if 'o' is pressed
+            if (keys['o']) console.log(camera.rotation);
+            // make the billboards face the camera only on the x-axis
+            for (let i = 0; i < billboards.length; i++) {
+                let billboard = billboards[i];
+                let targetPosition = new THREE.Vector3(camera.position.x, billboard.position.y, camera.position.z);
+                billboard.lookAt(targetPosition);
+            }
+            renderer.render(scene, camera);
+        };
+
+        // Start the animation loop
+        animate();
+    </script>
+</body>
+
+</html>

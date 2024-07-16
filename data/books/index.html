@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js" 
+        integrity="sha512-d6sc8kbZEtA2LwB9m/ck0FhvyUwVfdmvTeyJRprmj7Wg9wRFtHDIpr6qk4g/y3Ix3O9I6KHIv6SGu9f7RaP1Gw==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #books {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .book {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            width: 180px;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .book img {
+            width: 120px;
+            height: 180px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .book h3 {
+            font-size: 1.1em;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .book h5 {
+            font-size: 0.9em;
+            color: #555;
+            margin: 5px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="books"></div>
+    <canvas></canvas>
+</body>
+<script>
+    let book_data_url = 'books.json';
+    let bookDataCache = null;
+
+    function fuzzyLoadBooks() {
+        if (bookDataCache) {
+            displayBooks(bookDataCache);
+        } else {
+            fetch(book_data_url)
+                .then(response => response.json())
+                .then(data => {
+                    bookDataCache = data;
+                    displayBooks(data);
+                });
+        }
+    }
+
+    function displayBooks(data) {
+        for (let letter in data) {
+            let authors = data[letter];
+            for (let author in authors) {
+                for (let book of authors[author]) {
+                    let bookElement = document.createElement('div');
+                    bookElement.className = 'book';
+                    bookElement.innerHTML = `
+                        <img data-src="${book.cover_url}" alt="${book.title}" class="lazy">
+                        <h3>${book.title}</h3>
+                        <h5>${author}</h5>
+                        <div class="tooltip">
+                            <a href="${book.book_url}" target="_blank">${book.book_url}</a>
+                        </div>
+                    `;
+                    bookElement.addEventListener('click', () => {
+                        window.open(book.book_url, '_blank');
+                    });
+                    bookElement.addEventListener('mouseover', () => {
+                        bookElement.querySelector('.tooltip').style.display = 'block';
+                    });
+                    bookElement.addEventListener('mouseout', () => {
+                        bookElement.querySelector('.tooltip').style.display = 'none';
+                    });
+                    document.getElementById('books').appendChild(bookElement);
+                }
+            }
+        }
+        lazyLoadImages();
+    }
+
+    function lazyLoadImages() {
+        const lazyImages = document.querySelectorAll('.lazy');
+        const config = {
+            rootMargin: '0px 0px 50px 0px',
+            threshold: 0.01
+        };
+
+        let observer = new IntersectionObserver((entries, self) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    preloadImage(entry.target);
+                    self.unobserve(entry.target);
+                }
+            });
+        }, config);
+
+        lazyImages.forEach(image => {
+            observer.observe(image);
+        });
+    }
+
+    function preloadImage(img) {
+        const src = img.getAttribute('data-src');
+        if (!src) {
+            return;
+        }
+        img.src = src;
+    }
+
+    fuzzyLoadBooks();
+</script>
+</html>
