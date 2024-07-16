@@ -1,6 +1,6 @@
 
 var url = 'https://api.openweathermap.org/data/2.5/weather?q=';
-var key = '&appid=270f40e9a3a6e4b1865a9c30d28618c5';
+var key = '&appid=';
 
 var p = document.getElementById("info");
 
