@@ -4,27 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js" 
-        integrity="sha512-d6sc8kbZEtA2LwB9m/ck0FhvyUwVfdmvTeyJRprmj7Wg9wRFtHDIpr6qk4g/y3Ix3O9I6KHIv6SGu9f7RaP1Gw==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        #top-menu {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        #search-box {
+            padding: 5px;
+            border-radius: 3px;
+            border: none;
+        }
+        #main-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        #letter-nav {
+            width: 30px;
+            background-color: #ddd;
+            overflow-y: auto;
+            padding: 10px 5px;
+        }
+        #letter-nav a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        #books-container {
+            flex: 1;
+            overflow-y: auto;
             padding: 20px;
+        }
+        .letter-section {
+            margin-bottom: 30px;
+        }
+        .letter-header {
+            font-size: 24px;
+            border-bottom: 2px solid #333;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
         }
         #books {
             display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .letter-section {
+            display: flex;
+            flex-direction: column;
+        }
+        .book-row {
+            display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: center;
+            padding-bottom: 15px;
         }
         .book {
             border: 1px solid #ddd;
             padding: 15px;
-            margin: 10px;
             width: 180px;
             height: 280px;
             display: flex;
@@ -37,20 +87,7 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .book:hover {
-            transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .tooltip {
-            display: none;
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 10;
         }
         .book img {
             width: 120px;
@@ -69,11 +106,24 @@
             margin: 5px 0;
             text-align: center;
         }
+        .book a {
+            font-size: 0.8em;
+            color: #0066cc;
+            text-decoration: none;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
-    <div id="books"></div>
-    <canvas></canvas>
+    <div id="top-menu">
+        <input type="text" id="search-box" placeholder="Search books...">
+    </div>
+    <div id="main-content">
+        <nav id="letter-nav"></nav>
+        <div id="books-container">
+            <div id="books"></div>
+        </div>
+    </div>
 </body>
 <script>
     let book_data_url = 'books.json';
@@ -93,7 +143,22 @@
     }
 
     function displayBooks(data) {
+        const booksContainer = document.getElementById('books');
+        const letterNav = document.getElementById('letter-nav');
+        
         for (let letter in data) {
+            let letterSection = document.createElement('div');
+            letterSection.className = 'letter-section';
+            letterSection.id = `section-${letter}`;
+            
+            let letterHeader = document.createElement('h2');
+            letterHeader.className = 'letter-header';
+            letterHeader.textContent = letter;
+            letterSection.appendChild(letterHeader);
+
+            let bookRow = document.createElement('div');
+            bookRow.className = 'book-row';
+
             let authors = data[letter];
             for (let author in authors) {
                 for (let book of authors[author]) {
@@ -103,22 +168,19 @@
                         <img data-src="${book.cover_url}" alt="${book.title}" class="lazy">
                         <h3>${book.title}</h3>
                         <h5>${author}</h5>
-                        <div class="tooltip">
-                            <a href="${book.book_url}" target="_blank">${book.book_url}</a>
-                        </div>
+                        <a href="${book.book_url}" target="_blank">view book at OpenLibrary.com</a>
                     `;
-                    bookElement.addEventListener('click', () => {
-                        window.open(book.book_url, '_blank');
-                    });
-                    bookElement.addEventListener('mouseover', () => {
-                        bookElement.querySelector('.tooltip').style.display = 'block';
-                    });
-                    bookElement.addEventListener('mouseout', () => {
-                        bookElement.querySelector('.tooltip').style.display = 'none';
-                    });
-                    document.getElementById('books').appendChild(bookElement);
+                    bookRow.appendChild(bookElement);
                 }
             }
+            letterSection.appendChild(bookRow);
+            booksContainer.appendChild(letterSection);
+
+            // Add letter to nav
+            let letterLink = document.createElement('a');
+            letterLink.href = `#section-${letter}`;
+            letterLink.textContent = letter;
+            letterNav.appendChild(letterLink);
         }
         lazyLoadImages();
     }
@@ -153,5 +215,21 @@
     }
 
     fuzzyLoadBooks();
+
+    // Add search functionality
+    document.getElementById('search-box').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const books = document.querySelectorAll('.book');
+        books.forEach(book => {
+            const title = book.querySelector('h3').textContent.toLowerCase();
+            const author = book.querySelector('h5').textContent.toLowerCase();
+            if (title.includes(searchTerm) || author.includes(searchTerm)) {
+                book.style.display = 'flex';
+            } else {
+                book.style.display = 'none';
+            }
+        });
+    });
 </script>
 </html>
+
