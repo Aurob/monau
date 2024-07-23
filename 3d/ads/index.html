@@ -12,6 +12,8 @@
 <body>
     <iframe id="iframe" src="https://rau.dev" width="800" height="600" style="display: none;"></iframe>
     <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@latest/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@latest/examples/js/geometries/TextGeometry.js"></script>
     <script>
         let scene, camera, renderer, controls;
         let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, rotateLeft = false, rotateRight = false;
@@ -81,10 +83,26 @@
 
         // Add billboard advertisement
         const adGeometry = new THREE.PlaneGeometry(10, 5);
-        const adMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc, side: THREE.DoubleSide }); // yellow color for advertisement, two-sided
+        const adMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc, side: THREE.DoubleSide }); // light gray color for advertisement, two-sided
         const ad = new THREE.Mesh(adGeometry, adMaterial);
         ad.position.y = 12.5; // position the advertisement at the top of the pillars
         scene.add(ad);
+
+        // Add text to the center of the billboard
+        const loader = new THREE.FontLoader();
+        loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+            const textGeometry = new THREE.TextGeometry('BUY! BUY! BUY!', {
+                font: font,
+                size: 0.5,
+                height: 0.1,
+            });
+            const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 }); // black color for text
+            const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            
+            // Center the text on the billboard
+            textMesh.position.set(-2, 12.5, 0.01); // Slight offset in z to prevent z-fighting
+            scene.add(textMesh);
+        });
 
         // Add image
         // const imageGeometry = new THREE.PlaneGeometry(9.5, 4.5);

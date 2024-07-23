@@ -6,101 +6,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frank Boyd's Art</title>
     <style>
-        html,
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #frankBoydPDF {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .right-panel {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .right-panel p {
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            position: sticky;
         }
 
         #thumbhead {
-            position: relative;
-            width: 20vw;
-            transition: max-height 0.3s;
-            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 5px;
+            height: 100%;
             overflow-y: auto;
-            max-height: 100vh;
-            z-index: 1;
+            box-sizing: border-box;
         }
 
         #thumbhead img {
-            display: inline-block;
-            width: 15vw !important;
-            height: 15vw !important;
+            width: calc(33.33% - 5px);
+            height: auto;
+            object-fit: cover;
+            cursor: pointer;
         }
 
-        #thumbhead.collapsed {
-            max-height: 0;
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
         }
 
-        #thumbheadToggle {
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 80%;
+            height: 80%;
+            box-sizing: border-box;
+        }
+
+        .close {
+            color: #fff;
             position: absolute;
-            z-index: 2;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                overflow: auto;
-            }
-
-            #thumbheadToggle {
-                display: block;
-                position: fixed;
-                background: #333;
-                color: white;
-                text-align: center;
-                padding: 10px;
-                cursor: pointer;
-                z-index: 1000;
-            }
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         iframe {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80%;
+            width: 100%;
             height: 100%;
             border: none;
-            z-index: 0;
         }
 
-        #memorial-link {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            z-index: 3;
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: rgba(255, 255, 255, 0.7);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
+            padding: 5px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        footer a {
+            margin: 0 10px;
             text-decoration: none;
             color: #333;
         }
 
-        #memorial-link:hover {
-            background-color: rgba(255, 255, 255, 0.9);
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-    <div id="thumbheadToggle">&#9660;</div>
-    <div id="thumbhead"></div>
-    <a id="memorial-link" href="https://www.hartmanjonesfuneralhome.com/obituary/clinton-boyd" target="_blank">In Memory of Clinton Frank Boyd</a>
+    <div class="container">
+        <div class="left-panel">
+            <iframe id="frankBoydPDF" src="Frank_Boyd.pdf"></iframe>
+        </div>
+        <div class="right-panel">
+            <p>Click on each thumbnail to view an interactive 3D model from Polycam</p>
+            <div id="thumbhead"></div>
+        </div>
+    </div>
+
+    <div id="polycamModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="polycamIframe"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://www.hartmanjonesfuneralhome.com/obituary/clinton-boyd" target="_blank">Obituary</a>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var thumbhead = document.getElementById('thumbhead');
-            var thumbheadToggle = document.getElementById('thumbheadToggle');
-            thumbheadToggle.addEventListener('click', function () {
-                thumbhead.classList.toggle('collapsed');
-                thumbheadToggle.innerHTML = thumbhead.classList.contains('collapsed') ?
-                    '&#9650;' : '&#9660;';
-            });
-        });
-
+        
         var captureIds = [
             "9e3488a6-652b-4164-b29d-5d94d27fb502",
             "688d6ba6-a045-4eb5-ba47-5c4e288b29f4",
@@ -116,29 +166,35 @@
         ];
 
         let thumbhead = document.getElementById('thumbhead');
+        let modal = document.getElementById('polycamModal');
+        let iframe = document.getElementById('polycamIframe');
+        let span = document.getElementsByClassName("close")[0];
 
         for (let i = 0; i < captureIds.length; i++) {
             let thumb = document.createElement('img');
             thumb.src = `https://storage.polycam.io/captures/${captureIds[i]}/thumbnail.jpg?t=17217424782`;
-            thumb.style.cursor = 'pointer';
             thumb.onclick = function () {
-                window.location.hash = captureIds[i];
-                window.location.reload();
+                modal.style.display = "block";
+                iframe.src = "https://poly.cam/capture/" + captureIds[i];
             }
             thumbhead.appendChild(thumb);
         }
 
-        var hash = window.location.hash;
-        var captureId = hash.replace("#", "");
-        if (captureId === "") {
-            captureId = captureIds[Math.floor(Math.random() * captureIds.length)];
+        span.onclick = function() {
+            modal.style.display = "none";
+            iframe.src = "";
         }
-        if (captureId) {
-            var iframe = document.createElement("iframe");
-            iframe.src = "https://poly.cam/capture/" + captureId;
-            iframe.width = "100%";
-            iframe.height = "100%";
-            document.body.appendChild(iframe);
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                iframe.src = "";
+            }
+        }
+
+        document.getElementById('imageLink').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('frankBoydPDF').scrollIntoView({behavior: 'smooth'});
         }
     </script>
 </body>
