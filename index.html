@@ -5,14 +5,76 @@
     <title>RAU.DEV</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             color: #333;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            height: 30px;
+        }
+        .header-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .header-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .main-container {
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        .nav {
+            width: 250px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-header {
+            margin-bottom: 10px;
+        }
+        .nav-header h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .nav-header h3 {
+            margin: 3px 0;
+            font-size: 1em;
+            color: #666;
+        }
+        .nav-header p {
+            margin: 3px 0;
+            font-size: 0.8em;
+            color: #888;
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .tree {
+            overflow-y: auto;
+            flex-grow: 1;
         }
         .tree ul {
             list-style-type: none;
-            margin: 0;
             padding: 0;
         }
         .tree li {
@@ -20,11 +82,10 @@
             position: relative;
         }
         .tree li ul {
-
-            margin-left: 20px; /* Indent nested lists */
+            margin-left: 20px;
         }
         .tree li:hover {
-            background-color: #e1e1e1;
+            background-color: #d1d1d1;
         }
         .tree a {
             text-decoration: none;
@@ -47,46 +108,69 @@
             transition: background-color 50ms ease-in-out;
         }
         .tree li > span:hover {
-            background-color: #e9ecef;
+            background-color: #c9cccf;
         }
         .collapsed > .expander {
-            transform: rotate(0deg); /* Plus sign */
+            transform: rotate(0deg);
         }
         .expanded > .expander {
-            transform: rotate(90deg); /* Minus sign when expanded */
+            transform: rotate(90deg);
         }
-
         span > p {
             display: inline;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            font-size: 0.7em;
+            height: 20px;
         }
     </style>
 </head>
 <body>
-    <div id="sitemap-container" class="tree"></div>
+    <header class="header">
+        <div class="header-icons">
+            <a href="https://github.com/aurob/" title="GitHub">GitHub</a>
+        </div>
+    </header>
+    <div class="main-container">
+        <nav class="nav">
+            <div class="nav-header">
+                <h2>Site Navigation</h2>
+                <h3>Explore my projects</h3>
+                <p>
+                    Deployed with <a href="https://pages.cloudflare.com/">Cloudflare Pages</a> 
+                    (<a href="https://rau.pages.dev">rau.pages.dev</a>)
+                </p>
+            </div>
+            <div id="sitemap-container" class="tree"></div>
+        </nav>
+        <main class="main-content">
+            <iframe src="/art/design1"></iframe>
+        </main>
+    </div>
+    <footer class="footer">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> RAU.DEV. All rights reserved.</p>
+    </footer>
     <script>
         function createTree(paths) {
             const root = {};
 
-            // Create the nested tree structure
             paths.forEach(path => {
-                const parts = path.split('/').filter(Boolean);
-                let current = root;
-                for (const part of parts) {
-                    current[part] = current[part] || {};
-                    current = current[part];
-                }
+                path.split('/').filter(Boolean).reduce((current, part) => current[part] = current[part] || {}, root);
             });
 
-            // Function to recursively generate HTML
             function generateHTML(tree, depth = 0, path = '') {
                 if (Object.keys(tree).length === 0) return null;
                 const ul = document.createElement('ul');
-                ul.className = 'ul-' + depth; // Add class to indicate level of nestedness
+                ul.className = 'ul-' + depth;
                 let b1 = false;
                 for (const branch in tree) {
                     let displayBranch = branch;
                     const li = document.createElement('li');
-                    li.className = `li-${depth}`; // Add class to indicate level of nestedness
+                    li.className = `li-${depth}`;
                     const span = document.createElement('span');
                     let fullPath = path + "/" + branch;
                     let _fullPath = fullPath.startsWith('/') ? fullPath.substring(1) : fullPath;
@@ -97,8 +181,6 @@
                         fullPath = '';
                         b1 = true;
                     }
-
-                    console.log(fullPath);
                     
                     span.innerHTML = `<p class="text">${displayBranch}</p>`;
                     const childrenUL = generateHTML(tree[branch], depth + 1, fullPath);
@@ -115,24 +197,18 @@
                             li.classList.toggle('expanded', childrenUL.style.display === 'block');
                             li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
                         };
-
                         
-                        childrenUL.style.display = childrenUL.style.display === 'none' ? 'block' : 'none';
-                        li.classList.toggle('expanded', childrenUL.style.display === 'block');
-                        li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
+                        childrenUL.style.display = 'none';
+                        li.classList.add('collapsed');
                         
                         if (depth === 1) {
-                            li.classList.add('collapsed'); // Start in collapsed state if level is 1
+                            li.classList.add('collapsed');
                             childrenUL.style.display = 'none';
                         }
-                        
-                        // Add "Visit" link for root nodes
-                        span.innerHTML += ` <a href="${_fullPath}" target="_blank">→ Visit</a>`;
                     } else {
                         li.appendChild(span);
-                        // Add "Visit" link for leaf nodes
-                        span.innerHTML += ` <a href="${_fullPath}" target="_blank">→ Visit</a>`;
                     }
+                    span.innerHTML += ` <a href="${_fullPath}" target="content-frame">→ Visit</a>`;
                     ul.appendChild(li);
                 }
                 return ul;
@@ -140,20 +216,15 @@
 
             return generateHTML(root);
         }
-        // Fetch the sitemap and visualize it
+
         fetch('sitemap.txt')
             .then(response => response.text())
             .then(data => {
                 const sitemap = document.getElementById('sitemap-container');
-                let paths = data.split('\n').filter(line => line.trim().length > 0);
-                paths = paths.map(path => path.replace(window.location.origin, ''));
-                paths.sort();
-                const tree = createTree(paths);
-        
-                sitemap.appendChild(tree);
+                const paths = data.split('\n').filter(line => line.trim().length > 0).map(path => path.replace(window.location.origin, '')).sort();
+                sitemap.appendChild(createTree(paths));
             })
             .catch(error => console.error('Error fetching sitemap:', error));
-    </script>
     </script>
 </body>
 </html>

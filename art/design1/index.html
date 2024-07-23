@@ -58,6 +58,26 @@
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
+        #target h1 {
+            font-size: 2em;
+            margin-bottom: 0.2em;
+        }
+
+        #target .subtitle {
+            font-size: 1em;
+            margin: 0.2em 0;
+        }
+
+        #target .subtitle .highlight {
+            color: #FFD700; /* Gold color for highlighting */
+            font-weight: bold;
+        }
+
+        #target .description {
+            font-size: 0.8em;
+            margin-top: 0.2em;
+        }
+
         #light.on {
             filter: grayscale(100%);
         }
@@ -77,7 +97,7 @@
             font-size: 2em;
         }
     </style>
-    <script src="/libs/noise.js"></script>
+    <script src="/other/libs/noise.js"></script>
 </head>
 
 <body class="light">
@@ -100,8 +120,10 @@
 
         const focus_html = `<div id="target">
                 <h1>RAU</h1>
+                <p class="subtitle"><span class="highlight">R</span>obert <span class="highlight">Au</span>coin</p>
+                <p class="description">Creative Technologist</p>
             </div>`;
-        let focus_cell = 'd';
+        let focus_cell = 'e';
         document.querySelector(`[style*="grid-area: ${focus_cell}"]`).innerHTML = focus_html;
 
 

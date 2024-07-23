@@ -112,7 +112,8 @@
 /data/photos
 /data/boyd
 /data/gis_tests
-/games/game.1
+/games/automata/jslife
+/games/automata/clife
+/games/latest
+/games/old_test
 /games/gui_test
-/games/gol/jslife
-/games/gol/clife
