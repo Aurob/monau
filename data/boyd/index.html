@@ -17,16 +17,18 @@
 
         .container {
             display: flex;
-            height: 100vh;
+            height: calc(100vh - 50px);
         }
 
         .left-panel {
-            width: 50%;
+            width: 0;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            transition: width 0.5s;
             overflow: hidden;
+        }
+
+        .left-panel.active {
+            width: 50%;
         }
 
         #frankBoydPDF {
@@ -36,9 +38,14 @@
         }
 
         .right-panel {
-            width: 50%;
+            width: 100%;
             height: 100%;
             overflow: hidden;
+            transition: width 0.5s;
+        }
+
+        .right-panel.active {
+            width: 50%;
         }
 
         .right-panel p {
@@ -124,15 +131,40 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        header {
+            height: 50px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
     </style>
 </head>
-
 <body>
+    <header>
+        <button id="aboutBtn">Article</button>
+        <button id="obituaryBtn" onclick="window.open('https://www.hartmanjonesfuneralhome.com/obituary/clinton-boyd', '_blank')">Obituary</button>
+    </header>
     <div class="container">
         <div class="left-panel">
-            <iframe id="frankBoydPDF" src="Frank_Boyd.pdf"></iframe>
+            <iframe id="frankBoydPDF" src="Frank_Boyd.pdf#view=FitH"></iframe>
         </div>
         <div class="right-panel">
+            <p>Frank Boyd's Memorial Art Page</p>
             <p>Click on each thumbnail to view an interactive 3D model from Polycam</p>
             <div id="thumbhead"></div>
         </div>
@@ -146,11 +178,9 @@
     </div>
 
     <footer>
-        <a href="https://www.hartmanjonesfuneralhome.com/obituary/clinton-boyd" target="_blank">Obituary</a>
     </footer>
 
     <script>
-        
         var captureIds = [
             "9e3488a6-652b-4164-b29d-5d94d27fb502",
             "688d6ba6-a045-4eb5-ba47-5c4e288b29f4",
@@ -169,6 +199,9 @@
         let modal = document.getElementById('polycamModal');
         let iframe = document.getElementById('polycamIframe');
         let span = document.getElementsByClassName("close")[0];
+        let aboutBtn = document.getElementById('aboutBtn');
+        let leftPanel = document.querySelector('.left-panel');
+        let rightPanel = document.querySelector('.right-panel');
 
         for (let i = 0; i < captureIds.length; i++) {
             let thumb = document.createElement('img');
@@ -190,6 +223,11 @@
                 modal.style.display = "none";
                 iframe.src = "";
             }
+        }
+
+        aboutBtn.onclick = function() {
+            leftPanel.classList.toggle('active');
+            rightPanel.classList.toggle('active');
         }
 
         document.getElementById('imageLink').onclick = function(e) {
