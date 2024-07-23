@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frank Boyd's Art</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #thumbhead {
+            position: relative;
+            width: 20vw;
+            transition: max-height 0.3s;
+            overflow: hidden;
+            overflow-y: auto;
+            max-height: 100vh;
+            z-index: 1;
+        }
+
+        #thumbhead img {
+            display: inline-block;
+            width: 15vw !important;
+            height: 15vw !important;
+        }
+
+        #thumbhead.collapsed {
+            max-height: 0;
+        }
+
+        #thumbheadToggle {
+            position: absolute;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow: auto;
+            }
+
+            #thumbheadToggle {
+                display: block;
+                position: fixed;
+                background: #333;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100%;
+            border: none;
+            z-index: 0;
+        }
+
+        #memorial-link {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 3;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        #memorial-link:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="thumbheadToggle">&#9660;</div>
+    <div id="thumbhead"></div>
+    <a id="memorial-link" href="https://www.hartmanjonesfuneralhome.com/obituary/clinton-boyd" target="_blank">In Memory of Clinton Frank Boyd</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var thumbhead = document.getElementById('thumbhead');
+            var thumbheadToggle = document.getElementById('thumbheadToggle');
+            thumbheadToggle.addEventListener('click', function () {
+                thumbhead.classList.toggle('collapsed');
+                thumbheadToggle.innerHTML = thumbhead.classList.contains('collapsed') ?
+                    '&#9650;' : '&#9660;';
+            });
+        });
+
+        var captureIds = [
+            "9e3488a6-652b-4164-b29d-5d94d27fb502",
+            "688d6ba6-a045-4eb5-ba47-5c4e288b29f4",
+            "cd40793a-194f-42f5-bec7-78b35843107b",
+            "de0d0d84-7a51-4073-9366-c0559cbdffa0",
+            "9c8da1c3-a452-4e96-bfda-0b092d71db14",
+            "c3cc2e31-d414-4647-908d-85d5b21ade9e",
+            "b4fca91d-7fb0-49e9-9a6e-acc784edf4e9",
+            "a7eef7c9-2dd8-43f0-815c-76758f52e1db",
+            "3b6946b9-a2d6-4ae8-9bc5-d430b83e17b2",
+            "daaa5f8a-185f-4ca5-bcdf-01dabff8676f",
+            "c6805f0a-cbfb-4ed7-9aa3-1d14ebf3cb74"
+        ];
+
+        let thumbhead = document.getElementById('thumbhead');
+
+        for (let i = 0; i < captureIds.length; i++) {
+            let thumb = document.createElement('img');
+            thumb.src = `https://storage.polycam.io/captures/${captureIds[i]}/thumbnail.jpg?t=17217424782`;
+            thumb.style.cursor = 'pointer';
+            thumb.onclick = function () {
+                window.location.hash = captureIds[i];
+                window.location.reload();
+            }
+            thumbhead.appendChild(thumb);
+        }
+
+        var hash = window.location.hash;
+        var captureId = hash.replace("#", "");
+        if (captureId === "") {
+            captureId = captureIds[Math.floor(Math.random() * captureIds.length)];
+        }
+        if (captureId) {
+            var iframe = document.createElement("iframe");
+            iframe.src = "https://poly.cam/capture/" + captureId;
+            iframe.width = "100%";
+            iframe.height = "100%";
+            document.body.appendChild(iframe);
+        }
+    </script>
+</body>
+
+</html>

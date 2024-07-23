@@ -125,7 +125,7 @@ class BookCatalog(cmd.Cmd):
         super().do_help(arg)
 
     def query_openlibrary(self, query: str) -> List[Dict[str, Any]]:
-        url = f"https://openlibrary.org/search.json?q={query}"
+        url = f"https://openlibrary.org/search.json?q={query}&lang=en"
         response = requests.get(url)
         data = response.json()
         return data['docs'][:10]

@@ -99,7 +99,6 @@
 /other/yml_cms
 /other/homes/oldhome
 /other/peer
-/other/boyd-art
 /other/d3test
 /other/d3test/old
 /other/clock
@@ -111,6 +110,7 @@
 /data/weather
 /data/pixels
 /data/photos
+/data/boyd
 /data/gis_tests
 /games/game.1
 /games/gui_test
