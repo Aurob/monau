@@ -1,0 +1,193 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 50px);
+}
+
+.left-panel {
+    width: 100%;
+    height: 0;
+    transition: height 0.5s;
+    overflow: hidden;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 10;
+}
+
+.left-panel.active {
+    height: calc(100% - 50px);
+}
+
+#frankBoydPDF {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.right-panel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: height 0.5s;
+}
+
+.right-panel.active {
+    height: 50%;
+}
+
+.right-panel p {
+    margin: 0;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+#thumbhead {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+    gap: 5px;
+    padding: 5px;
+    height: calc(100% - 70px);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#thumbhead img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 90%;
+    height: 90%;
+    box-sizing: border-box;
+}
+
+.close {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+footer a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+header {
+    height: 50px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .left-panel {
+        width: 0;
+        height: 100%;
+        transition: width 0.5s;
+        position: relative;
+        top: 0;
+    }
+
+    .left-panel.active {
+        width: 50%;
+        height: 100%;
+    }
+
+    .right-panel {
+        width: 100%;
+        height: 100%;
+    }
+
+    .right-panel.active {
+        width: 50%;
+        height: 100%;
+    }
+
+    #thumbhead {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        height: calc(100% - 90px);
+    }
+
+    #thumbhead img {
+        height: 150px;
+    }
+}
