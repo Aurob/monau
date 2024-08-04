@@ -1,4 +1,3 @@
-/home
 /3d
 /3d/ads
 /3d/tree
@@ -62,12 +61,6 @@
 /art/sounds
 /art/mosaic2
 /art/rchords
-/art/optical
-/art/optical/pages/page19
-/art/optical/pages/page21
-/art/optical/pages/page70
-/art/optical/pages/page15_16
-/art/optical/pages/cover
 /art/super
 /art/sdl/template
 /art/sdl/noise
@@ -76,6 +69,13 @@
 /art/noise/noise3
 /art/noise/noise2
 /art/noise/noise2/test
+/art/opart/jeanlarcher
+/art/opart/jeanlarcher/pages/page19
+/art/opart/jeanlarcher/pages/page21
+/art/opart/jeanlarcher/pages/page70
+/art/opart/jeanlarcher/pages/page15_16
+/art/opart/jeanlarcher/pages/cover
+/art/opart/illusion
 /art/waves
 /art/shaders
 /art/museum
@@ -97,6 +97,7 @@
 /art/music1
 /art/flow
 /other/yml_cms
+/other/homes/home
 /other/homes/oldhome
 /other/peer
 /other/d3test
