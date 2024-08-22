@@ -1,0 +1,29 @@
+properties:
+  time_signature: "4/4"
+  tempo: 132
+  loop: true
+
+measure_groups:
+  bouncy_melody:
+    sound_type: synth_lead
+    notes:
+      8.c.5 8.e.5 8.g.5 8.c.6 8.b.5 8.g.5 8.e.5 8.c.5
+      8.a.4 8.c.5 8.f.5 8.a.5 8.g.5 8.f.5 8.c.5 8.a.4
+      8.d.5 8.f.5 8.a.5 8.d.6 8.c.6 8.a.5 8.f.5 8.d.5
+      8.b.4 8.d.5 8.g.5 8.b.5 8.a.5 8.g.5 8.d.5 8.b.4
+
+  chiptune_bass:
+    sound_type: square_wave
+    notes:
+      4.c.3 8.c.3 8.c.3 4.g.3 4.e.3
+      4.f.3 8.f.3 8.f.3 4.c.4 4.a.3
+      4.d.3 8.d.3 8.d.3 4.a.3 4.f.3
+      4.g.3 8.g.3 8.g.3 4.d.4 4.b.3
+
+  arpeggiated_harmony:
+    sound_type: electric_piano
+    notes:
+      16.c.4 16.e.4 16.g.4 16.c.5 16.e.4 16.g.4 16.c.5 16.e.5
+      16.a.3 16.c.4 16.f.4 16.a.4 16.c.4 16.f.4 16.a.4 16.c.5
+      16.d.4 16.f.4 16.a.4 16.d.5 16.f.4 16.a.4 16.d.5 16.f.5
+      16.g.3 16.b.3 16.d.4 16.g.4 16.b.3 16.d.4 16.g.4 16.b.4

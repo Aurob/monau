@@ -6,3 +6,12 @@ nyan
 pavane
 test
 test2
+fjazz1
+rand1
+jazz3
+rand2
+jazz4
+test4
+good1
+good2
+good3

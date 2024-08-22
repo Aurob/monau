@@ -1,0 +1,21 @@
+properties:
+  time_signature: "7/8"  # Compact yet rhythmically disorienting
+  tempo: 244
+  loop: true
+
+measure_groups:
+  echo_guitar:
+    sound_type: clean_electric_guitar
+    notes:
+      16.r 8.d.4 16.r 8.g.4 16.r 8.e.4 16.c.4 16.b.3 16.a.3 16.r 16.d.4 16.e.4 16.f.4 16.g.4 16.a.4 16.b.4 16.c.5
+      16.eb.4 16.d.4 16.c.4 16.a.3 8.g.3 16.r 16.eb.3 16.r 16.e.4 16.f.4 16.g.4 16.a.4 16.b.4 16.c.5 16.d.5 16.e.5
+      8.ab.4 8.f.4 16.c.4 16.ab.4 16.bb.4 16.c.5 16.d.5 16.e.5 16.f.5 16.g.5 16.a.5 16.b.5
+      16.r 8.b.3 16.r 8.g.4 16.a.4 16.b.4 16.c.5 16.d.5 16.e.5 16.f.5 16.g.5 16.a.5 16.b.5 16.c.6 16.d.6 16.e.6
+
+  harmony_guitar:
+    sound_type: clean_electric_guitar
+    notes:
+      16.r 8.e.4 16.r 8.a.4 16.r 8.f#.4 16.d.4 16.c#.4 16.b.3 16.r 16.e.4 16.f.4 16.g.4 16.a.4 16.b.4 16.c.5 16.d.5
+      16.f.4 16.e.4 16.d.4 16.b.3 8.a.3 16.r 16.f.3 16.r 16.f#.4 16.g.4 16.a.4 16.b.4 16.c.5 16.d.5 16.e.5 16.f.5
+      8.bb.4 8.g.4 16.d.4 16.bb.4 16.c.5 16.d.5 16.e.5 16.f.5 16.g.5 16.a.5 16.b.5 16.c.6
+      16.r 8.c#.4 16.r 8.a.4 16.b.4 16.c#.5 16.d.5 16.e.5 16.f.5 16.g.5 16.a.5 16.b.5 16.c.6 16.d.6 16.e.6 16.f.6
