@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <input id="gcs" value="8" type="range" min="1" max="20" step="1" />
+    <input id="gcs" value="8" type="range" min="1" max="100" step=".1" />
     <canvas id="canvas"></canvas>
     <script>
         const canvas = document.getElementById('canvas');
@@ -41,21 +41,14 @@
                 for (let y = 0; y < height; y += gcs) {
                     ctx.save();
                     ctx.translate(x + gcs / 2, y + gcs / 2);
-                    ctx.scale(0.65, 0.65);
-                    const rotation = noise.perlin2(x * 0.01, y * 0.01) * Math.PI * 2;
-                    ctx.rotate(rotation);
-                    ctx.strokeRect(-gcs / 2 / 0.65, -gcs / 2 / 0.65, gcs, gcs);
+                    ctx.rotate(Math.PI / noise.simplex2(x / 100, y / 100));
+                    ctx.strokeRect(-gcs / 2, -gcs / 2, gcs, gcs);
                     ctx.restore();
                 }
             }
         }
 
-        let lastTime = 0;
-        const fpsInterval = 1000 / 10;
-        let _cell = null;
         function draw(timestamp = 0) {
-
-
             ctx.fillStyle = 'black';
             ctx.fillRect(0, 0, width, height);
             grid();

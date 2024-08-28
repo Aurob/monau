@@ -18,10 +18,10 @@
         .header {
             background-color: #333;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px;
             display: flex;
             align-items: center;
-            height: 30px;
+            justify-content: space-between;
         }
         .header-icons {
             display: flex;
@@ -36,25 +36,23 @@
             display: flex;
             flex-grow: 1;
             overflow: hidden;
+            flex-direction: column;
         }
         .nav {
-            width: 250px;
+            width: 100%;
             padding: 10px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            background-color: #fff;
+            border-bottom: 1px solid #ccc;
         }
         .nav-header {
             margin-bottom: 10px;
         }
-        .nav-header h2 {
+        .nav-header h3 {
             margin: 0;
             font-size: 1.2em;
-        }
-        .nav-header h3 {
-            margin: 3px 0;
-            font-size: 1em;
-            color: #666;
         }
         .nav-header p {
             margin: 3px 0;
@@ -63,11 +61,13 @@
         }
         .main-content {
             flex-grow: 1;
+            overflow-y: auto;
         }
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            overflow: hidden; /* Ensure no scrolling */
         }
         .tree {
             overflow-y: auto;
@@ -123,9 +123,21 @@
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 5px;
-            font-size: 0.7em;
-            height: 20px;
+            padding: 10px;
+            font-size: 0.8em;
+        }
+        @media (min-width: 600px) {
+            .main-container {
+                flex-direction: row;
+            }
+            .nav {
+                width: 300px; /* Increase width of the tree on desktop */
+                border-bottom: none;
+                border-right: 1px solid #ccc;
+            }
+            .tree li > span {
+                font-size: 1.1em; /* Increase font size of the tree on desktop */
+            }
         }
     </style>
 </head>
@@ -138,12 +150,17 @@
     <div class="main-container">
         <nav class="nav">
             <div class="nav-header">
-                <h2>Site Navigation</h2>
                 <h3>Explore my projects</h3>
                 <p>
                     Deployed with <a href="https://pages.cloudflare.com/">Cloudflare Pages</a> 
                     (<a href="https://rau.pages.dev">rau.pages.dev</a>)
                 </p>
+                <p>Alternate Links:</p>
+                <ul>
+                    <li><a href="https://augame.pages.dev">augame.pages.dev</a></li>
+                    <li><a href="https://game.rau.dev">game.rau.dev</a></li>
+                    <li><a href="https://3e7bf27d.augame.pages.dev/">3e7bf27d.augame.pages.dev</a></li>
+                </ul>
             </div>
             <div id="sitemap-container" class="tree"></div>
         </nav>
@@ -198,12 +215,12 @@
                             li.classList.toggle('collapsed', childrenUL.style.display !== 'block');
                         };
                         
-                        childrenUL.style.display = 'none';
-                        li.classList.add('collapsed');
-                        
                         if (depth === 1) {
-                            li.classList.add('collapsed');
-                            childrenUL.style.display = 'none';
+                            li.classList.add('expanded');
+                            childrenUL.style.display = 'block';
+                        } else {
+                            childrenUL.style.display = 'block';
+                            li.classList.add('expanded');
                         }
                     } else {
                         li.appendChild(span);
@@ -221,8 +238,9 @@
             .then(response => response.text())
             .then(data => {
                 const sitemap = document.getElementById('sitemap-container');
-                const paths = data.split('\n').filter(line => line.trim().length > 0).map(path => path.replace(window.location.origin, '')).sort();
+                const paths = data.split('\n').filter(line => line.trim().length > 0).map(path => path.replace(window.location.origin, '')).sort().reverse();
                 sitemap.appendChild(createTree(paths));
+
             })
             .catch(error => console.error('Error fetching sitemap:', error));
     </script>
