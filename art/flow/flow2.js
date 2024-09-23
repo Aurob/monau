@@ -1,4 +1,4 @@
-let c;
+let canvas, ctx;
 let redraw;
 let cgrid = [];
 let width = 500;
@@ -11,50 +11,52 @@ function loadCGrid() {
         cgrid[x] = [];
         for (let y = 0; y < resolution; y++) {
             cgrid[x][y] = {
-                // 'angle': random(360), 
-                'angle': noise(x * 0.01, y * 0.01) * 360,
-                'rgb': color(random(255), random(255), random(255))
+                'angle': noise.perlin2(x * 0.01, y * 0.01) * 360,
+                'rgb': `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`
             }
         }
     }
 }
 
 function setup() {
-    createCanvas(width, height);
-    angleMode(DEGREES);
+    canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    document.body.appendChild(canvas);
+    ctx = canvas.getContext('2d');
     loadCGrid();
     redraw = true;
+    draw();
 }
 
 function draw() {
+    if (redraw) {
+        ctx.fillStyle = 'rgb(255, 255, 255)';
+        ctx.fillRect(0, 0, width, height);
 
-    if(redraw) {
-        background(255);
-        
         cgrid.forEach((row, x) => {
             row.forEach((col, y) => {
                 let x1 = x * cellSize;
                 let y1 = y * cellSize;
-                
-                translate(x1 + cellSize / 2, y1 + cellSize / 2);
-                rotate(col.angle);
-                fill(col.rgb);
-                rectMode(CENTER);
-                rect(0, 0, cellSize, cellSize);
-                
-                resetMatrix();
-           
-            })
-        })
+
+                ctx.save();
+                ctx.translate(x1 + cellSize / 2, y1 + cellSize / 2);
+                ctx.rotate(col.angle * Math.PI / 180);
+                ctx.fillStyle = col.rgb;
+                ctx.fillRect(-cellSize / 2, -cellSize / 2, cellSize, cellSize);
+                ctx.restore();
+            });
+        });
 
         redraw = false;
     }
 }
 
-
 window.addEventListener('resize', () => {
-    resizeCanvas(window.innerWidth, window.innerHeight);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     redraw = true;
+    draw();
 });
 
-
+setup();

@@ -47,6 +47,7 @@ def find_valid_endpoints(directory):
 # Replace '/path/to/webroot' with your actual web server's root directory's full path
 
 endpoints = find_valid_endpoints(ROOT)
+endpoints.sort()
 
 # Create sitemap.txt in ROOT
 with open(os.path.join(ROOT, 'sitemap.txt'), 'w') as sitemap:

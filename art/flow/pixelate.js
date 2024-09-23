@@ -3,11 +3,11 @@ $ = document.querySelectorAll.bind(document);
 
 function image_load() {
     return new Promise((res, rej) => {
-        let images = ['fruit.jpg', 'skin-3358873_960_720.jpg', 'animals-8080446_960_720.jpg', 'hamburger-1238246_960_720.jpg', 'berries-2277_960_720.jpg', 'vegetables-1085063_960_720.jpg', 'HONDA_ASIMO.jpg', 'vegetables-1584999_960_720.jpg', 'oranges-1995056_960_720.jpg', 'duckling-8062337_960_720.jpg', 'eat-2834549_960_720.jpg']
+        let images = ['fruit.jpg']
         let image = images[Math.floor(Math.random() * images.length)];
 
         img = new Image();
-        img.src = "/mosaic2/images/"+image;
+        img.src = image;
         console.log(img.src)
         img.onload = function() {
             window.img = img;

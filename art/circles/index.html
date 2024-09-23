@@ -1,57 +1,99 @@
-<!DOCTYPE html>
 <html>
+    <body>
+        <head>
+            <title>Overlapping Circles Grid</title>
+            <style>
+                html {
+                    width: 100%;
+                    height: 100%;
+                }
+        
+                body {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    text-align: center;
+                }
+                .slider-container {
+                    position: absolute;
+                    top: 10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 20px;
+                }
+                .slider-container label {
+                    margin-right: 10px;
+                }
+            </style>
+        </head>
+        <canvas></canvas>
+        <div class="slider-container">
+            <div>
+                <label for="radiusSlider">Base Radius:</label>
+                <input type="range" id="radiusSlider" min="1" max="100" value="50">
+            </div>
+            <div>
+                <label for="speedSlider">Speed:</label>
+                <input type="range" id="speedSlider" min="0.01" max="1" step="0.01" value="0.1">
+            </div>
+        </div>
+        <script>
+            let canvas = document.querySelector('canvas');
+            let ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-<head>
-    <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="#">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+            let cellWidth = canvas.width / 10;
+            let cellHeight = canvas.height / 10;
+            let defaultBaseRadius = Math.min(cellWidth, cellHeight) / 2;
+            let baseRadius = defaultBaseRadius;
+            let radiusDelta = 0.1;
+
+            let radiusSlider = document.getElementById('radiusSlider');
+            let speedSlider = document.getElementById('speedSlider');
+
+            radiusSlider.value = defaultBaseRadius;
+            speedSlider.value = radiusDelta;
+
+            radiusSlider.oninput = function() {
+                defaultBaseRadius = parseFloat(this.value);
+                baseRadius = defaultBaseRadius;
+            }
+
+            speedSlider.oninput = function() {
+                radiusDelta = parseFloat(this.value);
+            }
+
+            let redraw = true;
+            function draw() {
+                if (redraw) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    for (let i = 0; i < 10; i++) {
+                        for (let j = 0; j < 10; j++) {
+                            ctx.beginPath();
+                            let x = i * cellWidth + cellWidth / 2;
+                            let y = j * cellHeight + cellHeight / 2;
+                            let radiusX = baseRadius;
+                            let radiusY = baseRadius;
+                            let rotation = 0;
+                            let startAngle = 0;
+                            let endAngle = 2 * Math.PI;
+                            ctx.ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle);
+                            ctx.stroke();
+                        }
+                    }
+
+                    baseRadius -= radiusDelta;
+                    if (baseRadius < 1 || baseRadius > defaultBaseRadius * 4) {
+                        radiusDelta *= -1;
+                    }
+                }
+                requestAnimationFrame(draw);
+            }
+
+            draw();
         </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"
-        integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-        </script>
-    <style>
-        html {
-            width: 100%;
-            height: 100%;
-        }
-
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            text-align: center;
-        }
-
-        canvas {
-            border: solid 1px black;
-        }
-
-        #options {
-            display: flex;
-            justify-content: center;
-        }
-
-        .test {
-            margin: auto;
-            width: fit-content;
-            height: fit-content;
-            display: flex;
-            flex-direction: row-reverse;
-        }
-    </style>
-    <script src="options.js"></script>
-
-</head>
-
-<body>
-    <main class="test">
-    </main>
-    <div id="options"></div>
-    <script src="art.js"></script>
-</body>
-
+    </body>
 </html>
