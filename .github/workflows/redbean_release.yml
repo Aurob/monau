@@ -1,38 +1,35 @@
-name: Build and Test Redbean on Test Branch
+name: Build and Package Redbean Application
 
 on:
   push:
     branches:
-      - test-branch   # Replace with your test branch
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the repo
-      - name: Checkout repository
+      # Checkout the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Download redbean.com binary
-      - name: Download redbean.com
-        run: |
-          curl -O https://redbean.dev/redbean.com
-          chmod +x redbean.com
-      
-      # Download redbean.com binary          
-      - name: Download redbean.com zip
-        run: |
-          curl -O https://cosmo.zip/pub/cosmos/bin/zip
-          chmod +x zip
+      # Download the latest redbean.com
+      - name: Download Redbean
+        run: wget https://redbean.dev/redbean-latest.com -O redbean.com
 
-      - name: Add repo files to redbean.com zip
+      # Create a ZIP archive of the repository files, excluding unnecessary files
+      - name: Create ZIP Archive
         run: |
-          ./zip -r redbean.com ./art
-          
-      # (Optional) Upload the zipped file as an artifact
-      # - name: Upload redbean as artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: aumono
-      #     path: redbean.com
+          zip -r site.zip . -x ".git/*" "redbean.com" "site.zip" ".github/*"
+
+      # Append the ZIP archive to redbean.com
+      - name: Append ZIP to Redbean
+        run: cat site.zip >> redbean.com
+
+      # Upload the redbean.com as an artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: redbean.com
+          path: redbean.com
