@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: redbean.com
-          path: redbean.com
+          path: redbean.com #
