@@ -16,20 +16,16 @@ jobs:
 
       # Download the latest redbean.com
       - name: Download Redbean
-        run: wget https://redbean.dev/redbean-latest.com -O redbean.com
+        run: wget https://redbean.dev/redbean-latest.com -O redbean.zip
 
       # Create ZIP Archive
       - name: Create ZIP Archive
         run: |
-          zip -r site.zip . -x ".git/*" "redbean.com" "site.zip" ".github/*"
+          zip -r redbean.zip . -x ".git/*" "redbean.zip" ".github/*"
 
-      # Append ZIP to Redbean
-      - name: Append ZIP to Redbean
-        run: cat site.zip >> redbean.com
-
-      # Make redbean.com executable
-      - name: Make Executable
-        run: chmod +x redbean.com
+      # # Append ZIP to Redbean
+      # - name: Append ZIP to Redbean
+      #   run: cat site.zip >> redbean.com
 
       # Create GitHub Release
       - name: Create GitHub Release
@@ -38,9 +34,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0  # Update version as needed
-          release_name: Release v1.0.0
-          draft: false
+          tag_name: v1.0.1  # Update version as needed
+          release_name: Release v1.0.1
+          draft: true
           prerelease: false
 
       # Upload redbean.com to Release
@@ -50,6 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./redbean.com
-          asset_name: redbean.com
+          asset_path: ./redbean.zip
+          asset_name: monau.redbean
           asset_content_type: application/octet-stream
