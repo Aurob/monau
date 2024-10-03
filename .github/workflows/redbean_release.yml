@@ -22,7 +22,7 @@ jobs:
       # Add content to the existing redbean.com file
       - name: Add content to redbean.com
         run: |
-          ./zip -r redbean.com ./* -x redbean.com
+          zip -r redbean.com ./* -x redbean.com
 
       # (Optional) Upload the zipped file as an artifact
       - name: Upload redbean as artifact
