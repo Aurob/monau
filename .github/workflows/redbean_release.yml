@@ -3,7 +3,7 @@ name: Build and Test Redbean on Test Branch
 on:
   push:
     branches:
-      - test-branch   # Replace this with the name of your test branch
+      - test-branch   # Replace with your test branch
 
 jobs:
   build:
@@ -14,18 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Download redbean.com binary (or use your pre-included one)
+      # Download redbean.com binary
       - name: Download redbean.com
         run: |
-          curl -O https://redbean.dev/redbean.com
-          chmod +x redbean.com
+          curl -f -O https://redbean.dev/redbean.com || exit 1
+          chmod +x redbean.com || exit 1
 
       # Zip the repository content into the redbean.com file
       - name: Add content to redbean.com
         run: |
-          zip -r redbean.com ./*
+          zip -r redbean.com ./* || exit 1
 
-      # (Optional) Save the zipped file as an artifact for inspection during testing
+      # (Optional) Upload the zipped file as an artifact
       - name: Upload redbean as artifact
         uses: actions/upload-artifact@v3
         with:
