@@ -23,12 +23,12 @@ jobs:
       # Download cosmo zip
       - name: Download Cosmo zip bin
         run: |
-          curl -o cosmozip https://cosmo.zip/pub/cosmos/bin/zip
+          curl -o cosmozip https://cosmo.zip/pub/cosmos/bin/zip && chmod +x cosmozip
     
       # Add content to the existing redbean.com file
       - name: Add content to redbean.com
         run: |
-          cosmozip -r redbean.com ./* -x redbean.com
+          ./cosmozip -r redbean.com ./* -x redbean.com
 
       # (Optional) Upload the zipped file as an artifact
       - name: Upload redbean as artifact
