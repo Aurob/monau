@@ -19,25 +19,20 @@ jobs:
         run: |
           curl -O https://redbean.dev/redbean.com
           chmod +x redbean.com
-          
-      # Unzip redbean.com contents
-      - name: Unzip redbean.com
-        run: unzip redbean.com -d extracted_files
-
-      # Copy repo files to extracted_files
-      - name: Add repo files
-        run: cp -r ./* extracted_files/
-        
-      # Repackage everything into redbean.com
-      - name: Repackage redbean.com
+      
+      # Download redbean.com binary          
+      - name: Download redbean.com zip
         run: |
-          cd extracted_files
-          zip -r ../redbean.com ./*
-          cd ..
+          curl -O https://cosmo.zip/pub/cosmos/bin/zip
+          chmod +x zip
 
+      - name: Add repo files to redbean.com zip
+        run: |
+          ./zip -r redbean.com ./art
+          
       # (Optional) Upload the zipped file as an artifact
-      - name: Upload redbean as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: aumono
-          path: redbean.com
+      # - name: Upload redbean as artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: aumono
+      #     path: redbean.com
