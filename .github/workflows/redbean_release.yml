@@ -18,11 +18,22 @@ jobs:
       - name: Download redbean.com
         run: |
           curl -O https://redbean.dev/redbean.com
+          chmod +x redbean.com
+          
+      # Unzip redbean.com contents
+      - name: Unzip redbean.com
+        run: unzip redbean.com -d extracted_files
 
-      # Add content to the existing redbean.com file
-      - name: Add content to redbean.com
+      # Copy repo files to extracted_files
+      - name: Add repo files
+        run: cp -r ./* extracted_files/
+        
+      # Repackage everything into redbean.com
+      - name: Repackage redbean.com
         run: |
-          zip -r redbean.com ./* -x redbean.com
+          cd extracted_files
+          zip -r ../redbean.com ./*
+          cd ..
 
       # (Optional) Upload the zipped file as an artifact
       - name: Upload redbean as artifact
