@@ -17,13 +17,13 @@ jobs:
       # Download redbean.com binary
       - name: Download redbean.com
         run: |
-          curl -f -O https://redbean.dev/redbean.com || exit 1
-          chmod +x redbean.com || exit 1
+          curl -O https://redbean.dev/redbean.com
+          chmod +x redbean.com
 
-      # Zip the repository content into the redbean.com file
+      # Add content to the existing redbean.com file
       - name: Add content to redbean.com
         run: |
-          zip -r redbean.com ./* || exit 1
+          zip -r9 redbean.com ./* -x redbean.com
 
       # (Optional) Upload the zipped file as an artifact
       - name: Upload redbean as artifact
