@@ -24,7 +24,7 @@ jobs:
         python -m pip install --upgrade pip
 
     - name: Run Sitemap Script
-      run: python sitemap.py  # Run your script to generate sitemap.txt
+      run: python sitemap.py ./ # Run your script to generate sitemap.txt
 
     - name: Commit Sitemap
       run: |
