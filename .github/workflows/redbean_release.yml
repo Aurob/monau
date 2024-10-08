@@ -23,32 +23,28 @@ jobs:
         run: |
           zip -r redbean.zip . -x ".git/*" "redbean.zip" ".github/*"
 
-      # # Append ZIP to Redbean
-      # - name: Append ZIP to Redbean
-      #   run: cat site.zip >> redbean.com
-
       # Create GitHub Release
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
-        with:
-          tag_name: v1.0.1  # Update version as needed
-          release_name: Release v1.0.1
-          draft: true
-          prerelease: false
+      # - name: Create GitHub Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: v1.0.1  # Update version as needed
+      #     release_name: Release v1.0.1
+      #     draft: true
+      #     prerelease: false
 
       # Upload redbean.com to Release
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./redbean.zip
-          asset_name: monau.redbean
-          asset_content_type: application/octet-stream
+      # - name: Upload Release Asset
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: ./redbean.zip
+      #     asset_name: monau.redbean
+      #     asset_content_type: application/octet-stream
 
       - name: Copy release to remote server via SCP
         env:
