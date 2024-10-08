@@ -33,4 +33,4 @@ jobs:
           git add sitemap.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update sitemap" && git push)
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token is provided by default for authentication
+        GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}  # GitHub token is provided by default for authentication
