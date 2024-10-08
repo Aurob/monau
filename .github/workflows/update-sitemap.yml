@@ -28,10 +28,9 @@ jobs:
 
     - name: Commit Sitemap
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add sitemap.txt
-        git commit -m "Update sitemap.txt"
-        git push
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+          git add sitemap.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update sitemap" && git push)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token is provided by default for authentication
