@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="data.js"></script>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        ul {
+            width: 20%;
+            background-color: #e0e0e0;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+        #info-panel {
+            width: 80%;
+            overflow-y: auto;
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .info-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .info-card h4 {
+            margin: 0 0 5px 0;
+        }
+        .info-card p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <ul></ul>
+    <div id="info-panel"></div>
+    <script>
+        const instanceCounts = {};
+        const instanceData = {};
+
+        // Iterate over each entry in the data
+        for (const key in data) {
+            if (data[key].properties && data[key].properties.instance_of) {
+                data[key].properties.instance_of.forEach(instance => {
+                    if (instanceCounts[instance]) {
+                        instanceCounts[instance]++;
+                        instanceData[instance].push(data[key]);
+                    } else {
+                        instanceCounts[instance] = 1;
+                        instanceData[instance] = [data[key]];
+                    }
+                });
+            }
+        }
+
+        // Convert the instanceCounts object to an array and sort by count
+        const sortedInstances = Object.entries(instanceCounts).sort((a, b) => b[1] - a[1]);
+
+        // Create an ordered list to display the sorted counts
+        const ul = document.querySelector('ul');
+        sortedInstances.forEach(([instance, count]) => {
+            const li = document.createElement('li');
+            li.textContent = `${instance}: ${count}`;
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => displayInstanceData(instance));
+            ul.appendChild(li);
+        });
+
+        function displayInstanceData(instance) {
+            const infoPanel = document.getElementById('info-panel');
+            infoPanel.innerHTML = ''; // Clear previous content
+            instanceData[instance].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'info-card';
+                card.innerHTML = `
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                    <a href="${item.url}" target="_blank">More Info</a>
+                `;
+                infoPanel.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
