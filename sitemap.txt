@@ -108,6 +108,7 @@
 /data/pixels
 /data/terra
 /data/weather
+/data/wiki
 /games/automata/clife
 /games/automata/jslife
 /games/gui_test
