@@ -1,33 +1,66 @@
-name: Build and Test Redbean on Test Branch
+name: Build and Package Redbean Application
 
 on:
   push:
     branches:
-      - test-branch   # Replace with your test branch
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the repo
-      - name: Checkout repository
+      # Checkout the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Download redbean.com binary
-      - name: Download redbean.com
-        run: |
-          curl -O https://redbean.dev/redbean.com
-          chmod +x redbean.com
+      # Download the latest redbean.com
+      - name: Download Redbean
+        run: wget https://redbean.dev/redbean-latest.com -O redbean.zip
 
-      # Add content to the existing redbean.com file
-      - name: Add content to redbean.com
+      # Create ZIP Archive
+      - name: Create ZIP Archive
         run: |
-          zip -r9 redbean.com ./* -x redbean.com
+          zip -r redbean.zip . -x ".git/*" "redbean.zip" ".github/*"
 
-      # (Optional) Upload the zipped file as an artifact
-      - name: Upload redbean as artifact
-        uses: actions/upload-artifact@v3
+      # # Append ZIP to Redbean
+      # - name: Append ZIP to Redbean
+      #   run: cat site.zip >> redbean.com
+
+      # Create GitHub Release
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
         with:
-          name: redbean
-          path: redbean.com
+          tag_name: v1.0.1  # Update version as needed
+          release_name: Release v1.0.1
+          draft: true
+          prerelease: false
+
+      # Upload redbean.com to Release
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.MONO_GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./redbean.zip
+          asset_name: monau.redbean
+          asset_content_type: application/octet-stream
+
+      - name: Copy release to remote server via SCP
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          # Save the private key
+          mkdir ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
+          # Add the remote server to known hosts (optional: to avoid interactive prompt)
+          ssh-keyscan -H rau.lol >> ~/.ssh/known_hosts
+
+          # Use SCP to copy the release to the remote server
+          scp ./redbean.zip au@rau.lol:/var/www/redbean/
