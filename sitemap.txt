@@ -9,7 +9,6 @@
 /3d/nature
 /3d/ring
 /3d/room
-/3d/scenes
 /3d/serene
 /3d/snowman
 /3d/spin
