@@ -98,6 +98,8 @@
 /art/words/alt4
 /data/books
 /data/boyd
+/data/d3test
+/data/d3test/old
 /data/food
 /data/food/tests
 /data/gis_tests
@@ -108,14 +110,13 @@
 /data/terra
 /data/weather
 /data/wiki
+/data/wordcon
 /games/automata/clife
 /games/automata/jslife
 /games/gui_test
 /games/latest
 /games/old_test
 /other/clock
-/other/d3test
-/other/d3test/old
 /other/homes/home
 /other/homes/oldhome
 /other/peer
