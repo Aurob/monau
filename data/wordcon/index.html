@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Mind Map with D3.js</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .node text {
+            pointer-events: none;
+            font-size: 12px;
+        }
+
+        .edit-box {
+            position: absolute;
+            display: none;
+        }
+
+        .add-button {
+            display: none;
+        }
+
+        .save-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .load-list {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f0f0f0;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <button class="save-button" onclick="saveMap()">Save Map</button>
+    <div class="load-list"></div>
+    <script>
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        let nodes = [{ id: 0, x: width / 2, y: height / 2, text: '', isCenter: true }];
+        let links = [];
+
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).distance(100).strength(1))
+            .force("charge", d3.forceManyBody().strength(-200))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .on("tick", ticked);
+
+        const linkGroup = svg.append("g").attr("class", "links");
+        const nodeGroup = svg.append("g").attr("class", "nodes");
+
+        function update() {
+            const link = linkGroup.selectAll("line")
+                .data(links, d => `${d.source.id}-${d.target.id}`);
+
+            link.enter().append("line")
+                .attr("stroke", "#999")
+                .attr("stroke-width", 1.5)
+                .merge(link);
+
+            link.exit().remove();
+
+            const node = nodeGroup.selectAll("g")
+                .data(nodes, d => d.id);
+
+            const nodeEnter = node.enter().append("g")
+                .call(d3.drag()
+                    .on("start", dragStarted)
+                    .on("drag", dragged)
+                    .on("end", dragEnded));
+
+            nodeEnter.append("rect")
+                .attr("width", d => d.isCenter ? 30 : 80)
+                .attr("height", d => d.isCenter ? 30 : 40)
+                .attr("x", d => d.isCenter ? -15 : -40)
+                .attr("y", d => d.isCenter ? -15 : -20)
+                .attr("rx", d => d.isCenter ? 0 : 20)
+                .attr("ry", d => d.isCenter ? 0 : 20)
+                .attr("fill", d => d.isCenter ? "#6b8e23" : "#4682b4")
+                .on("click", (event, d) => addText(d));
+
+            nodeEnter.append("text")
+                .attr("dy", 4)
+                .attr("text-anchor", "middle")
+                .text(d => d.text);
+
+            nodeEnter.append("foreignObject")
+                .attr("x", -40)
+                .attr("y", 30)
+                .attr("width", 80)
+                .attr("height", 40)
+                .append("xhtml:button")
+                .attr("class", "add-button")
+                .style("width", "100%")
+                .style("height", "20px")
+                .text("Relate")
+                .on("click", (event, d) => addNode(d));
+
+            node.merge(nodeEnter).select("text").text(d => d.text);
+
+            node.merge(nodeEnter).select(".add-button")
+                .style("display", d => d.text ? "block" : "none");
+
+            node.exit().remove();
+
+            simulation.nodes(nodes);
+            simulation.force("link").links(links);
+            simulation.alpha(1).restart();
+        }
+
+        function ticked() {
+            linkGroup.selectAll("line")
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            nodeGroup.selectAll("g")
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+        }
+
+        function dragStarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragEnded(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        function addNode(sourceNode) {
+            const newNode = { id: nodes.length, x: sourceNode.x + Math.random() * 50, y: sourceNode.y + Math.random() * 50, text: '', isCenter: false };
+            nodes.push(newNode);
+            links.push({ source: sourceNode, target: newNode });
+            update();
+        }
+
+        function addText(node) {
+            const text = prompt("Enter text for this node:", node.text);
+            if (text !== null) {
+                node.text = text;
+                update();
+            }
+        }
+
+        function saveMap() {
+            const mapName = prompt("Enter a name for this map:");
+            if (mapName) {
+                const mapData = { nodes, links };
+                localStorage.setItem('!wordcon-'+mapName, JSON.stringify(mapData));
+                updateLoadList();
+                window.location.hash = mapName;
+            }
+        }
+
+        function loadMap(mapName) {
+            const mapData = JSON.parse(localStorage.getItem('!wordcon-'+mapName));
+            if (mapData) {
+                nodes = mapData.nodes;
+                links = mapData.links.map(link => ({
+                    source: nodes.find(node => node.id === link.source.id),
+                    target: nodes.find(node => node.id === link.target.id)
+                }));
+                update();
+                window.location.hash = mapName;
+            }
+        }
+
+        function updateLoadList() {
+            const loadList = document.querySelector('.load-list');
+            loadList.innerHTML = '';
+            for (let i = 0; i < localStorage.length; i++) {
+                const mapName = localStorage.key(i);
+                if(!mapName.startsWith('!wordcon-')) continue;
+                const button = document.createElement('button');
+                button.textContent = mapName.substring(9);
+                button.onclick = () => {
+                    console.log(mapName);
+                    loadMap(mapName.substring(9));
+                }
+                loadList.appendChild(button);
+            }
+        }
+
+        function checkHash() {
+            const hash = window.location.hash.substring(1);
+            if (localStorage.getItem('!wordcon-'+hash)) {
+                loadMap(hash);
+            }
+        }
+
+        updateLoadList();
+        checkHash();
+        update();
+    </script>
+</body>
+</html>

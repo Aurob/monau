@@ -66,8 +66,6 @@
         iframe {
             width: 100%;
             height: 100%;
-            border: none;
-            overflow: hidden; /* Ensure no scrolling */
         }
         .tree {
             overflow-y: auto;
@@ -123,9 +121,15 @@
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 10px;
             font-size: 0.8em;
         }
+
+        #sitemap-container {
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-grow: 1;
+        }
+
         @media (min-width: 600px) {
             .main-container {
                 flex-direction: row;
@@ -144,28 +148,19 @@
 <body>
     <header class="header">
         <div class="header-icons">
-            <a href="https://github.com/aurob/" title="GitHub">GitHub</a>
+            <a href="https://github.com/aurob/monau" title="GitHub">GitHub</a>
         </div>
     </header>
     <div class="main-container">
         <nav class="nav">
             <div class="nav-header">
-                <h3>Explore my projects</h3>
-                <p>
-                    Deployed with <a href="https://pages.cloudflare.com/">Cloudflare Pages</a> 
-                    (<a href="https://rau.pages.dev">rau.pages.dev</a>)
-                </p>
-                <p>Alternate Links:</p>
-                <ul>
-                    <li><a href="https://augame.pages.dev">augame.pages.dev</a></li>
-                    <li><a href="https://game.rau.dev">game.rau.dev</a></li>
-                    <li><a href="https://3e7bf27d.augame.pages.dev/">3e7bf27d.augame.pages.dev</a></li>
-                </ul>
-            </div>
+                <h3>RAU.DEV</h3>
+                <small>Robert Aucoin | Software Developer</small>
+            </div>    
             <div id="sitemap-container" class="tree"></div>
         </nav>
         <main class="main-content">
-            <iframe src="/art/design1"></iframe>
+            <iframe id="project" src="/art/design1"></iframe>
         </main>
     </div>
     <footer class="footer">
@@ -219,13 +214,21 @@
                             li.classList.add('expanded');
                             childrenUL.style.display = 'block';
                         } else {
-                            childrenUL.style.display = 'block';
+                            childrenUL.style.display = 'none';
                             li.classList.add('expanded');
                         }
                     } else {
                         li.appendChild(span);
                     }
-                    span.innerHTML += ` <a href="${_fullPath}" target="content-frame">→ Visit</a>`;
+                    const viewLink = document.createElement('a');
+                    viewLink.href = _fullPath;
+                    viewLink.innerHTML = '<small>&nbsp;[view]</small>';
+                    viewLink.onclick = function() {
+                        document.getElementById('project').src = _fullPath;
+                        window.location.search = '?' + _fullPath;
+                        return false;
+                    };
+                    span.appendChild(viewLink);
                     ul.appendChild(li);
                 }
                 return ul;
@@ -240,6 +243,11 @@
                 const sitemap = document.getElementById('sitemap-container');
                 const paths = data.split('\n').filter(line => line.trim().length > 0).map(path => path.replace(window.location.origin, '')).sort().reverse();
                 sitemap.appendChild(createTree(paths));
+
+                if (window.location.search) {
+                    const path = window.location.search.substring(1);
+                    document.getElementById('project').src = path;
+                }
 
             })
             .catch(error => console.error('Error fetching sitemap:', error));
