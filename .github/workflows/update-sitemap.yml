@@ -3,7 +3,7 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main
+      - dev
   workflow_dispatch:  # Allows manual trigger of the workflow from GitHub Actions UI
 
 jobs:
